@@ -2,644 +2,447 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Hay Day Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hay Day Market</title>
 
 <style>
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
---green:#65b33f;
---dark-green:#39752b;
---light-green:#edf7e8;
---white:#ffffff;
---text:#202820;
---muted:#737b72;
---danger:#d9534f;
---warning:#e5a832;
---shadow:0 8px 30px rgba(0,0,0,.09);
---radius:18px;
+--primary:#69b342;
+--primary-dark:#3e7c2c;
+--bg:#f2f7ed;
+--card:#fff;
+--text:#1c251b;
+--muted:#737c70;
+--danger:#d84c4c;
+--warning:#e3a52d;
+--border:#dce6d8;
+--shadow:0 10px 35px rgba(0,0,0,.09);
+--radius:18px
 }
-
-html{
-scroll-behavior:smooth;
-}
-
 body{
-font-family:Arial,Tahoma,sans-serif;
-background:#f3f7ef;
+font-family:Tahoma,Arial,sans-serif;
+background:var(--bg);
 color:var(--text);
 min-height:100vh;
-transition:.25s;
+transition:.2s
 }
-
-button,
-input,
-textarea,
-select{
-font:inherit;
-}
-
-button{
-cursor:pointer;
-}
-
-img{
-max-width:100%;
-}
-
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+button,input,textarea,select{outline:none}
+button:active{transform:scale(.98)}
 .header{
 position:sticky;
 top:0;
 z-index:1000;
 background:#fff;
-box-shadow:0 3px 20px rgba(0,0,0,.12);
+box-shadow:0 3px 20px rgba(0,0,0,.12)
 }
-
 .header-inner{
-width:min(1350px,100%);
+max-width:1450px;
 margin:auto;
-padding:10px 15px;
+padding:9px 14px;
 display:flex;
 align-items:center;
-gap:12px;
-flex-wrap:wrap;
+gap:10px;
+flex-wrap:wrap
 }
-
 .logo{
-width:58px;
-height:58px;
-border-radius:50%;
+width:57px;
+height:57px;
+border-radius:15px;
 object-fit:cover;
-background:#fff;
-border:3px solid var(--green);
-flex-shrink:0;
+border:2px solid var(--primary);
+background:#eee;
+flex-shrink:0
 }
-
-.site-name{
-font-size:23px;
+.brand{
+font-size:21px;
 font-weight:900;
-color:var(--dark-green);
-white-space:nowrap;
+color:var(--primary-dark);
+white-space:nowrap
 }
-
 .nav{
 display:flex;
-align-items:center;
 gap:7px;
 overflow-x:auto;
 flex:1;
-padding:3px;
-scrollbar-width:none;
+scrollbar-width:none
 }
-
-.nav::-webkit-scrollbar{
-display:none;
-}
-
+.nav::-webkit-scrollbar{display:none}
 .nav button{
-border:0;
-padding:10px 13px;
-border-radius:11px;
-background:var(--light-green);
-color:var(--dark-green);
-font-weight:800;
 white-space:nowrap;
-transition:.2s;
+padding:10px 12px;
+border:0;
+border-radius:11px;
+background:#eef7e9;
+color:var(--primary-dark);
+font-weight:800
 }
-
-.nav button:hover{
-background:var(--green);
-color:#fff;
-transform:translateY(-1px);
+.nav button:hover,
+.nav button.active{
+background:var(--primary);
+color:#fff
 }
-
 .container{
-width:min(1350px,100%);
+max-width:1450px;
 margin:auto;
-padding:22px 15px;
+padding:20px 14px
 }
-
 .hero{
-min-height:330px;
-padding:50px 20px;
 border-radius:28px;
-background:linear-gradient(135deg,#79ca4c,#e3f7cc);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+padding:55px 20px;
 text-align:center;
-box-shadow:var(--shadow);
+background:linear-gradient(135deg,#70bd48,#e9f8d9);
+box-shadow:var(--shadow)
 }
-
 .hero h1{
-font-size:clamp(32px,7vw,58px);
-font-weight:1000;
-margin-bottom:14px;
+font-size:clamp(30px,6vw,60px);
+margin-bottom:13px;
+font-weight:1000
 }
-
 .hero p{
-font-size:19px;
-max-width:750px;
-line-height:1.8;
+font-size:18px;
+line-height:1.9;
+max-width:850px;
+margin:auto
 }
-
+.section{
+margin-top:24px
+}
 .section-head{
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:12px;
-margin:25px 0 15px;
+gap:10px;
+margin-bottom:14px
 }
-
-.section-head h2{
-font-size:25px;
-}
-
+.section-head h2{font-size:25px}
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:18px;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:17px
 }
-
-.card{
-background:#fff;
+.card,
+.panel,
+.stat{
+background:var(--card);
 border-radius:var(--radius);
-padding:15px;
 box-shadow:var(--shadow);
+padding:15px
+}
+.card{
 overflow:hidden;
-transition:.2s;
+transition:.2s
 }
-
-.card:hover{
-transform:translateY(-3px);
-}
-
-.card-image{
+.card:hover{transform:translateY(-3px)}
+.cover{
 width:100%;
 height:220px;
 object-fit:cover;
 border-radius:14px;
-background:#e8eee5;
-display:block;
+background:#e7eee4;
+display:block
 }
-
 .card h3{
 font-size:20px;
-margin:12px 0 8px;
+margin:11px 0 7px
 }
-
 .description{
 color:var(--muted);
 line-height:1.8;
-min-height:52px;
 white-space:pre-wrap;
-word-break:break-word;
+word-break:break-word
 }
-
 .price{
 font-size:23px;
 font-weight:900;
-color:var(--dark-green);
-margin-top:10px;
+color:var(--primary-dark);
+margin-top:9px
 }
-
 .meta{
 font-size:14px;
 color:var(--muted);
-margin-top:7px;
+margin-top:6px
 }
-
-.actions{
+.badge{
+display:inline-block;
+padding:5px 9px;
+border-radius:30px;
+background:#eef7e9;
+color:var(--primary-dark);
+font-size:12px;
+font-weight:900
+}
+.row{
 display:flex;
-flex-wrap:wrap;
-gap:7px;
-margin-top:12px;
+gap:8px;
+flex-wrap:wrap
 }
-
+.between{
+justify-content:space-between;
+align-items:center
+}
 .btn{
 border:0;
 padding:10px 14px;
 border-radius:11px;
 font-weight:800;
-transition:.2s;
+transition:.15s
 }
-
-.btn:hover{
-transform:translateY(-1px);
-}
-
-.primary{
-background:var(--green);
-color:#fff;
-}
-
-.secondary{
-background:var(--light-green);
-color:var(--dark-green);
-}
-
-.danger{
-background:var(--danger);
-color:#fff;
-}
-
-.warning{
-background:var(--warning);
-color:#fff;
-}
-
-.panel{
-background:#fff;
-border-radius:20px;
-padding:20px;
-box-shadow:var(--shadow);
-margin-bottom:18px;
-}
-
-.field{
-margin-bottom:14px;
-}
-
+.primary{background:var(--primary);color:#fff}
+.secondary{background:#eef7e9;color:var(--primary-dark)}
+.danger{background:var(--danger);color:#fff}
+.warning{background:var(--warning);color:#fff}
+.dark{background:#242b23;color:#fff}
+.field{margin-bottom:14px}
 .field label{
 display:block;
 font-weight:800;
-margin-bottom:7px;
+margin-bottom:6px
 }
-
 .field input,
 .field textarea,
 .field select{
 width:100%;
 padding:12px;
-border:1px solid #d5ddd0;
+border:1px solid var(--border);
 border-radius:11px;
-outline:none;
 background:#fff;
-color:#222;
+color:#222
 }
-
+.field textarea{
+min-height:115px;
+resize:vertical
+}
+.field input[type="color"]{
+padding:4px;
+height:45px
+}
 .field input:focus,
 .field textarea:focus,
 .field select:focus{
-border-color:var(--green);
-box-shadow:0 0 0 3px rgba(101,179,63,.12);
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(105,179,66,.15)
 }
-
-.field textarea{
-min-height:120px;
-resize:vertical;
-}
-
 .two{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:12px;
+gap:10px
 }
-
 .three{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:12px;
+gap:10px
 }
-
-.image-picker{
+.four{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px
+}
+.search{
+width:100%;
+padding:14px;
+border:1px solid var(--border);
+border-radius:13px;
+background:#fff
+}
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:18px
+}
+.stat span{
+display:block;
+font-size:14px;
+color:var(--muted)
+}
+.stat strong{
+display:block;
+font-size:29px;
+color:var(--primary-dark);
+margin-top:6px
+}
+.empty{
+background:#fff;
+padding:38px 20px;
+border-radius:18px;
+box-shadow:var(--shadow);
+text-align:center;
+color:var(--muted)
+}
+.notice{
+background:#eef7e9;
+color:#315c2b;
+border-radius:12px;
+padding:13px;
+line-height:1.8;
+margin:10px 0
+}
+.error{
+background:#fff0ef;
+color:#a52c29;
+border-radius:12px;
+padding:12px;
+margin:10px 0
+}
+.picker{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(105px,1fr));
-gap:9px;
+gap:8px
 }
-
-.image-slot{
+.slot{
 height:105px;
-border:2px dashed #91bd80;
+border:2px dashed #94bd83;
 border-radius:13px;
+background:#f8fbf6;
 display:flex;
 align-items:center;
 justify-content:center;
 position:relative;
 overflow:hidden;
-background:#f8fbf6;
-color:var(--green);
-font-size:38px;
-font-weight:900;
+color:var(--primary);
+font-size:40px;
+font-weight:900
 }
-
-.image-slot.add{
-cursor:pointer;
-}
-
-.image-slot img{
+.slot img{
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:cover
 }
-
-.remove-image{
+.remove-img{
 position:absolute;
-top:5px;
-left:5px;
+top:4px;
+left:4px;
 width:28px;
 height:28px;
 border:0;
 border-radius:50%;
 background:var(--danger);
 color:#fff;
-font-size:18px;
-font-weight:900;
-z-index:2;
+font-weight:900
 }
-
+.gallery{
+display:flex;
+gap:7px;
+overflow:auto;
+margin-top:9px
+}
+.gallery img{
+width:65px;
+height:65px;
+object-fit:cover;
+border-radius:9px;
+flex-shrink:0;
+cursor:pointer
+}
 .modal{
 display:none;
 position:fixed;
 inset:0;
 z-index:5000;
-background:rgba(0,0,0,.72);
+background:rgba(0,0,0,.73);
 align-items:center;
 justify-content:center;
-padding:15px;
+padding:15px
 }
-
-.modal.active{
-display:flex;
-}
-
+.modal.open{display:flex}
 .modal-box{
-position:relative;
-width:min(700px,100%);
-max-height:93vh;
+width:min(780px,100%);
+max-height:94vh;
 overflow:auto;
 background:#fff;
 border-radius:22px;
 padding:23px;
+position:relative
 }
-
 .close{
 position:absolute;
 left:10px;
 top:10px;
-width:36px;
-height:36px;
+width:37px;
+height:37px;
 border:0;
 border-radius:50%;
 background:#eee;
-font-size:23px;
+font-size:24px
 }
-
-.notice{
-padding:14px;
-border-radius:12px;
-background:#eef7e9;
-color:#315d29;
-line-height:1.8;
-margin:12px 0;
-}
-
-.error{
-padding:12px;
-border-radius:12px;
-background:#fff0ef;
-color:#9e2926;
-margin:10px 0;
-}
-
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:30px;
-background:var(--light-green);
-color:var(--dark-green);
-font-size:12px;
-font-weight:900;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-margin-bottom:18px;
-}
-
-.stat{
-background:#fff;
-border-radius:18px;
-padding:18px;
-box-shadow:var(--shadow);
-}
-
-.stat span{
-color:var(--muted);
-font-size:14px;
-}
-
-.stat strong{
-display:block;
-font-size:29px;
-margin-top:7px;
-color:var(--dark-green);
-}
-
 .request{
-border:1px solid #e0e7dc;
+border:1px solid var(--border);
 border-radius:16px;
 padding:15px;
-margin-bottom:12px;
-background:#fff;
+margin-bottom:12px
 }
-
 .request-images{
 display:flex;
 gap:8px;
-overflow-x:auto;
-margin-top:10px;
-padding-bottom:4px;
+overflow:auto;
+margin-top:10px
 }
-
 .request-images img{
 width:85px;
 height:85px;
+object-fit:cover;
 border-radius:10px;
-object-fit:cover;
-flex-shrink:0;
+flex-shrink:0
 }
-
-.admin-image-list{
-display:flex;
-gap:7px;
-overflow-x:auto;
-margin-top:10px;
-}
-
-.admin-image-list img{
-width:70px;
-height:70px;
-object-fit:cover;
-border-radius:9px;
-}
-
-.empty{
-padding:35px 20px;
-background:#fff;
-border-radius:18px;
-text-align:center;
-color:#777;
-box-shadow:var(--shadow);
-}
-
-.search-box{
-margin-bottom:18px;
-}
-
-.search-box input{
-width:100%;
-padding:14px;
-border-radius:13px;
-border:1px solid #d5ddd0;
-outline:none;
-}
-
-.table-wrap{
-width:100%;
-overflow:auto;
-}
-
+.table-wrap{overflow:auto}
 table{
 width:100%;
 border-collapse:collapse;
-min-width:650px;
+min-width:680px
 }
-
-th,
-td{
-padding:11px;
-border-bottom:1px solid #e4e9e1;
-text-align:right;
+th,td{
+padding:10px;
+border-bottom:1px solid var(--border);
+text-align:right
 }
-
-th{
-background:#f2f7ef;
-color:var(--dark-green);
-}
-
+th{background:#f0f7ec;color:var(--primary-dark)}
 .footer{
 margin-top:40px;
+padding:30px 15px;
+text-align:center;
+background:#20261f;
+color:#fff
+}
+.toast{
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:9000;
 background:#20261f;
 color:#fff;
-padding:32px 15px;
-text-align:center;
+padding:14px 18px;
+border-radius:12px;
+box-shadow:var(--shadow);
+display:none
 }
-
-.gallery{
-display:flex;
-gap:7px;
-overflow:auto;
-margin-top:10px;
-padding-bottom:3px;
-}
-
-.gallery img{
-width:62px;
-height:62px;
-border-radius:9px;
-object-fit:cover;
-flex-shrink:0;
-cursor:pointer;
-}
-
-.separator{
+.toast.show{display:block}
+.small{font-size:13px}
+.center{text-align:center}
+.hidden{display:none!important}
+.divider{
 height:1px;
-background:#e6ebe3;
-margin:18px 0;
+background:var(--border);
+margin:18px 0
 }
-
-.text-center{
-text-align:center;
+@media(max-width:950px){
+.stats{grid-template-columns:1fr 1fr}
+.four{grid-template-columns:1fr 1fr}
+.three{grid-template-columns:1fr 1fr}
 }
-
-.mt{
-margin-top:15px;
-}
-
-.mb{
-margin-bottom:15px;
-}
-
-.hidden{
-display:none!important;
-}
-
-@media(max-width:900px){
-
-.stats{
-grid-template-columns:1fr 1fr;
-}
-
-.three{
-grid-template-columns:1fr;
-}
-
-}
-
 @media(max-width:650px){
-
-.header-inner{
-padding:8px 10px;
-}
-
-.logo{
-width:50px;
-height:50px;
-}
-
-.site-name{
-font-size:18px;
-}
-
-.nav{
-order:3;
-flex-basis:100%;
-width:100%;
-}
-
-.two{
-grid-template-columns:1fr;
-}
-
-.hero{
-min-height:250px;
-padding:35px 15px;
-}
-
-.hero p{
-font-size:16px;
-}
-
-.container{
-padding:17px 10px;
-}
-
-.stats{
-grid-template-columns:1fr 1fr;
-}
-
-.section-head{
-align-items:flex-start;
-flex-direction:column;
-}
-
-}
-
-@media(max-width:400px){
-
-.stats{
-grid-template-columns:1fr;
-}
-
+.header-inner{padding:7px 9px}
+.logo{width:48px;height:48px}
+.brand{font-size:18px}
+.nav{flex-basis:100%;order:3}
+.two,.three,.four{grid-template-columns:1fr}
+.hero{padding:40px 15px}
+.hero p{font-size:16px}
+.container{padding:16px 9px}
+.stats{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -647,4548 +450,2158 @@ grid-template-columns:1fr;
 <body>
 
 <header class="header">
-
 <div class="header-inner">
-
-<img
-id="siteLogo"
-class="logo"
-alt="Hay Day Store Logo">
-
-<div
-id="siteName"
-class="site-name">
-Hay Day Store
+<img id="siteLogo" class="logo" alt="logo">
+<div id="siteBrand" class="brand">Hay Day Market</div>
+<nav id="nav" class="nav"></nav>
 </div>
-
-<nav
-id="navigation"
-class="nav">
-</nav>
-
-</div>
-
 </header>
 
 <main id="app"></main>
 
 <footer class="footer">
-
-<div id="footerName">
-Hay Day Store
+<div id="footerName">Hay Day Market</div>
+<div style="margin-top:7px;color:#bcc5b9">
+منصة هاي داي للإعلانات والحسابات والمنتجات
 </div>
-
-<div style="margin-top:8px;color:#b9c2b6">
-منصة إعلانات ومنتجات لعبة هاي داي
-</div>
-
 </footer>
 
-<div
-id="modal"
-class="modal">
-
-<div
-class="modal-box">
-
-<button
-class="close"
-onclick="closeModal()">
-×
-</button>
-
-<div id="modalContent"></div>
-
+<div id="modal" class="modal">
+<div class="modal-box">
+<button class="close" onclick="closeModal()">×</button>
+<div id="modalBody"></div>
+</div>
 </div>
 
-</div>
+<div id="toast" class="toast"></div>
 
 <script>
 "use strict";
 
-/* ============================================================
-   HAY DAY STORE
-   نظام متجر وإعلانات محلي
-   ============================================================ */
+/* =========================================================
+   إعدادات المالك
+========================================================= */
 
+const OWNER_ID="111111111";
+const OWNER_EMAIL="gojoesultan1@gmail.com";
+const OWNER_PASSWORD="ahmedgojo123456789";
 
-/* ============================================================
-   بيانات المالك
-   ============================================================ */
+const DB_KEY="HAYDAY_MARKET_DATABASE";
+const SESSION_KEY="HAYDAY_MARKET_SESSION";
 
-const OWNER_ID =
-"111111111";
-
-const OWNER_EMAIL =
-"gojoesultan1@gmail.com";
-
-const OWNER_PASSWORD =
-"111111111";
-
-
-/* ============================================================
-   مفتاح قاعدة البيانات
-   ============================================================ */
-
-const DATABASE_KEY =
-"HAY_DAY_STORE_DATABASE_V2";
-
-
-/* ============================================================
-   إنشاء قاعدة البيانات
-   ============================================================ */
-
-let database =
-JSON.parse(
-localStorage.getItem(
-DATABASE_KEY
-) || "null"
-);
-
-
-/* ============================================================
+/* =========================================================
    قاعدة البيانات الافتراضية
-   ============================================================ */
+========================================================= */
 
-if(!database){
-
-database={
-
+const DEFAULT_DB={
 users:[
-
 {
-
 id:OWNER_ID,
-
 name:"Gojo Esultan",
-
 email:OWNER_EMAIL,
-
 phone:"",
-
 password:OWNER_PASSWORD,
-
 role:"admin",
-
-createdAt:
-new Date().toISOString()
-
+avatar:"",
+createdAt:Date.now()
 }
-
 ],
-
 posts:[],
-
 requests:[],
-
 notifications:[],
-
+orders:[],
+favorites:[],
+reports:[],
 settings:{
-
-siteName:
-"Hay Day Store",
-
-title:
-"مرحبًا بك في Hay Day Store",
-
-subtitle:
-"حسابات ومنشورات ومنتجات لعبة هاي داي",
-
-backgroundColor:
-"#f3f7ef",
-
+siteName:"Hay Day Market",
+heroTitle:"متجر ومنصة هاي داي",
+heroText:"حسابات هاي داي ومنشورات ومنتجات في مكان واحد.",
+announcement:"مرحبًا بك في منصة هاي داي",
+currency:"جنيه",
+primary:"#69b342",
+background:"#f2f7ed",
 backgroundImage:"",
-
 logo:"",
-
-primaryColor:
-"#65b33f"
-
+footerText:"منصة هاي داي للإعلانات والحسابات والمنتجات",
+maintenance:false
 }
-
 };
 
-saveDatabase();
+/* =========================================================
+   متغيرات عامة
+========================================================= */
 
+let db=loadDatabase();
+let session=localStorage.getItem(SESSION_KEY)||"";
+let uploadImages=[];
+let editImages=[];
+let currentCategory="all";
+
+/* =========================================================
+   قاعدة البيانات
+========================================================= */
+
+function loadDatabase(){
+try{
+const saved=localStorage.getItem(DB_KEY);
+if(saved){
+const parsed=JSON.parse(saved);
+return mergeDatabase(parsed);
+}
+}catch(error){
+console.warn(error);
+}
+return structuredClone(DEFAULT_DB);
 }
 
-
-/* ============================================================
-   جلسة المستخدم
-   ============================================================ */
-
-let loggedUserId =
-localStorage.getItem(
-"HAY_DAY_SESSION"
-) || null;
-
-
-/* ============================================================
-   مصفوفات الصور
-   ============================================================ */
-
-let requestImages=[];
-
-let adminImages=[];
-
-
-/* ============================================================
-   حفظ قاعدة البيانات
-   ============================================================ */
+function mergeDatabase(data){
+const base=structuredClone(DEFAULT_DB);
+if(!data||typeof data!=="object")return base;
+for(const key of Object.keys(base)){
+if(data[key]!==undefined)base[key]=data[key];
+}
+if(!Array.isArray(base.users))base.users=[];
+if(!Array.isArray(base.posts))base.posts=[];
+if(!Array.isArray(base.requests))base.requests=[];
+if(!Array.isArray(base.notifications))base.notifications=[];
+if(!Array.isArray(base.orders))base.orders=[];
+if(!Array.isArray(base.favorites))base.favorites=[];
+if(!Array.isArray(base.reports))base.reports=[];
+if(!base.settings)base.settings=structuredClone(DEFAULT_DB.settings);
+return base;
+}
 
 function saveDatabase(){
-
-localStorage.setItem(
-DATABASE_KEY,
-JSON.stringify(database)
-);
-
+localStorage.setItem(DB_KEY,JSON.stringify(db));
 }
 
+/* =========================================================
+   مساعدات
+========================================================= */
 
-/* ============================================================
-   حفظ الجلسة
-   ============================================================ */
-
-function saveSession(){
-
-if(loggedUserId){
-
-localStorage.setItem(
-"HAY_DAY_SESSION",
-loggedUserId
-);
-
-}else{
-
-localStorage.removeItem(
-"HAY_DAY_SESSION"
-);
-
+function uid(){
+return Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,11);
 }
 
-}
-
-
-/* ============================================================
-   إنشاء ID
-   ============================================================ */
-
-function generateId(){
-
-return (
-Date.now().toString(36)+
-"-"+
-Math.random()
-.toString(36)
-.substring(2,10)
-);
-
-}
-
-
-/* ============================================================
-   حماية HTML
-   ============================================================ */
-
-function escapeHTML(value){
-
-return String(
-value ?? ""
-)
-
+function esc(value){
+return String(value??"")
 .replaceAll("&","&amp;")
-
 .replaceAll("<","&lt;")
-
 .replaceAll(">","&gt;")
-
 .replaceAll('"',"&quot;")
-
 .replaceAll("'","&#039;");
-
 }
 
-
-/* ============================================================
-   المستخدم الحالي
-   ============================================================ */
-
-function getCurrentUser(){
-
-if(!loggedUserId){
-
-return null;
-
+function money(value){
+return Number(value||0).toLocaleString("ar-EG");
 }
 
-return database.users.find(
-user =>
-user.id === loggedUserId
-) || null;
-
+function getUser(){
+return db.users.find(u=>u.id===session)||null;
 }
 
-
-/* ============================================================
-   التحقق من الأدمن
-   ============================================================ */
-
-function isOwner(){
-
-const user =
-getCurrentUser();
-
-if(!user){
-
-return false;
-
-}
-
-return (
-
-user.id === OWNER_ID &&
-
-user.email === OWNER_EMAIL &&
-
-user.password === OWNER_PASSWORD &&
-
-user.role === "admin"
-
+function isAdmin(){
+const user=getUser();
+return !!(
+user &&
+user.id===OWNER_ID &&
+user.email===OWNER_EMAIL &&
+user.password===OWNER_PASSWORD &&
+user.role==="admin"
 );
-
 }
 
-
-/* ============================================================
-   اسم التصنيف
-   ============================================================ */
-
-function categoryName(category){
-
-if(category === "accounts"){
-
-return "حسابات هاي داي";
-
+function setSession(id){
+session=id||"";
+if(session)localStorage.setItem(SESSION_KEY,session);
+else localStorage.removeItem(SESSION_KEY);
 }
 
-if(category === "products"){
-
-return "منتجات هاي داي";
-
+function toast(message){
+const el=document.getElementById("toast");
+el.textContent=message;
+el.classList.add("show");
+clearTimeout(window.toastTimer);
+window.toastTimer=setTimeout(()=>el.classList.remove("show"),2800);
 }
 
-return "منشورات هاي داي";
-
+function openModal(html){
+document.getElementById("modalBody").innerHTML=html;
+document.getElementById("modal").classList.add("open");
 }
-
-
-/* ============================================================
-   اللوجو الافتراضي
-   ============================================================ */
-
-function defaultLogo(){
-
-return (
-"data:image/svg+xml,"+
-encodeURIComponent(
-
-`<svg
-xmlns="http://www.w3.org/2000/svg"
-width="200"
-height="200">
-
-<circle
-cx="100"
-cy="100"
-r="95"
-fill="#65b33f"/>
-
-<text
-x="100"
-y="118"
-text-anchor="middle"
-font-family="Arial"
-font-size="48"
-font-weight="bold"
-fill="white">
-HD
-</text>
-
-</svg>`
-
-)
-);
-
-}
-
-
-/* ============================================================
-   تطبيق إعدادات الموقع
-   ============================================================ */
-
-function applySettings(){
-
-document.title =
-database.settings.siteName;
-
-document.getElementById(
-"siteName"
-).textContent =
-database.settings.siteName;
-
-document.getElementById(
-"footerName"
-).textContent =
-database.settings.siteName;
-
-document.getElementById(
-"siteLogo"
-).src =
-database.settings.logo ||
-defaultLogo();
-
-document.body.style.backgroundColor =
-database.settings.backgroundColor ||
-"#f3f7ef";
-
-document.documentElement
-.style.setProperty(
-"--green",
-database.settings.primaryColor ||
-"#65b33f"
-);
-
-if(database.settings.backgroundImage){
-
-document.body.style.backgroundImage =
-"url("+
-database.settings.backgroundImage+
-")";
-
-document.body.style.backgroundSize =
-"cover";
-
-document.body.style.backgroundAttachment =
-"fixed";
-
-}else{
-
-document.body.style.backgroundImage =
-"none";
-
-}
-
-renderNavigation();
-
-}
-
-
-/* ============================================================
-   القائمة
-   ============================================================ */
-
-function renderNavigation(){
-
-let html="";
-
-html+=`
-
-<button
-onclick="showHome()">
-الرئيسية
-</button>
-
-`;
-
-html+=`
-
-<button
-onclick="showCategory('accounts')">
-حسابات هاي داي
-</button>
-
-`;
-
-html+=`
-
-<button
-onclick="showCategory('posts')">
-منشورات هاي داي
-</button>
-
-`;
-
-html+=`
-
-<button
-onclick="showCategory('products')">
-منتجات هاي داي
-</button>
-
-`;
-
-html+=`
-
-<button
-onclick="openRequestForm()">
-➕ إضافة إعلان
-</button>
-
-`;
-
-if(isOwner()){
-
-html+=`
-
-<button
-onclick="showAdminPanel()">
-⚙️ لوحة الأدمن
-</button>
-
-`;
-
-}
-
-if(getCurrentUser()){
-
-html+=`
-
-<button
-onclick="showAccount()">
-👤
-${escapeHTML(
-getCurrentUser().name
-)}
-</button>
-
-`;
-
-}else{
-
-html+=`
-
-<button
-onclick="openLogin()">
-👤 تسجيل الدخول
-</button>
-
-`;
-
-}
-
-document.getElementById(
-"navigation"
-).innerHTML=html;
-
-}
-
-
-/* ============================================================
-   الرئيسية
-   ============================================================ */
-
-function showHome(){
-
-const posts =
-database.posts
-.slice()
-.reverse();
-
-let html="";
-
-html+=`
-
-<div class="container">
-
-<section class="hero">
-
-<h1>
-${escapeHTML(
-database.settings.title
-)}
-</h1>
-
-<p>
-${escapeHTML(
-database.settings.subtitle
-)}
-</p>
-
-<div
-class="actions"
-style="justify-content:center">
-
-<button
-class="btn primary"
-onclick="showCategory('accounts')">
-حسابات هاي داي
-</button>
-
-<button
-class="btn secondary"
-onclick="showCategory('products')">
-منتجات هاي داي
-</button>
-
-<button
-class="btn secondary"
-onclick="openRequestForm()">
-إضافة إعلان
-</button>
-
-</div>
-
-</section>
-
-<div class="section-head">
-
-<h2>
-أحدث الإعلانات
-</h2>
-
-<button
-class="btn primary"
-onclick="openRequestForm()">
-➕ إضافة إعلان
-</button>
-
-</div>
-
-${
-renderSearch()
-}
-
-<div
-id="homePosts"
-class="grid">
-
-${
-posts.length
-?
-posts.map(
-renderPostCard
-).join("")
-:
-`
-<div class="empty">
-لا توجد إعلانات منشورة حاليًا.
-</div>
-`
-}
-
-</div>
-
-</div>
-
-`;
-
-document.getElementById(
-"app"
-).innerHTML=html;
-
-window.scrollTo(0,0);
-
-}
-
-
-/* ============================================================
-   مربع البحث
-   ============================================================ */
-
-function renderSearch(){
-
-return `
-
-<div class="search-box">
-
-<input
-id="postSearch"
-placeholder="🔎 ابحث عن حساب أو منتج أو منشور..."
-oninput="searchPosts()">
-
-</div>
-
-`;
-
-}
-
-
-/* ============================================================
-   البحث
-   ============================================================ */
-
-function searchPosts(){
-
-const input =
-document.getElementById(
-"postSearch"
-);
-
-if(!input){
-
-return;
-
-}
-
-const value =
-input.value
-.trim()
-.toLowerCase();
-
-const elements =
-document.querySelectorAll(
-"#homePosts .card"
-);
-
-elements.forEach(
-card=>{
-
-const text =
-card.textContent
-.toLowerCase();
-
-card.style.display =
-!value ||
-text.includes(value)
-?
-""
-:
-"none";
-
-}
-);
-
-}
-
-
-/* ============================================================
-   التصنيف
-   ============================================================ */
-
-function showCategory(category){
-
-const posts =
-database.posts.filter(
-post =>
-post.category === category
-);
-
-let html="";
-
-html+=`
-
-<div class="container">
-
-<div class="section-head">
-
-<h2>
-${categoryName(category)}
-</h2>
-
-<button
-class="btn primary"
-onclick="openRequestForm()">
-➕ إضافة إعلان
-</button>
-
-</div>
-
-<div class="grid">
-
-${
-posts.length
-?
-posts
-.map(renderPostCard)
-.join("")
-:
-`
-<div class="empty">
-لا توجد إعلانات في هذا القسم.
-</div>
-`
-}
-
-</div>
-
-</div>
-
-`;
-
-document.getElementById(
-"app"
-).innerHTML=html;
-
-window.scrollTo(0,0);
-
-}
-
-
-/* ============================================================
-   كارت المنشور
-   ============================================================ */
-
-function renderPostCard(post){
-
-const firstImage =
-post.images &&
-post.images.length
-?
-post.images[0]
-:
-"";
-
-let html="";
-
-html+=`
-
-<article
-class="card">
-
-`;
-
-if(firstImage){
-
-html+=`
-
-<img
-class="card-image"
-src="${firstImage}"
-alt="${escapeHTML(post.title)}"
-onclick="viewPost('${post.id}')"
-style="cursor:pointer">
-
-`;
-
-}else{
-
-html+=`
-
-<div
-class="card-image"
-onclick="viewPost('${post.id}')"
-style="cursor:pointer">
-</div>
-
-`;
-
-}
-
-html+=`
-
-<div style="margin-top:12px">
-
-<span class="badge">
-
-${categoryName(
-post.category
-)}
-
-</span>
-
-<h3>
-
-${escapeHTML(
-post.title
-)}
-
-</h3>
-
-<div class="description">
-
-${escapeHTML(
-post.description
-)}
-
-</div>
-
-<div class="price">
-
-${Number(
-post.price || 0
-).toLocaleString("ar-EG")}
-
-جنيه
-
-</div>
-
-<div class="meta">
-
-📦 الكمية:
-${Number(
-post.quantity || 0
-)}
-
-</div>
-
-<div class="meta">
-
-👁️ المشاهدات:
-${Number(
-post.views || 0
-)}
-
-</div>
-
-<div class="actions">
-
-<button
-class="btn secondary"
-onclick="likePost('${post.id}')">
-
-❤️
-${Number(
-post.likes || 0
-)}
-
-</button>
-
-<button
-class="btn secondary"
-onclick="dislikePost('${post.id}')">
-
-👎
-${Number(
-post.dislikes || 0
-)}
-
-</button>
-
-<button
-class="btn secondary"
-onclick="viewPost('${post.id}')">
-
-عرض التفاصيل
-
-</button>
-
-</div>
-
-`;
-
-if(
-post.images &&
-post.images.length>1
-){
-
-html+=`
-
-<div class="gallery">
-
-`;
-
-post.images.forEach(
-(image,index)=>{
-
-html+=`
-
-<img
-src="${image}"
-alt=""
-onclick="viewImage('${post.id}',${index})">
-
-`;
-
-}
-);
-
-html+=`
-
-</div>
-
-`;
-
-}
-
-html+=`
-
-</div>
-
-</article>
-
-`;
-
-return html;
-
-}
-
-
-/* ============================================================
-   عرض المنشور
-   ============================================================ */
-
-function viewPost(postId){
-
-const post =
-database.posts.find(
-item =>
-item.id===postId
-);
-
-if(!post){
-
-return;
-
-}
-
-post.views =
-Number(post.views||0)+1;
-
-saveDatabase();
-
-let html="";
-
-html+=`
-
-<h2>
-${escapeHTML(post.title)}
-</h2>
-
-<p class="mt">
-<span class="badge">
-${categoryName(
-post.category
-)}
-</span>
-</p>
-
-`;
-
-if(
-post.images &&
-post.images.length
-){
-
-html+=`
-
-<div
-style="
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(130px,1fr));
-gap:8px;
-margin-top:15px;
-">
-
-`;
-
-post.images.forEach(
-(image,index)=>{
-
-html+=`
-
-<img
-src="${image}"
-style="
-width:100%;
-height:150px;
-object-fit:cover;
-border-radius:12px;
-cursor:pointer;
-"
-onclick="viewImage('${post.id}',${index})">
-
-`;
-
-}
-);
-
-html+=`
-
-</div>
-
-`;
-
-}
-
-html+=`
-
-<div class="notice">
-
-السعر:
-<strong>
-${Number(
-post.price||0
-).toLocaleString("ar-EG")}
-جنيه
-</strong>
-
-<br>
-
-الكمية:
-<strong>
-${Number(
-post.quantity||0
-)}
-</strong>
-
-<br>
-
-المشاهدات:
-<strong>
-${Number(
-post.views||0
-)}
-</strong>
-
-</div>
-
-<p
-style="
-line-height:1.9;
-white-space:pre-wrap;
-">
-${escapeHTML(
-post.description
-)}
-</p>
-
-<div class="actions">
-
-<button
-class="btn secondary"
-onclick="likePost('${post.id}');closeModal()">
-
-❤️
-${Number(
-post.likes||0
-)}
-
-</button>
-
-<button
-class="btn secondary"
-onclick="dislikePost('${post.id}');closeModal()">
-
-👎
-${Number(
-post.dislikes||0
-)}
-
-</button>
-
-</div>
-
-`;
-
-openModal(html);
-
-}
-
-
-/* ============================================================
-   عرض صورة
-   ============================================================ */
-
-function viewImage(
-postId,
-index
-){
-
-const post =
-database.posts.find(
-item =>
-item.id===postId
-);
-
-if(
-!post ||
-!post.images ||
-!post.images[index]
-){
-
-return;
-
-}
-
-openModal(`
-
-<img
-src="${post.images[index]}"
-style="
-width:100%;
-max-height:75vh;
-object-fit:contain;
-border-radius:12px;
-">
-
-`);
-
-}
-
-
-/* ============================================================
-   لايك
-   ============================================================ */
-
-function likePost(postId){
-
-const post =
-database.posts.find(
-item =>
-item.id===postId
-);
-
-if(!post){
-
-return;
-
-}
-
-post.likes =
-Number(post.likes||0)+1;
-
-saveDatabase();
-
-closeModal();
-
-showHome();
-
-}
-
-
-/* ============================================================
-   ديس لايك
-   ============================================================ */
-
-function dislikePost(postId){
-
-const post =
-database.posts.find(
-item =>
-item.id===postId
-);
-
-if(!post){
-
-return;
-
-}
-
-post.dislikes =
-Number(post.dislikes||0)+1;
-
-saveDatabase();
-
-closeModal();
-
-showHome();
-
-}
-
-
-/* ============================================================
-   فتح المودال
-   ============================================================ */
-
-function openModal(content){
-
-document.getElementById(
-"modalContent"
-).innerHTML=content;
-
-document.getElementById(
-"modal"
-).classList.add("active");
-
-}
-
-
-/* ============================================================
-   إغلاق المودال
-   ============================================================ */
 
 function closeModal(){
-
-document.getElementById(
-"modal"
-).classList.remove("active");
-
+document.getElementById("modal").classList.remove("open");
 }
 
+function defaultLogo(){
+return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+<rect width="300" height="300" rx="70" fill="#69b342"/>
+<circle cx="150" cy="135" r="75" fill="#fff"/>
+<text x="150" y="154" text-anchor="middle" font-family="Arial" font-weight="900" font-size="58" fill="#3e7c2c">HD</text>
+<text x="150" y="245" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="28" fill="#fff">MARKET</text>
+</svg>`);
+}
 
-/* ============================================================
-   تسجيل الدخول
-   ============================================================ */
+/* =========================================================
+   الإعدادات
+========================================================= */
 
-function openLogin(){
+function applySettings(){
+const s=db.settings;
+document.title=s.siteName||"Hay Day Market";
+
+document.getElementById("siteBrand").textContent=s.siteName||"Hay Day Market";
+document.getElementById("footerName").textContent=s.footerText||s.siteName||"Hay Day Market";
+
+document.getElementById("siteLogo").src=s.logo||defaultLogo();
+
+document.documentElement.style.setProperty(
+"--primary",
+s.primary||"#69b342"
+);
+
+document.body.style.backgroundColor=s.background||"#f2f7ed";
+
+if(s.backgroundImage){
+document.body.style.backgroundImage=`url("${s.backgroundImage}")`;
+document.body.style.backgroundSize="cover";
+document.body.style.backgroundAttachment="fixed";
+}else{
+document.body.style.backgroundImage="none";
+}
+
+renderNav();
+}
+
+function renderNav(){
+let html=`
+<button onclick="showHome()">الرئيسية</button>
+<button onclick="showCategory('accounts')">حسابات هاي داي</button>
+<button onclick="showCategory('posts')">منشورات هاي داي</button>
+<button onclick="showCategory('products')">منتجات هاي داي</button>
+<button onclick="openRequestForm()">➕ إضافة إعلان</button>
+`;
+
+const user=getUser();
+
+if(user){
+html+=`
+<button onclick="showMyArea()">👤 حسابي</button>
+<button onclick="showMyRequests()">📨 طلباتي</button>
+<button onclick="showNotifications()">🔔 الإشعارات</button>
+`;
+}else{
+html+=`<button onclick="openLogin()">👤 تسجيل الدخول</button>`;
+}
+
+if(isAdmin()){
+html+=`<button onclick="showAdmin()">⚙️ لوحة الأدمن</button>`;
+}
+
+document.getElementById("nav").innerHTML=html;
+}
+
+/* =========================================================
+   الرئيسية
+========================================================= */
+
+function showHome(){
+currentCategory="all";
+
+const posts=[...db.posts].sort((a,b)=>Number(b.createdAt)-Number(a.createdAt));
+
+document.getElementById("app").innerHTML=`
+<div class="container">
+
+<div class="hero">
+<div class="badge">${esc(db.settings.announcement||"مرحبًا بك")}</div>
+<h1>${esc(db.settings.heroTitle)}</h1>
+<p>${esc(db.settings.heroText)}</p>
+
+<div class="row" style="justify-content:center;margin-top:20px">
+<button class="btn primary" onclick="showCategory('accounts')">حسابات هاي داي</button>
+<button class="btn secondary" onclick="showCategory('posts')">منشورات هاي داي</button>
+<button class="btn secondary" onclick="showCategory('products')">منتجات هاي داي</button>
+<button class="btn dark" onclick="openRequestForm()">إضافة إعلان</button>
+</div>
+</div>
+
+<div class="section">
+<div class="section-head">
+<h2>🔥 أحدث الإعلانات</h2>
+<span class="badge">${posts.length} إعلان</span>
+</div>
+
+<input id="homeSearch" class="search"
+placeholder="🔎 ابحث في الإعلانات..."
+oninput="filterCards('homeSearch','homeGrid')">
+
+<div id="homeGrid" class="grid" style="margin-top:15px">
+${posts.length?posts.map(postCard).join(""):emptyBox("لا توجد إعلانات منشورة حاليًا")}
+</div>
+</div>
+
+<div class="section">
+<div class="grid">
+${infoCard("👥","حسابات هاي داي","تصفح الحسابات المعروضة للبيع.")}
+${infoCard("📢","منشورات هاي داي","إعلانات ومحتوى مجتمع اللعبة.")}
+${infoCard("📦","منتجات هاي داي","منتجات وعروض مختلفة.")}
+${infoCard("🛡️","مراجعة الإدارة","الطلبات تمر على المالك قبل النشر.")}
+</div>
+</div>
+
+</div>
+`;
+
+window.scrollTo(0,0);
+}
+
+function infoCard(icon,title,text){
+return`
+<div class="card center">
+<div style="font-size:42px">${icon}</div>
+<h3>${esc(title)}</h3>
+<p class="description">${esc(text)}</p>
+</div>`;
+}
+
+function emptyBox(text){
+return`<div class="empty">${esc(text)}</div>`;
+}
+
+/* =========================================================
+   التصنيفات
+========================================================= */
+
+function showCategory(category){
+currentCategory=category;
+
+const posts=db.posts
+.filter(p=>category==="all"||p.category===category)
+.sort((a,b)=>Number(b.createdAt)-Number(a.createdAt));
+
+document.getElementById("app").innerHTML=`
+<div class="container">
+
+<div class="section-head">
+<h2>${categoryName(category)}</h2>
+<button class="btn primary" onclick="openRequestForm()">➕ إضافة إعلان</button>
+</div>
+
+<input id="categorySearch" class="search"
+placeholder="🔎 ابحث داخل هذا القسم..."
+oninput="filterCards('categorySearch','categoryGrid')">
+
+<div id="categoryGrid" class="grid" style="margin-top:15px">
+${posts.length?posts.map(postCard).join(""):emptyBox("لا توجد إعلانات في هذا القسم")}
+</div>
+
+</div>
+`;
+}
+
+function categoryName(category){
+if(category==="accounts")return"حسابات هاي داي";
+if(category==="products")return"منتجات هاي داي";
+if(category==="posts")return"منشورات هاي داي";
+return"كل الإعلانات";
+}
+
+function filterCards(inputId,gridId){
+const input=document.getElementById(inputId);
+const grid=document.getElementById(gridId);
+if(!input||!grid)return;
+const q=input.value.trim().toLowerCase();
+grid.querySelectorAll(".card").forEach(card=>{
+card.style.display=!q||card.innerText.toLowerCase().includes(q)?"":"none";
+});
+}
+
+/* =========================================================
+   كارت المنشور
+========================================================= */
+
+function postCard(post){
+const image=post.images?.[0]||"";
+const fav=isFavorite(post.id);
+
+return`
+<article class="card">
+
+${image?
+`<img class="cover" src="${image}" alt="" onclick="viewPost('${post.id}')">`
+:
+`<div class="cover" style="display:flex;align-items:center;justify-content:center;font-size:55px">📦</div>`
+}
+
+<div style="margin-top:11px">
+<span class="badge">${categoryName(post.category)}</span>
+
+<h3>${esc(post.title)}</h3>
+
+<div class="description">${esc(post.description)}</div>
+
+<div class="price">${money(post.price)} ${esc(db.settings.currency)}</div>
+
+<div class="meta">📦 المتوفر: ${money(post.quantity)}</div>
+<div class="meta">👁️ المشاهدات: ${money(post.views)}</div>
+
+<div class="row" style="margin-top:11px">
+<button class="btn secondary" onclick="likePost('${post.id}')">❤️ ${money(post.likes)}</button>
+<button class="btn secondary" onclick="dislikePost('${post.id}')">👎 ${money(post.dislikes)}</button>
+<button class="btn ${fav?"gold":"secondary"}" onclick="toggleFavorite('${post.id}')">
+${fav?"★":"☆"} مفضلة
+</button>
+<button class="btn secondary" onclick="viewPost('${post.id}')">عرض</button>
+</div>
+
+${post.images?.length>1?`
+<div class="gallery">
+${post.images.map((x,i)=>`
+<img src="${x}" onclick="viewImage('${post.id}',${i})">
+`).join("")}
+</div>`:""}
+
+</div>
+</article>
+`;
+}
+
+/* =========================================================
+   المنشور
+========================================================= */
+
+function viewPost(postId){
+const post=db.posts.find(p=>p.id===postId);
+if(!post)return;
+
+post.views=Number(post.views||0)+1;
+saveDatabase();
 
 openModal(`
+<h2>${esc(post.title)}</h2>
 
-<h2>
-تسجيل الدخول
-</h2>
-
-<div
-class="notice">
-يمكنك الدخول باستخدام الإيميل أو رقم الهاتف.
+<div style="margin-top:10px">
+<span class="badge">${categoryName(post.category)}</span>
 </div>
 
-<div class="field">
+${post.images?.length?`
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:15px">
+${post.images.map((x,i)=>`
+<img src="${x}" style="width:100%;height:155px;object-fit:cover;border-radius:12px;cursor:pointer" onclick="viewImage('${post.id}',${i})">
+`).join("")}
+</div>`:""}
 
-<label>
-الإيميل أو رقم الهاتف
-</label>
-
-<input
-id="loginIdentifier"
-autocomplete="username"
-placeholder="الإيميل أو الهاتف">
-
+<div class="notice">
+💰 السعر: <strong>${money(post.price)} ${esc(db.settings.currency)}</strong><br>
+📦 الكمية: <strong>${money(post.quantity)}</strong><br>
+👁️ المشاهدات: <strong>${money(post.views)}</strong><br>
+❤️ الإعجابات: <strong>${money(post.likes)}</strong>
 </div>
 
-<div class="field">
+<p style="line-height:1.9;white-space:pre-wrap">${esc(post.description)}</p>
 
-<label>
-كلمة المرور
-</label>
-
-<input
-id="loginPassword"
-type="password"
-autocomplete="current-password"
-placeholder="كلمة المرور">
-
+<div class="row" style="margin-top:15px">
+<button class="btn primary" onclick="likePost('${post.id}');closeModal()">❤️ إعجاب</button>
+<button class="btn secondary" onclick="dislikePost('${post.id}');closeModal()">👎 لم يعجبني</button>
+<button class="btn secondary" onclick="toggleFavorite('${post.id}');closeModal()">⭐ المفضلة</button>
+<button class="btn warning" onclick="openReport('${post.id}')">⚠️ إبلاغ</button>
 </div>
-
-<div
-id="loginError">
-</div>
-
-<button
-class="btn primary"
-onclick="login()">
-دخول
-</button>
-
-<div class="separator"></div>
-
-<button
-class="btn secondary"
-onclick="openRegister()">
-إنشاء حساب جديد
-</button>
-
 `);
-
 }
 
+function viewImage(postId,index){
+const post=db.posts.find(p=>p.id===postId);
+if(!post?.images?.[index])return;
+openModal(`
+<img src="${post.images[index]}" style="width:100%;max-height:78vh;object-fit:contain;border-radius:13px">
+`);
+}
 
-/* ============================================================
-   تنفيذ الدخول
-   ============================================================ */
+/* =========================================================
+   التفاعل
+========================================================= */
+
+function likePost(id){
+const post=db.posts.find(p=>p.id===id);
+if(!post)return;
+post.likes=Math.max(0,Number(post.likes||0)+1);
+saveDatabase();
+toast("تم تسجيل الإعجاب ❤️");
+if(currentCategory==="all")showHome();
+else showCategory(currentCategory);
+}
+
+function dislikePost(id){
+const post=db.posts.find(p=>p.id===id);
+if(!post)return;
+post.dislikes=Math.max(0,Number(post.dislikes||0)+1);
+saveDatabase();
+toast("تم تسجيل التقييم");
+if(currentCategory==="all")showHome();
+else showCategory(currentCategory);
+}
+
+function isFavorite(postId){
+const user=getUser();
+if(!user)return false;
+return db.favorites.some(f=>f.userId===user.id&&f.postId===postId);
+}
+
+function toggleFavorite(postId){
+const user=getUser();
+if(!user){
+openLogin();
+return;
+}
+
+const index=db.favorites.findIndex(
+f=>f.userId===user.id&&f.postId===postId
+);
+
+if(index>=0){
+db.favorites.splice(index,1);
+toast("تمت الإزالة من المفضلة");
+}else{
+db.favorites.push({id:uid(),userId:user.id,postId});
+toast("تمت الإضافة للمفضلة ⭐");
+}
+
+saveDatabase();
+if(currentCategory==="all")showHome();
+else showCategory(currentCategory);
+}
+
+/* =========================================================
+   تسجيل الدخول
+========================================================= */
+
+function openLogin(){
+openModal(`
+<h2>🔐 تسجيل الدخول</h2>
+
+<div class="notice">
+يمكن الدخول بالإيميل أو رقم الهاتف.
+</div>
+
+<div class="field">
+<label>الإيميل أو رقم الهاتف</label>
+<input id="loginIdentifier" autocomplete="username" placeholder="الإيميل أو الهاتف">
+</div>
+
+<div class="field">
+<label>كلمة المرور</label>
+<input id="loginPassword" type="password" autocomplete="current-password" placeholder="كلمة المرور">
+</div>
+
+<div id="loginError"></div>
+
+<div class="row">
+<button class="btn primary" onclick="login()">دخول</button>
+<button class="btn secondary" onclick="openRegister()">إنشاء حساب</button>
+</div>
+`);
+}
 
 function login(){
+const identifier=document.getElementById("loginIdentifier").value.trim().toLowerCase();
+const password=document.getElementById("loginPassword").value;
 
-const identifier =
-document.getElementById(
-"loginIdentifier"
-).value
-.trim()
-.toLowerCase();
-
-const password =
-document.getElementById(
-"loginPassword"
-).value;
-
-const user =
-database.users.find(
-item => (
-
-item.email
-.toLowerCase() ===
-identifier ||
-
-item.phone ===
-identifier
-
-) &&
-item.password ===
-password
+const user=db.users.find(u=>
+(
+u.email?.toLowerCase()===identifier ||
+u.phone===identifier
+)&&u.password===password
 );
 
 if(!user){
-
-document.getElementById(
-"loginError"
-).innerHTML=`
-
-<div class="error">
-الإيميل أو رقم الهاتف أو كلمة المرور غير صحيحة.
-</div>
-
-`;
-
+document.getElementById("loginError").innerHTML=
+`<div class="error">بيانات الدخول غير صحيحة.</div>`;
 return;
-
 }
 
-loggedUserId =
-user.id;
-
-saveSession();
-
+setSession(user.id);
 closeModal();
-
 applySettings();
-
 showHome();
-
+toast("تم تسجيل الدخول بنجاح");
 }
 
-
-/* ============================================================
+/* =========================================================
    إنشاء حساب
-   ============================================================ */
+========================================================= */
 
 function openRegister(){
-
 openModal(`
-
-<h2>
-إنشاء حساب جديد
-</h2>
+<h2>👤 إنشاء حساب جديد</h2>
 
 <div class="field">
-
-<label>
-الاسم
-</label>
-
-<input
-id="registerName"
-placeholder="اسمك">
-
+<label>الاسم</label>
+<input id="regName" placeholder="اسمك">
 </div>
 
 <div class="field">
-
-<label>
-الإيميل
-</label>
-
-<input
-id="registerEmail"
-type="email"
-placeholder="example@email.com">
-
+<label>الإيميل</label>
+<input id="regEmail" type="email" placeholder="example@email.com">
 </div>
 
 <div class="field">
-
-<label>
-رقم الهاتف
-</label>
-
-<input
-id="registerPhone"
-placeholder="رقم الهاتف">
-
+<label>رقم الهاتف</label>
+<input id="regPhone" placeholder="رقم الهاتف">
 </div>
 
 <div class="field">
-
-<label>
-كلمة المرور
-</label>
-
-<input
-id="registerPassword"
-type="password"
-placeholder="كلمة المرور">
-
+<label>كلمة المرور</label>
+<input id="regPassword" type="password" placeholder="كلمة المرور">
 </div>
 
-<div
-id="registerError">
+<div class="field">
+<label>تأكيد كلمة المرور</label>
+<input id="regPassword2" type="password" placeholder="أعد كتابة كلمة المرور">
 </div>
 
-<button
-class="btn primary"
-onclick="registerUser()">
-إنشاء الحساب
-</button>
+<div id="regError"></div>
 
+<button class="btn primary" onclick="registerUser()">إنشاء الحساب</button>
 `);
-
 }
-
-
-/* ============================================================
-   تنفيذ إنشاء الحساب
-   ============================================================ */
 
 function registerUser(){
+const name=document.getElementById("regName").value.trim();
+const email=document.getElementById("regEmail").value.trim().toLowerCase();
+const phone=document.getElementById("regPhone").value.trim();
+const password=document.getElementById("regPassword").value;
+const password2=document.getElementById("regPassword2").value;
+const error=document.getElementById("regError");
 
-const name =
-document.getElementById(
-"registerName"
-).value
-.trim();
-
-const email =
-document.getElementById(
-"registerEmail"
-).value
-.trim()
-.toLowerCase();
-
-const phone =
-document.getElementById(
-"registerPhone"
-).value
-.trim();
-
-const password =
-document.getElementById(
-"registerPassword"
-).value;
-
-const error =
-document.getElementById(
-"registerError"
-);
-
-if(
-!name ||
-!email ||
-!password
-){
-
-error.innerHTML=`
-
-<div class="error">
-أكمل الاسم والإيميل وكلمة المرور.
-</div>
-
-`;
-
+if(!name||!email||!password){
+error.innerHTML=`<div class="error">أكمل البيانات المطلوبة.</div>`;
 return;
-
 }
 
-if(password.length<4){
-
-error.innerHTML=`
-
-<div class="error">
-كلمة المرور يجب أن تكون 4 أحرف أو أكثر.
-</div>
-
-`;
-
+if(password.length<6){
+error.innerHTML=`<div class="error">كلمة المرور يجب أن تكون 6 أحرف على الأقل.</div>`;
 return;
-
 }
 
-const exists =
-database.users.some(
-user =>
-user.email === email ||
-(
-phone &&
-user.phone === phone
-)
-);
-
-if(exists){
-
-error.innerHTML=`
-
-<div class="error">
-هذا الإيميل أو رقم الهاتف مستخدم بالفعل.
-</div>
-
-`;
-
+if(password!==password2){
+error.innerHTML=`<div class="error">كلمتا المرور غير متطابقتين.</div>`;
 return;
+}
 
+if(db.users.some(u=>u.email===email)){
+error.innerHTML=`<div class="error">الإيميل مستخدم بالفعل.</div>`;
+return;
+}
+
+if(phone&&db.users.some(u=>u.phone===phone)){
+error.innerHTML=`<div class="error">رقم الهاتف مستخدم بالفعل.</div>`;
+return;
 }
 
 const user={
-
-id:generateId(),
-
-name:name,
-
-email:email,
-
-phone:phone,
-
-password:password,
-
+id:uid(),
+name,
+email,
+phone,
+password,
 role:"user",
-
-createdAt:
-new Date().toISOString()
-
+avatar:"",
+createdAt:Date.now()
 };
 
-database.users.push(user);
-
+db.users.push(user);
 saveDatabase();
-
-loggedUserId =
-user.id;
-
-saveSession();
-
+setSession(user.id);
 closeModal();
-
 applySettings();
-
 showHome();
-
+toast("تم إنشاء الحساب بنجاح");
 }
 
+/* =========================================================
+   الحساب
+========================================================= */
 
-/* ============================================================
-   حساب المستخدم
-   ============================================================ */
-
-function showAccount(){
-
-const user =
-getCurrentUser();
+function showMyArea(){
+const user=getUser();
 
 if(!user){
-
 openLogin();
-
 return;
-
 }
 
-openModal(`
+const favorites=db.favorites.filter(f=>f.userId===user.id);
 
-<h2>
-👤 حسابي
-</h2>
+document.getElementById("app").innerHTML=`
+<div class="container">
 
-<div class="notice">
+<div class="panel">
 
-<strong>
-${escapeHTML(
-user.name
-)}
-</strong>
-
-<br>
-
-الإيميل:
-${escapeHTML(
-user.email
-)}
-
-<br>
-
-رقم الهاتف:
-${escapeHTML(
-user.phone ||
-"غير مضاف"
-)}
-
-<br>
-
-نوع الحساب:
-${user.role==="admin"
-?"مشرف"
-:"عضو"}
-
+<div class="row between">
+<div>
+<span class="badge">${user.role==="admin"?"مشرف":"عضو"}</span>
+<h2 style="margin-top:9px">${esc(user.name)}</h2>
 </div>
 
-<button
-class="btn danger"
-onclick="logout()">
-تسجيل الخروج
-</button>
+<button class="btn danger" onclick="logout()">تسجيل الخروج</button>
+</div>
 
-`);
+<div class="notice">
+📧 ${esc(user.email)}<br>
+📱 ${esc(user.phone||"لم تتم إضافة رقم الهاتف")}
+</div>
 
+<div class="row">
+<button class="btn primary" onclick="openRequestForm()">➕ إضافة إعلان</button>
+<button class="btn secondary" onclick="showMyRequests()">📨 طلباتي</button>
+<button class="btn secondary" onclick="showNotifications()">🔔 إشعاراتي</button>
+<button class="btn secondary" onclick="showFavorites()">⭐ المفضلة (${favorites.length})</button>
+</div>
+
+</div>
+</div>
+`;
 }
-
-
-/* ============================================================
-   تسجيل الخروج
-   ============================================================ */
 
 function logout(){
-
-loggedUserId=null;
-
-saveSession();
-
-closeModal();
-
+setSession("");
 applySettings();
-
 showHome();
-
+toast("تم تسجيل الخروج");
 }
 
-
-/* ============================================================
-   إضافة إعلان
-   ============================================================ */
+/* =========================================================
+   طلب إضافة إعلان
+========================================================= */
 
 function openRequestForm(){
+const user=getUser();
 
-if(!getCurrentUser()){
-
+if(!user){
 openModal(`
-
-<h2>
-إضافة إعلان
-</h2>
-
+<h2>إضافة إعلان</h2>
 <div class="notice">
-
-يمكنك تصفح الموقع بدون تسجيل دخول،
-لكن إرسال إعلان يحتاج حسابًا حتى يعرف الأدمن صاحب الطلب.
-
+لإرسال إعلان، يجب إنشاء حساب أو تسجيل الدخول أولًا.
 </div>
-
-<button
-class="btn primary"
-onclick="closeModal();openLogin()">
-تسجيل الدخول
-</button>
-
+<button class="btn primary" onclick="openLogin()">تسجيل الدخول</button>
+<button class="btn secondary" onclick="openRegister()">إنشاء حساب</button>
 `);
-
 return;
-
 }
 
-requestImages=[];
+uploadImages=[];
 
 openModal(`
-
-<h2>
-➕ إضافة إعلان جديد
-</h2>
+<h2>📢 إضافة إعلان</h2>
 
 <div class="field">
-
-<label>
-اسم الإعلان
-</label>
-
-<input
-id="requestTitle"
-placeholder="مثال: حساب هاي داي مستوى عالي">
-
+<label>عنوان الإعلان</label>
+<input id="reqTitle" placeholder="مثال: حساب هاي داي مستوى مرتفع">
 </div>
 
 <div class="field">
-
-<label>
-التصنيف
-</label>
-
-<select
-id="requestCategory">
-
-<option value="accounts">
-حسابات هاي داي
-</option>
-
-<option value="posts">
-منشورات هاي داي
-</option>
-
-<option value="products">
-منتجات هاي داي
-</option>
-
+<label>التصنيف</label>
+<select id="reqCategory">
+<option value="accounts">حسابات هاي داي</option>
+<option value="posts">منشورات هاي داي</option>
+<option value="products">منتجات هاي داي</option>
 </select>
-
 </div>
 
 <div class="two">
-
 <div class="field">
-
-<label>
-السعر
-</label>
-
-<input
-id="requestPrice"
-type="number"
-min="0"
-value="0">
-
+<label>السعر</label>
+<input id="reqPrice" type="number" min="0" value="0">
 </div>
 
 <div class="field">
-
-<label>
-الكمية المتوفرة
-</label>
-
-<input
-id="requestQuantity"
-type="number"
-min="0"
-value="1">
-
+<label>الكمية المتوفرة</label>
+<input id="reqQuantity" type="number" min="0" value="1">
 </div>
-
 </div>
 
 <div class="field">
-
-<label>
-وصف السلعة
-</label>
-
-<textarea
-id="requestDescription"
-placeholder="اكتب تفاصيل الإعلان هنا..."></textarea>
-
+<label>وصف السلعة</label>
+<textarea id="reqDescription" placeholder="اكتب كل التفاصيل..."></textarea>
 </div>
 
 <div class="field">
-
-<label>
-صور الإعلان
-</label>
-
-<div
-id="requestImagePicker"
-class="image-picker">
-</div>
-
-<input
-id="requestFile"
-type="file"
-accept="image/*"
-multiple
-hidden
-onchange="handleImages(event,'request')">
-
+<label>الصور</label>
+<div id="requestPicker" class="picker"></div>
+<input id="requestFiles" type="file" accept="image/*" multiple hidden onchange="readImages(event,'request')">
 </div>
 
 <div class="notice">
-
-الصور يتم اختيارها من الجهاز مباشرة.
-يمكنك إضافة أكثر من صورة.
-
+يمكنك اختيار أكثر من صورة من الهاتف.
 </div>
 
-<button
-class="btn primary"
-onclick="submitRequest()">
-📨 إرسال طلب الإعلان
-</button>
-
+<button class="btn primary" onclick="submitRequest()">📨 إرسال الطلب للمالك</button>
 `);
-
-renderImagePicker("request");
-
+renderPicker("request");
 }
 
+function readImages(event,type){
+const files=[...event.target.files||[]];
 
-/* ============================================================
-   رفع الصور
-   ============================================================ */
+files.forEach(file=>{
+if(!file.type.startsWith("image/"))return;
 
-function handleImages(
-event,
-type
-){
+const reader=new FileReader();
 
-const files =
-Array.from(
-event.target.files || []
-);
-
-files.forEach(
-file=>{
-
-if(!file.type.startsWith("image/")){
-
-return;
-
-}
-
-const reader =
-new FileReader();
-
-reader.onload =
-function(e){
-
-if(type==="request"){
-
-requestImages.push(
-e.target.result
-);
-
-}else{
-
-adminImages.push(
-e.target.result
-);
-
-}
-
-renderImagePicker(type);
-
+reader.onload=e=>{
+if(type==="request")uploadImages.push(e.target.result);
+if(type==="edit")editImages.push(e.target.result);
+renderPicker(type);
 };
 
 reader.readAsDataURL(file);
-
 });
 
 event.target.value="";
-
 }
 
-
-/* ============================================================
-   رسم اختيار الصور
-   ============================================================ */
-
-function renderImagePicker(type){
-
-const images =
-type==="request"
-?
-requestImages
-:
-adminImages;
-
-const element =
-document.getElementById(
-type==="request"
-?
-"requestImagePicker"
-:
-"adminImagePicker"
+function renderPicker(type){
+const element=document.getElementById(
+type==="request"?"requestPicker":"editPicker"
 );
+if(!element)return;
 
-if(!element){
+const arr=type==="request"?uploadImages:editImages;
 
-return;
-
-}
-
-let html="";
-
-images.forEach(
-(image,index)=>{
-
-html+=`
-
-<div class="image-slot">
-
-<img
-src="${image}"
-alt="">
-
-<button
-class="remove-image"
-onclick="removeImage('${type}',${index})">
-×
-</button>
-
+element.innerHTML=
+arr.map((image,index)=>`
+<div class="slot">
+<img src="${image}">
+<button class="remove-img" onclick="removeTempImage('${type}',${index})">×</button>
 </div>
-
+`).join("")+
+`
+<div class="slot" onclick="
+document.getElementById('${type==="request"?"requestFiles":"editFiles"}').click()
+">+</div>
 `;
-
-}
-);
-
-html+=`
-
-<div
-class="image-slot add"
-onclick="
-document.getElementById(
-'${type==="request"
-?"requestFile"
-:"adminFile"}'
-).click()
-">
-
-+
-
-</div>
-
-`;
-
-element.innerHTML=html;
-
 }
 
-
-/* ============================================================
-   حذف صورة مؤقتة
-   ============================================================ */
-
-function removeImage(
-type,
-index
-){
-
-if(type==="request"){
-
-requestImages.splice(
-index,
-1
-);
-
-}else{
-
-adminImages.splice(
-index,
-1
-);
-
+function removeTempImage(type,index){
+if(type==="request")uploadImages.splice(index,1);
+else editImages.splice(index,1);
+renderPicker(type);
 }
 
-renderImagePicker(type);
-
-}
-
-
-/* ============================================================
-   إرسال طلب الإعلان
-   ============================================================ */
+/* =========================================================
+   إرسال الطلب
+========================================================= */
 
 function submitRequest(){
+const user=getUser();
+if(!user)return;
 
-const user =
-getCurrentUser();
+const title=document.getElementById("reqTitle").value.trim();
+const category=document.getElementById("reqCategory").value;
+const price=Number(document.getElementById("reqPrice").value||0);
+const quantity=Number(document.getElementById("reqQuantity").value||0);
+const description=document.getElementById("reqDescription").value.trim();
 
-if(!user){
-
-alert(
-"يجب تسجيل الدخول."
-);
-
+if(!title||!description){
+alert("أكمل عنوان الإعلان والوصف.");
 return;
-
-}
-
-const title =
-document.getElementById(
-"requestTitle"
-).value
-.trim();
-
-const category =
-document.getElementById(
-"requestCategory"
-).value;
-
-const price =
-Number(
-document.getElementById(
-"requestPrice"
-).value || 0
-);
-
-const quantity =
-Number(
-document.getElementById(
-"requestQuantity"
-).value || 0
-);
-
-const description =
-document.getElementById(
-"requestDescription"
-).value
-.trim();
-
-if(!title){
-
-alert(
-"اكتب اسم الإعلان."
-);
-
-return;
-
-}
-
-if(!description){
-
-alert(
-"اكتب وصف الإعلان."
-);
-
-return;
-
 }
 
 const request={
-
-id:generateId(),
-
+id:uid(),
 userId:user.id,
-
 customerName:user.name,
-
 customerEmail:user.email,
-
 customerPhone:user.phone,
-
-title:title,
-
-category:category,
-
-price:price,
-
-quantity:quantity,
-
-description:description,
-
-images:[
-...requestImages
-],
-
+title,
+category,
+price,
+quantity,
+description,
+images:[...uploadImages],
 status:"pending",
-
-createdAt:
-new Date().toISOString()
-
+createdAt:Date.now()
 };
 
-database.requests.unshift(
-request
-);
+db.requests.unshift(request);
 
-database.notifications.unshift({
-
-id:generateId(),
-
+db.notifications.unshift({
+id:uid(),
+userId:OWNER_ID,
 type:"admin_request",
-
 requestId:request.id,
-
-title:
-"طلب إعلان جديد",
-
-message:
-"يوجد طلب إعلان جديد من "+
-user.email,
-
+title:"📢 طلب إعلان جديد",
+message:`طلب جديد من ${user.email}: ${title}`,
 read:false,
-
-createdAt:
-new Date().toISOString()
-
+createdAt:Date.now()
 });
 
 saveDatabase();
-
 closeModal();
 
-alert(
-"تم استلام طلبك الرفيع سيتم نشر إعلانك بعد موافقة المالك"
-);
-
-showHome();
-
+openModal(`
+<div class="center">
+<div style="font-size:55px">✅</div>
+<h2>تم استلام طلبك الرفيع</h2>
+<p style="line-height:1.9;margin-top:10px">
+سيتم نشر إعلانك بعد موافقة المالك.
+</p>
+<button class="btn primary" onclick="closeModal();showHome()">حسنًا</button>
+</div>
+`);
 }
 
+/* =========================================================
+   طلباتي
+========================================================= */
 
-/* ============================================================
-   لوحة الأدمن
-   ============================================================ */
+function showMyRequests(){
+const user=getUser();
 
-function showAdminPanel(){
-
-if(!isOwner()){
-
-alert(
-"غير مصرح لك بالدخول إلى لوحة الأدمن."
-);
-
+if(!user){
+openLogin();
 return;
-
 }
 
-adminImages=[];
+const requests=db.requests.filter(r=>r.userId===user.id);
 
-const pending =
-database.requests.filter(
-request =>
-request.status==="pending"
-);
-
-const posts =
-database.posts.length;
-
-const users =
-database.users.length;
-
-const requests =
-database.requests.length;
-
-let html="";
-
-html+=`
-
+document.getElementById("app").innerHTML=`
 <div class="container">
 
 <div class="section-head">
+<h2>📨 طلباتي</h2>
+<button class="btn primary" onclick="openRequestForm()">إضافة إعلان</button>
+</div>
 
-<h2>
-⚙️ لوحة تحكم المالك
-</h2>
+${
+requests.length?
+requests.map(r=>`
+<div class="panel">
 
-<button
-class="btn primary"
-onclick="showHome()">
-عرض الموقع
-</button>
+<span class="badge">
+${r.status==="pending"?"قيد المراجعة":r.status==="approved"?"تم النشر":"مرفوض"}
+</span>
 
+<h3 style="margin-top:9px">${esc(r.title)}</h3>
+
+<div class="meta">📧 ${esc(r.customerEmail)}</div>
+<div class="meta">📂 ${categoryName(r.category)}</div>
+<div class="meta">💰 ${money(r.price)} ${esc(db.settings.currency)}</div>
+<div class="meta">📦 ${money(r.quantity)}</div>
+
+<p style="margin-top:10px;line-height:1.8;white-space:pre-wrap">
+${esc(r.description)}
+</p>
+
+</div>
+`).join("")
+:
+emptyBox("لم ترسل أي طلبات بعد.")
+}
+
+</div>
+`;
+}
+
+/* =========================================================
+   الإشعارات
+========================================================= */
+
+function showNotifications(){
+const user=getUser();
+
+if(!user){
+openLogin();
+return;
+}
+
+const list=db.notifications
+.filter(n=>n.userId===user.id)
+.sort((a,b)=>b.createdAt-a.createdAt);
+
+document.getElementById("app").innerHTML=`
+<div class="container">
+
+<div class="section-head">
+<h2>🔔 الإشعارات</h2>
+<button class="btn secondary" onclick="markRead()">تحديد الكل كمقروء</button>
+</div>
+
+${
+list.length?
+list.map(n=>`
+<div class="panel">
+<span class="badge">${n.read?"مقروء":"جديد"}</span>
+<h3 style="margin-top:8px">${esc(n.title)}</h3>
+<p style="margin-top:8px;line-height:1.8">${esc(n.message)}</p>
+</div>
+`).join("")
+:
+emptyBox("لا توجد إشعارات.")
+}
+
+</div>
+`;
+}
+
+function markRead(){
+const user=getUser();
+if(!user)return;
+
+db.notifications
+.filter(n=>n.userId===user.id)
+.forEach(n=>n.read=true);
+
+saveDatabase();
+showNotifications();
+}
+
+/* =========================================================
+   المفضلة
+========================================================= */
+
+function showFavorites(){
+const user=getUser();
+
+if(!user){
+openLogin();
+return;
+}
+
+const ids=db.favorites
+.filter(f=>f.userId===user.id)
+.map(f=>f.postId);
+
+const posts=db.posts.filter(p=>ids.includes(p.id));
+
+document.getElementById("app").innerHTML=`
+<div class="container">
+
+<div class="section-head">
+<h2>⭐ المفضلة</h2>
+<span class="badge">${posts.length}</span>
+</div>
+
+<div class="grid">
+${posts.length?posts.map(postCard).join(""):emptyBox("لا توجد منشورات في المفضلة.")}
+</div>
+
+</div>
+`;
+}
+
+/* =========================================================
+   الإبلاغ
+========================================================= */
+
+function openReport(postId){
+const user=getUser();
+
+if(!user){
+openLogin();
+return;
+}
+
+openModal(`
+<h2>⚠️ الإبلاغ عن الإعلان</h2>
+
+<div class="field">
+<label>سبب الإبلاغ</label>
+<select id="reportReason">
+<option>محتوى مخالف</option>
+<option>إعلان مضلل</option>
+<option>مشكلة في المنتج</option>
+<option>صورة غير مناسبة</option>
+<option>سبب آخر</option>
+</select>
+</div>
+
+<div class="field">
+<label>التفاصيل</label>
+<textarea id="reportDetails" placeholder="اكتب التفاصيل..."></textarea>
+</div>
+
+<button class="btn danger" onclick="submitReport('${postId}')">إرسال البلاغ</button>
+`);
+}
+
+function submitReport(postId){
+const user=getUser();
+if(!user)return;
+
+db.reports.unshift({
+id:uid(),
+postId,
+userId:user.id,
+reason:document.getElementById("reportReason").value,
+details:document.getElementById("reportDetails").value.trim(),
+status:"new",
+createdAt:Date.now()
+});
+
+saveDatabase();
+closeModal();
+toast("تم إرسال البلاغ للإدارة");
+}
+
+/* =========================================================
+   لوحة الأدمن
+========================================================= */
+
+function showAdmin(){
+if(!isAdmin()){
+alert("غير مصرح لك.");
+return;
+}
+
+const pending=db.requests.filter(r=>r.status==="pending").length;
+const unread=db.notifications.filter(n=>n.userId===OWNER_ID&&!n.read).length;
+
+document.getElementById("app").innerHTML=`
+<div class="container">
+
+<div class="section-head">
+<h2>⚙️ لوحة تحكم المالك</h2>
+<button class="btn dark" onclick="showHome()">عرض الموقع</button>
 </div>
 
 <div class="stats">
-
-<div class="stat">
-
-<span>
-المنشورات
-</span>
-
-<strong>
-${posts}
-</strong>
-
+<div class="stat"><span>المنشورات</span><strong>${db.posts.length}</strong></div>
+<div class="stat"><span>المستخدمون</span><strong>${db.users.length}</strong></div>
+<div class="stat"><span>طلبات معلقة</span><strong>${pending}</strong></div>
+<div class="stat"><span>تنبيهات</span><strong>${unread}</strong></div>
 </div>
 
-<div class="stat">
-
-<span>
-المستخدمون
-</span>
-
-<strong>
-${users}
-</strong>
+${adminPublisher()}
+${adminRequests()}
+${adminPosts()}
+${adminReports()}
+${adminUsers()}
+${adminSettings()}
+${adminMaintenance()}
 
 </div>
-
-<div class="stat">
-
-<span>
-كل الطلبات
-</span>
-
-<strong>
-${requests}
-</strong>
-
-</div>
-
-<div class="stat">
-
-<span>
-طلبات معلقة
-</span>
-
-<strong>
-${pending.length}
-</strong>
-
-</div>
-
-</div>
-
-${renderAdminPublisher()}
-
-${renderRequestsPanel()}
-
-${renderPostsManager()}
-
-${renderSettingsPanel()}
-
-${renderUsersPanel()}
-
-</div>
-
 `;
 
-document.getElementById(
-"app"
-).innerHTML=html;
-
-renderImagePicker("admin");
-
+renderPicker("edit");
 window.scrollTo(0,0);
-
 }
 
+/* =========================================================
+   نشر الأدمن
+========================================================= */
 
-/* ============================================================
-   نشر من الأدمن
-   ============================================================ */
+function adminPublisher(){
+editImages=[];
 
-function renderAdminPublisher(){
+return`
+<div class="panel section">
 
-return `
-
-<div class="panel">
-
-<h3>
-📢 نشر إعلان جديد
-</h3>
-
-<div
-class="notice">
-يمكنك إضافة عدة صور من جهازك.
-كل صورة تظهر داخل مربع مستقل.
+<div class="section-head">
+<h3>📢 نشر إعلان مباشرة</h3>
+<span class="badge">منشور رسمي</span>
 </div>
 
 <div class="field">
-
-<label>
-اسم الإعلان
-</label>
-
-<input
-id="adminTitle"
-placeholder="اسم المنتج أو الحساب">
-
+<label>عنوان الإعلان</label>
+<input id="adminTitle" placeholder="اسم الإعلان">
 </div>
 
 <div class="field">
-
-<label>
-التصنيف
-</label>
-
-<select
-id="adminCategory">
-
-<option value="accounts">
-حسابات هاي داي
-</option>
-
-<option value="posts">
-منشورات هاي داي
-</option>
-
-<option value="products">
-منتجات هاي داي
-</option>
-
+<label>التصنيف</label>
+<select id="adminCategory">
+<option value="accounts">حسابات هاي داي</option>
+<option value="posts">منشورات هاي داي</option>
+<option value="products">منتجات هاي داي</option>
 </select>
-
 </div>
 
 <div class="two">
 
 <div class="field">
-
-<label>
-السعر
-</label>
-
-<input
-id="adminPrice"
-type="number"
-min="0"
-value="0">
-
+<label>السعر</label>
+<input id="adminPrice" type="number" min="0" value="0">
 </div>
 
 <div class="field">
-
-<label>
-الكمية المتوفرة
-</label>
-
-<input
-id="adminQuantity"
-type="number"
-min="0"
-value="1">
-
+<label>الكمية المتوفرة</label>
+<input id="adminQuantity" type="number" min="0" value="1">
 </div>
 
 </div>
 
 <div class="field">
-
-<label>
-وصف السلعة
-</label>
-
-<textarea
-id="adminDescription"
-placeholder="تفاصيل المنتج..."></textarea>
-
+<label>الوصف</label>
+<textarea id="adminDescription" placeholder="وصف السلعة..."></textarea>
 </div>
 
 <div class="field">
-
-<label>
-الصور
-</label>
-
-<div
-id="adminImagePicker"
-class="image-picker">
+<label>الصور</label>
+<div id="editPicker" class="picker"></div>
+<input id="editFiles" type="file" accept="image/*" multiple hidden onchange="readImages(event,'edit')">
 </div>
 
-<input
-id="adminFile"
-type="file"
-accept="image/*"
-multiple
-hidden
-onchange="handleImages(event,'admin')">
+<button class="btn primary" onclick="publishAdmin()">🚀 نشر الآن</button>
 
 </div>
-
-<button
-class="btn primary"
-onclick="publishAdminPost()">
-🚀 نشر الإعلان
-</button>
-
-</div>
-
 `;
-
 }
 
-
-/* ============================================================
-   طلبات العملاء
-   ============================================================ */
-
-function renderRequestsPanel(){
-
-const requests =
-database.requests
-.filter(
-request =>
-request.status==="pending"
-);
-
-let html="";
-
-html+=`
-
-<div class="panel">
-
-<h3>
-💬 طلبات العملاء
-</h3>
-
-`;
-
-if(!requests.length){
-
-html+=`
-
-<div class="empty mt">
-لا توجد طلبات معلقة حاليًا.
-</div>
-
-`;
-
-}else{
-
-requests.forEach(
-request=>{
-
-html+=renderRequest(
-request
-);
-
-}
-);
-
-}
-
-html+=`
-
-</div>
-
-`;
-
-return html;
-
-}
-
-
-/* ============================================================
-   عرض طلب
-   ============================================================ */
-
-function renderRequest(request){
-
-let html="";
-
-html+=`
-
-<div class="request">
-
-<div>
-
-<span class="badge">
-طلب جديد
-</span>
-
-</div>
-
-<h3
-style="margin-top:8px">
-${escapeHTML(
-request.title
-)}
-</h3>
-
-<div class="meta">
-
-👤 العميل:
-${escapeHTML(
-request.customerName
-)}
-
-</div>
-
-<div class="meta">
-
-📧 الإيميل:
-${escapeHTML(
-request.customerEmail
-)}
-
-</div>
-
-<div class="meta">
-
-📱 الهاتف:
-${escapeHTML(
-request.customerPhone ||
-"غير مضاف"
-)}
-
-</div>
-
-<div class="meta">
-
-📂 التصنيف:
-${categoryName(
-request.category
-)}
-
-</div>
-
-<div class="meta">
-
-💰 السعر:
-${Number(
-request.price||0
-).toLocaleString("ar-EG")}
-جنيه
-
-</div>
-
-<div class="meta">
-
-📦 الكمية:
-${Number(
-request.quantity||0
-)}
-
-</div>
-
-<div
-style="
-margin-top:10px;
-line-height:1.8;
-white-space:pre-wrap;
-">
-
-${escapeHTML(
-request.description
-)}
-
-</div>
-
-`;
-
-if(
-request.images &&
-request.images.length
-){
-
-html+=`
-
-<div class="request-images">
-
-`;
-
-request.images.forEach(
-image=>{
-
-html+=`
-
-<img
-src="${image}"
-alt="">
-
-`;
-
-}
-);
-
-html+=`
-
-</div>
-
-`;
-
-}
-
-html+=`
-
-<div class="actions">
-
-<button
-class="btn primary"
-onclick="approveRequest('${request.id}')">
-✅ موافقة ونشر
-</button>
-
-<button
-class="btn danger"
-onclick="rejectRequest('${request.id}')">
-❌ رفض
-</button>
-
-</div>
-
-</div>
-
-`;
-
-return html;
-
-}
-
-
-/* ============================================================
-   الموافقة على الطلب
-   ============================================================ */
-
-function approveRequest(
-requestId
-){
-
-if(!isOwner()){
-
+function publishAdmin(){
+if(!isAdmin())return;
+
+const title=document.getElementById("adminTitle").value.trim();
+const category=document.getElementById("adminCategory").value;
+const price=Number(document.getElementById("adminPrice").value||0);
+const quantity=Number(document.getElementById("adminQuantity").value||0);
+const description=document.getElementById("adminDescription").value.trim();
+
+if(!title||!description){
+alert("أكمل البيانات.");
 return;
-
 }
 
-const request =
-database.requests.find(
-item =>
-item.id===requestId
-);
-
-if(!request){
-
-return;
-
-}
-
-database.posts.unshift({
-
-id:generateId(),
-
-title:request.title,
-
-category:request.category,
-
-price:request.price,
-
-quantity:request.quantity,
-
-description:request.description,
-
-images:[
-...(request.images || [])
-],
-
+db.posts.unshift({
+id:uid(),
+title,
+category,
+price,
+quantity,
+description,
+images:[...editImages],
 likes:0,
-
 dislikes:0,
-
 views:0,
-
-ownerId:
-request.userId,
-
-createdAt:
-new Date().toISOString()
-
-});
-
-request.status =
-"approved";
-
-request.approvedAt =
-new Date().toISOString();
-
-database.notifications.unshift({
-
-id:generateId(),
-
-userId:
-request.userId,
-
-type:"approved",
-
-title:
-"تمت الموافقة على إعلانك",
-
-message:
-"تمت الموافقة على طلب الإعلان الخاص بك ونشره.",
-
-read:false,
-
-createdAt:
-new Date().toISOString()
-
+ownerId:OWNER_ID,
+createdAt:Date.now(),
+updatedAt:Date.now()
 });
 
 saveDatabase();
-
-alert(
-"تمت الموافقة على الإعلان ونشره."
-);
-
-showAdminPanel();
-
+toast("تم نشر الإعلان");
+showAdmin();
 }
 
+/* =========================================================
+   طلبات الأدمن
+========================================================= */
 
-/* ============================================================
-   رفض الطلب
-   ============================================================ */
+function adminRequests(){
+const requests=db.requests.filter(r=>r.status==="pending");
 
-function rejectRequest(
-requestId
-){
-
-if(!isOwner()){
-
-return;
-
-}
-
-const request =
-database.requests.find(
-item =>
-item.id===requestId
-);
-
-if(!request){
-
-return;
-
-}
-
-request.status =
-"rejected";
-
-request.rejectedAt =
-new Date().toISOString();
-
-database.notifications.unshift({
-
-id:generateId(),
-
-userId:
-request.userId,
-
-type:"rejected",
-
-title:
-"تم رفض إعلانك",
-
-message:
-"تم رفض طلب الإعلان من الإدارة.",
-
-read:false,
-
-createdAt:
-new Date().toISOString()
-
-});
-
-saveDatabase();
-
-alert(
-"تم رفض الطلب."
-);
-
-showAdminPanel();
-
-}
-
-
-/* ============================================================
-   إدارة المنشورات
-   ============================================================ */
-
-function renderPostsManager(){
-
-let html="";
-
-html+=`
-
-<div class="panel">
+return`
+<div class="panel section">
 
 <div class="section-head">
-
-<h3>
-📦 إدارة المنشورات
-</h3>
-
-<span class="badge">
-${database.posts.length}
-منشور
-</span>
-
+<h3>💬 طلبات الإعلانات</h3>
+<span class="badge">${requests.length} معلقة</span>
 </div>
 
-`;
-
-if(!database.posts.length){
-
-html+=`
-
-<div class="empty">
-لا توجد منشورات.
-</div>
-
-`;
-
-}else{
-
-html+=`
-
-<div class="grid">
-
-`;
-
-database.posts.forEach(
-post=>{
-
-html+=renderAdminPost(
-post
-);
-
-}
-);
-
-html+=`
-
-</div>
-
-`;
-
+${
+requests.length?
+requests.map(adminRequestCard).join("")
+:
+emptyBox("لا توجد طلبات معلقة.")
 }
 
-html+=`
-
 </div>
-
 `;
-
-return html;
-
 }
 
+function adminRequestCard(r){
+return`
+<div class="request">
 
-/* ============================================================
-   كارت الأدمن
-   ============================================================ */
+<span class="badge">طلب جديد</span>
 
-function renderAdminPost(post){
+<h3 style="margin-top:9px">${esc(r.title)}</h3>
 
-let html="";
+<div class="meta">👤 العميل: ${esc(r.customerName)}</div>
+<div class="meta">📧 الإيميل: ${esc(r.customerEmail)}</div>
+<div class="meta">📱 الهاتف: ${esc(r.customerPhone||"-")}</div>
+<div class="meta">📂 القسم: ${categoryName(r.category)}</div>
+<div class="meta">💰 السعر: ${money(r.price)} ${esc(db.settings.currency)}</div>
+<div class="meta">📦 الكمية: ${money(r.quantity)}</div>
 
-html+=`
+<div style="margin-top:10px;line-height:1.8;white-space:pre-wrap">
+${esc(r.description)}
+</div>
 
+${
+r.images?.length?
+`<div class="request-images">
+${r.images.map(x=>`<img src="${x}">`).join("")}
+</div>`:""
+}
+
+<div class="row" style="margin-top:12px">
+<button class="btn primary" onclick="approveRequest('${r.id}')">✅ موافقة ونشر</button>
+<button class="btn danger" onclick="rejectRequest('${r.id}')">❌ رفض</button>
+</div>
+
+</div>
+`;
+}
+
+/* =========================================================
+   الموافقة والرفض
+========================================================= */
+
+function approveRequest(id){
+if(!isAdmin())return;
+
+const request=db.requests.find(r=>r.id===id);
+if(!request)return;
+
+db.posts.unshift({
+id:uid(),
+title:request.title,
+category:request.category,
+price:request.price,
+quantity:request.quantity,
+description:request.description,
+images:[...(request.images||[])],
+likes:0,
+dislikes:0,
+views:0,
+ownerId:OWNER_ID,
+customerOwnerId:request.userId,
+createdAt:Date.now(),
+updatedAt:Date.now()
+});
+
+request.status="approved";
+request.approvedAt=Date.now();
+
+db.notifications.unshift({
+id:uid(),
+userId:request.userId,
+type:"approved",
+title:"✅ تمت الموافقة على إعلانك",
+message:"تمت الموافقة على طلب إعلانك ونشره على الموقع.",
+read:false,
+createdAt:Date.now()
+});
+
+saveDatabase();
+toast("تمت الموافقة والنشر");
+showAdmin();
+}
+
+function rejectRequest(id){
+if(!isAdmin())return;
+
+const request=db.requests.find(r=>r.id===id);
+if(!request)return;
+
+request.status="rejected";
+request.rejectedAt=Date.now();
+
+db.notifications.unshift({
+id:uid(),
+userId:request.userId,
+type:"rejected",
+title:"❌ تم رفض إعلانك",
+message:"تم رفض طلب الإعلان من الإدارة.",
+read:false,
+createdAt:Date.now()
+});
+
+saveDatabase();
+toast("تم رفض الطلب");
+showAdmin();
+}
+
+/* =========================================================
+   إدارة المنشورات
+========================================================= */
+
+function adminPosts(){
+return`
+<div class="panel section">
+
+<div class="section-head">
+<h3>📦 إدارة المنشورات</h3>
+<span class="badge">${db.posts.length}</span>
+</div>
+
+<input id="adminPostSearch" class="search"
+placeholder="🔎 ابحث في منشورات الإدارة..."
+oninput="filterCards('adminPostSearch','adminPostGrid')">
+
+<div id="adminPostGrid" class="grid" style="margin-top:14px">
+${db.posts.length?db.posts.map(adminPostCard).join(""):emptyBox("لا توجد منشورات.")}
+</div>
+
+</div>
+`;
+}
+
+function adminPostCard(post){
+return`
 <article class="card">
 
-`;
-
-if(
-post.images &&
-post.images.length
-){
-
-html+=`
-
-<img
-class="card-image"
-src="${post.images[0]}"
-alt="">
-
-`;
-
-}else{
-
-html+=`
-
-<div
-class="card-image">
-</div>
-
-`;
-
+${
+post.images?.[0]?
+`<img class="cover" src="${post.images[0]}">`
+:
+`<div class="cover" style="display:flex;align-items:center;justify-content:center;font-size:50px">📦</div>`
 }
 
-html+=`
+<span class="badge" style="margin-top:10px">${categoryName(post.category)}</span>
 
-<span
-class="badge"
-style="margin-top:10px">
+<h3>${esc(post.title)}</h3>
+<div class="description">${esc(post.description)}</div>
 
-${categoryName(
-post.category
-)}
+<div class="price">${money(post.price)} ${esc(db.settings.currency)}</div>
 
-</span>
+<div class="meta">📦 الكمية: ${money(post.quantity)}</div>
+<div class="meta">👁️ المشاهدات: ${money(post.views)}</div>
+<div class="meta">❤️ اللايكات: ${money(post.likes)}</div>
+<div class="meta">👎 الديس لايك: ${money(post.dislikes)}</div>
+<div class="meta">🖼️ الصور: ${post.images?.length||0}</div>
 
-<h3>
-${escapeHTML(post.title)}
-</h3>
+<div class="row" style="margin-top:11px">
 
-<p class="description">
+<button class="btn secondary" onclick="changeStat('${post.id}','likes',1)">+❤️</button>
+<button class="btn secondary" onclick="changeStat('${post.id}','likes',-1)">-❤️</button>
 
-${escapeHTML(
-post.description
-)}
+<button class="btn secondary" onclick="changeStat('${post.id}','dislikes',1)">+👎</button>
+<button class="btn secondary" onclick="changeStat('${post.id}','dislikes',-1)">-👎</button>
 
-</p>
-
-<div class="price">
-
-${Number(
-post.price||0
-).toLocaleString("ar-EG")}
-جنيه
+<button class="btn secondary" onclick="changeStat('${post.id}','views',1)">+👁️</button>
+<button class="btn secondary" onclick="changeStat('${post.id}','views',-1)">-👁️</button>
 
 </div>
 
-<div class="meta">
-
-📦 الكمية:
-${Number(
-post.quantity||0
-)}
-
-</div>
-
-<div class="meta">
-
-👁️ المشاهدات:
-${Number(
-post.views||0
-)}
-
-</div>
-
-<div class="meta">
-
-❤️ اللايكات:
-${Number(
-post.likes||0
-)}
-
-</div>
-
-<div class="meta">
-
-👎 الديس لايك:
-${Number(
-post.dislikes||0
-)}
-
-</div>
-
-`;
-
-if(
-post.images &&
-post.images.length
-){
-
-html+=`
-
-<div class="admin-image-list">
-
-`;
-
-post.images.forEach(
-image=>{
-
-html+=`
-
-<img
-src="${image}"
-alt="">
-
-`;
-
-}
-);
-
-html+=`
-
-</div>
-
-`;
-
-}
-
-html+=`
-
-<div class="actions">
-
-<button
-class="btn secondary"
-onclick="changeStat('${post.id}','likes',1)">
-+ لايك
-</button>
-
-<button
-class="btn secondary"
-onclick="changeStat('${post.id}','likes',-1)">
-- لايك
-</button>
-
-<button
-class="btn secondary"
-onclick="changeStat('${post.id}','dislikes',1)">
-+ ديس لايك
-</button>
-
-<button
-class="btn secondary"
-onclick="changeStat('${post.id}','dislikes',-1)">
-- ديس لايك
-</button>
-
-<button
-class="btn secondary"
-onclick="changeStat('${post.id}','views',1)">
-+ مشاهدة
-</button>
-
-<button
-class="btn secondary"
-onclick="changeStat('${post.id}','views',-1)">
-- مشاهدة
-</button>
-
-<button
-class="btn primary"
-onclick="editPost('${post.id}')">
-✏️ تعديل
-</button>
-
-<button
-class="btn danger"
-onclick="deletePost('${post.id}')">
-🗑️ حذف
-</button>
-
+<div class="row" style="margin-top:7px">
+<button class="btn primary" onclick="editPost('${post.id}')">✏️ تعديل</button>
+<button class="btn danger" onclick="deletePost('${post.id}')">🗑️ حذف</button>
 </div>
 
 </article>
-
 `;
-
-return html;
-
 }
 
+function changeStat(postId,key,amount){
+if(!isAdmin())return;
 
-/* ============================================================
-   تغيير الإحصائيات
-   ============================================================ */
+const post=db.posts.find(p=>p.id===postId);
+if(!post)return;
 
-function changeStat(
-postId,
-property,
-amount
-){
-
-if(!isOwner()){
-
-return;
-
-}
-
-const post =
-database.posts.find(
-item =>
-item.id===postId
-);
-
-if(!post){
-
-return;
-
-}
-
-post[property]=
-Math.max(
-0,
-Number(
-post[property]||0
-)+amount
-);
-
+post[key]=Math.max(0,Number(post[key]||0)+amount);
 saveDatabase();
-
-showAdminPanel();
-
+showAdmin();
 }
 
-
-/* ============================================================
-   تعديل منشور
-   ============================================================ */
+/* =========================================================
+   تعديل المنشور
+========================================================= */
 
 function editPost(postId){
+if(!isAdmin())return;
 
-if(!isOwner()){
+const post=db.posts.find(p=>p.id===postId);
+if(!post)return;
 
-return;
-
-}
-
-const post =
-database.posts.find(
-item =>
-item.id===postId
-);
-
-if(!post){
-
-return;
-
-}
-
-adminImages=[
-...(post.images || [])
-];
+editImages=[...(post.images||[])];
 
 openModal(`
-
-<h2>
-✏️ تعديل الإعلان
-</h2>
+<h2>✏️ تعديل الإعلان</h2>
 
 <div class="field">
-
-<label>
-اسم الإعلان
-</label>
-
-<input
-id="editTitle"
-value="${escapeHTML(post.title)}">
-
+<label>اسم الإعلان</label>
+<input id="editTitle" value="${esc(post.title)}">
 </div>
 
 <div class="field">
-
-<label>
-التصنيف
-</label>
-
-<select
-id="editCategory">
-
-<option
-value="accounts"
-${post.category==="accounts"
-?"selected"
-:""}>
-حسابات هاي داي
-</option>
-
-<option
-value="posts"
-${post.category==="posts"
-?"selected"
-:""}>
-منشورات هاي داي
-</option>
-
-<option
-value="products"
-${post.category==="products"
-?"selected"
-:""}>
-منتجات هاي داي
-</option>
-
+<label>التصنيف</label>
+<select id="editCategory">
+<option value="accounts" ${post.category==="accounts"?"selected":""}>حسابات هاي داي</option>
+<option value="posts" ${post.category==="posts"?"selected":""}>منشورات هاي داي</option>
+<option value="products" ${post.category==="products"?"selected":""}>منتجات هاي داي</option>
 </select>
-
 </div>
 
 <div class="two">
-
 <div class="field">
-
-<label>
-السعر
-</label>
-
-<input
-id="editPrice"
-type="number"
-value="${Number(post.price||0)}">
-
+<label>السعر</label>
+<input id="editPrice" type="number" value="${Number(post.price||0)}">
 </div>
 
 <div class="field">
-
-<label>
-الكمية
-</label>
-
-<input
-id="editQuantity"
-type="number"
-value="${Number(post.quantity||0)}">
-
+<label>الكمية</label>
+<input id="editQuantity" type="number" value="${Number(post.quantity||0)}">
 </div>
-
 </div>
 
 <div class="field">
-
-<label>
-الوصف
-</label>
-
-<textarea
-id="editDescription">${escapeHTML(post.description)}</textarea>
-
+<label>الوصف</label>
+<textarea id="editDescription">${esc(post.description)}</textarea>
 </div>
 
 <div class="field">
-
-<label>
-تعديل الصور
-</label>
-
-<div
-id="adminImagePicker"
-class="image-picker">
+<label>الصور الحالية والجديدة</label>
+<div id="editPicker" class="picker"></div>
+<input id="editFiles" type="file" accept="image/*" multiple hidden onchange="readImages(event,'edit')">
 </div>
 
-<input
-id="adminFile"
-type="file"
-accept="image/*"
-multiple
-hidden
-onchange="handleImages(event,'admin')">
-
-</div>
-
-<button
-class="btn primary"
-onclick="saveEditedPost('${post.id}')">
-💾 حفظ التعديلات
-</button>
-
+<button class="btn primary" onclick="saveEditedPost('${post.id}')">💾 حفظ التعديلات</button>
 `);
-
-renderImagePicker("admin");
-
+renderPicker("edit");
 }
 
+function saveEditedPost(postId){
+if(!isAdmin())return;
 
-/* ============================================================
-   حفظ تعديل المنشور
-   ============================================================ */
+const post=db.posts.find(p=>p.id===postId);
+if(!post)return;
 
-function saveEditedPost(
-postId
-){
-
-if(!isOwner()){
-
-return;
-
-}
-
-const post =
-database.posts.find(
-item =>
-item.id===postId
-);
-
-if(!post){
-
-return;
-
-}
-
-const title =
-document.getElementById(
-"editTitle"
-).value
-.trim();
-
-const description =
-document.getElementById(
-"editDescription"
-).value
-.trim();
-
-if(!title || !description){
-
-alert(
-"أكمل البيانات المطلوبة."
-);
-
-return;
-
-}
-
-post.title =
-title;
-
-post.category =
-document.getElementById(
-"editCategory"
-).value;
-
-post.price =
-Number(
-document.getElementById(
-"editPrice"
-).value || 0
-);
-
-post.quantity =
-Number(
-document.getElementById(
-"editQuantity"
-).value || 0
-);
-
-post.description =
-description;
-
-post.images=[
-...adminImages
-];
-
-post.updatedAt =
-new Date().toISOString();
+post.title=document.getElementById("editTitle").value.trim();
+post.category=document.getElementById("editCategory").value;
+post.price=Number(document.getElementById("editPrice").value||0);
+post.quantity=Number(document.getElementById("editQuantity").value||0);
+post.description=document.getElementById("editDescription").value.trim();
+post.images=[...editImages];
+post.updatedAt=Date.now();
 
 saveDatabase();
-
 closeModal();
-
-showAdminPanel();
-
+toast("تم حفظ التعديلات");
+showAdmin();
 }
 
+function deletePost(postId){
+if(!isAdmin())return;
 
-/* ============================================================
-   حذف منشور
-   ============================================================ */
+if(!confirm("هل تريد حذف المنشور نهائيًا؟"))return;
 
-function deletePost(
-postId
-){
-
-if(!isOwner()){
-
-return;
-
-}
-
-const confirmed =
-confirm(
-"هل تريد حذف هذا المنشور نهائيًا؟"
-);
-
-if(!confirmed){
-
-return;
-
-}
-
-database.posts =
-database.posts.filter(
-post =>
-post.id!==postId
-);
+db.posts=db.posts.filter(p=>p.id!==postId);
+db.favorites=db.favorites.filter(f=>f.postId!==postId);
 
 saveDatabase();
-
-showAdminPanel();
-
+toast("تم حذف المنشور");
+showAdmin();
 }
 
-
-/* ============================================================
-   إعدادات الموقع
-   ============================================================ */
-
-function renderSettingsPanel(){
-
-return `
-
-<div class="panel">
-
-<h3>
-🎨 التحكم الكامل في الموقع
-</h3>
-
-<div class="field">
-
-<label>
-اسم الموقع
-</label>
-
-<input
-id="settingSiteName"
-value="${escapeHTML(
-database.settings.siteName
-)}">
-
-</div>
-
-<div class="field">
-
-<label>
-العنوان الرئيسي
-</label>
-
-<input
-id="settingTitle"
-value="${escapeHTML(
-database.settings.title
-)}">
-
-</div>
-
-<div class="field">
-
-<label>
-الوصف الرئيسي
-</label>
-
-<input
-id="settingSubtitle"
-value="${escapeHTML(
-database.settings.subtitle
-)}">
-
-</div>
-
-<div class="two">
-
-<div class="field">
-
-<label>
-لون الخلفية
-</label>
-
-<input
-id="settingColor"
-type="color"
-value="${
-database.settings.backgroundColor ||
-"#f3f7ef"
-}">
-
-</div>
-
-<div class="field">
-
-<label>
-اللون الأساسي للموقع
-</label>
-
-<input
-id="settingPrimary"
-type="color"
-value="${
-database.settings.primaryColor ||
-"#65b33f"
-}">
-
-</div>
-
-</div>
-
-<div class="field">
-
-<label>
-🖼️ صورة خلفية من الهاتف
-</label>
-
-<input
-id="backgroundFile"
-type="file"
-accept="image/*"
-onchange="readSettingImage(event,'background')">
-
-</div>
-
-<div class="field">
-
-<label>
-🖼️ لوجو الموقع من الهاتف
-</label>
-
-<input
-id="logoFile"
-type="file"
-accept="image/*"
-onchange="readSettingImage(event,'logo')">
-
-</div>
-
-<div class="actions">
-
-<button
-class="btn primary"
-onclick="saveSettings()">
-💾 حفظ الإعدادات
-</button>
-
-<button
-class="btn danger"
-onclick="removeBackground()">
-حذف الخلفية
-</button>
-
-<button
-class="btn secondary"
-onclick="removeLogo()">
-إرجاع اللوجو الافتراضي
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ============================================================
-   قراءة صورة إعداد
-   ============================================================ */
-
-function readSettingImage(
-event,
-type
-){
-
-if(!isOwner()){
-
-return;
-
-}
-
-const file =
-event.target.files &&
-event.target.files[0];
-
-if(!file){
-
-return;
-
-}
-
-if(
-!file.type.startsWith("image/")
-){
-
-alert(
-"اختر صورة فقط."
-);
-
-return;
-
-}
-
-const reader =
-new FileReader();
-
-reader.onload =
-function(e){
-
-if(type==="background"){
-
-database.settings.backgroundImage =
-e.target.result;
-
-}
-
-if(type==="logo"){
-
-database.settings.logo =
-e.target.result;
-
-}
-
-saveDatabase();
-
-applySettings();
-
-showAdminPanel();
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-
-/* ============================================================
-   حفظ الإعدادات
-   ============================================================ */
-
-function saveSettings(){
-
-if(!isOwner()){
-
-return;
-
-}
-
-database.settings.siteName =
-document.getElementById(
-"settingSiteName"
-).value
-.trim() ||
-"Hay Day Store";
-
-database.settings.title =
-document.getElementById(
-"settingTitle"
-).value
-.trim() ||
-database.settings.siteName;
-
-database.settings.subtitle =
-document.getElementById(
-"settingSubtitle"
-).value
-.trim();
-
-database.settings.backgroundColor =
-document.getElementById(
-"settingColor"
-).value;
-
-database.settings.primaryColor =
-document.getElementById(
-"settingPrimary"
-).value;
-
-saveDatabase();
-
-applySettings();
-
-showAdminPanel();
-
-}
-
-
-/* ============================================================
-   حذف الخلفية
-   ============================================================ */
-
-function removeBackground(){
-
-if(!isOwner()){
-
-return;
-
-}
-
-database.settings.backgroundImage="";
-
-saveDatabase();
-
-applySettings();
-
-showAdminPanel();
-
-}
-
-
-/* ============================================================
-   حذف اللوجو
-   ============================================================ */
-
-function removeLogo(){
-
-if(!isOwner()){
-
-return;
-
-}
-
-database.settings.logo="";
-
-saveDatabase();
-
-applySettings();
-
-showAdminPanel();
-
-}
-
-
-/* ============================================================
-   إدارة المستخدمين
-   ============================================================ */
-
-function renderUsersPanel(){
-
-let html="";
-
-html+=`
-
-<div class="panel">
+/* =========================================================
+   التقارير
+========================================================= */
+
+function adminReports(){
+const reports=[...db.reports].sort((a,b)=>b.createdAt-a.createdAt);
+
+return`
+<div class="panel section">
 
 <div class="section-head">
+<h3>⚠️ البلاغات</h3>
+<span class="badge">${reports.filter(r=>r.status==="new").length} جديدة</span>
+</div>
 
-<h3>
-👥 المستخدمون
+${
+reports.length?
+reports.map(r=>{
+const post=db.posts.find(p=>p.id===r.postId);
+return`
+<div class="request">
+
+<span class="badge">${esc(r.status)}</span>
+
+<h3 style="margin-top:8px">
+${esc(post?.title||"منشور محذوف")}
 </h3>
 
-<span class="badge">
-${database.users.length}
-</span>
+<div class="meta">السبب: ${esc(r.reason)}</div>
 
+<p style="margin-top:8px;line-height:1.8">
+${esc(r.details||"بدون تفاصيل")}
+</p>
+
+<div class="row" style="margin-top:10px">
+<button class="btn secondary" onclick="resolveReport('${r.id}')">✓ إغلاق البلاغ</button>
+${post?`<button class="btn danger" onclick="deletePostFromReport('${r.id}','${post.id}')">🗑️ حذف المنشور</button>`:""}
+</div>
+
+</div>
+`;
+}).join("")
+:
+emptyBox("لا توجد بلاغات.")
+}
+
+</div>
+`;
+}
+
+function resolveReport(id){
+const r=db.reports.find(x=>x.id===id);
+if(!r)return;
+r.status="resolved";
+saveDatabase();
+showAdmin();
+}
+
+function deletePostFromReport(reportId,postId){
+if(!confirm("حذف المنشور؟"))return;
+db.posts=db.posts.filter(p=>p.id!==postId);
+const report=db.reports.find(r=>r.id===reportId);
+if(report)report.status="resolved";
+saveDatabase();
+showAdmin();
+}
+
+/* =========================================================
+   المستخدمون
+========================================================= */
+
+function adminUsers(){
+return`
+<div class="panel section">
+
+<div class="section-head">
+<h3>👥 المستخدمون</h3>
+<span class="badge">${db.users.length}</span>
 </div>
 
 <div class="table-wrap">
-
 <table>
-
 <thead>
-
 <tr>
-
-<th>
-الاسم
-</th>
-
-<th>
-الإيميل
-</th>
-
-<th>
-الهاتف
-</th>
-
-<th>
-الصلاحية
-</th>
-
-<th>
-إجراء
-</th>
-
+<th>الاسم</th>
+<th>الإيميل</th>
+<th>الهاتف</th>
+<th>الصلاحية</th>
+<th>الإجراء</th>
 </tr>
-
 </thead>
 
 <tbody>
 
-`;
-
-database.users.forEach(
-user=>{
-
-html+=`
-
+${db.users.map(user=>`
 <tr>
 
-<td>
-${escapeHTML(user.name)}
-</td>
-
-<td>
-${escapeHTML(user.email)}
-</td>
-
-<td>
-${escapeHTML(user.phone||"-")}
-</td>
+<td>${esc(user.name)}</td>
+<td>${esc(user.email)}</td>
+<td>${esc(user.phone||"-")}</td>
+<td>${user.role==="admin"?"أدمن":"عضو"}</td>
 
 <td>
 ${
-user.role==="admin"
+user.id===OWNER_ID
 ?
-"أدمن"
+`<span class="badge">المالك</span>`
 :
-"عضو"
+`<button class="btn danger" onclick="deleteUser('${user.id}')">حذف</button>`
 }
-</td>
-
-<td>
-
-${
-user.id!==OWNER_ID
-?
-`
-<button
-class="btn danger"
-onclick="deleteUser('${user.id}')">
-حذف
-</button>
-`
-:
-`
-<span class="badge">
-المالك
-</span>
-`
-}
-
 </td>
 
 </tr>
-
-`;
-
-}
-);
-
-html+=`
+`).join("")}
 
 </tbody>
-
 </table>
-
 </div>
 
 </div>
-
 `;
-
-return html;
-
 }
 
+function deleteUser(id){
+if(!isAdmin())return;
+if(id===OWNER_ID)return;
 
-/* ============================================================
-   حذف مستخدم
-   ============================================================ */
+if(!confirm("حذف المستخدم؟"))return;
 
-function deleteUser(
-userId
-){
-
-if(!isOwner()){
-
-return;
-
-}
-
-if(userId===OWNER_ID){
-
-alert(
-"لا يمكن حذف حساب المالك."
-);
-
-return;
-
-}
-
-const confirmed =
-confirm(
-"هل تريد حذف هذا المستخدم؟"
-);
-
-if(!confirmed){
-
-return;
-
-}
-
-database.users =
-database.users.filter(
-user =>
-user.id!==userId
-);
+db.users=db.users.filter(u=>u.id!==id);
+db.requests=db.requests.filter(r=>r.userId!==id);
+db.notifications=db.notifications.filter(n=>n.userId!==id);
+db.favorites=db.favorites.filter(f=>f.userId!==id);
 
 saveDatabase();
-
-showAdminPanel();
-
+showAdmin();
 }
 
+/* =========================================================
+   إعدادات الموقع
+========================================================= */
 
-/* ============================================================
-   الطلبات السابقة
-   ============================================================ */
+function adminSettings(){
+const s=db.settings;
 
-function showMyRequests(){
+return`
+<div class="panel section">
 
-const user =
-getCurrentUser();
+<h3>🎨 إعدادات الموقع</h3>
 
-if(!user){
+<div class="field">
+<label>اسم الموقع</label>
+<input id="setName" value="${esc(s.siteName)}">
+</div>
 
-openLogin();
+<div class="field">
+<label>العنوان الرئيسي</label>
+<input id="setHeroTitle" value="${esc(s.heroTitle)}">
+</div>
 
-return;
+<div class="field">
+<label>الوصف الرئيسي</label>
+<textarea id="setHeroText">${esc(s.heroText)}</textarea>
+</div>
 
-}
+<div class="field">
+<label>رسالة الترحيب</label>
+<input id="setAnnouncement" value="${esc(s.announcement)}">
+</div>
 
-const requests =
-database.requests.filter(
-request =>
-request.userId===user.id
-);
+<div class="field">
+<label>نص الفوتر</label>
+<input id="setFooter" value="${esc(s.footerText)}">
+</div>
 
-let html="";
+<div class="three">
 
-html+=`
+<div class="field">
+<label>لون الخلفية</label>
+<input id="setBg" type="color" value="${s.background||"#f2f7ed"}">
+</div>
 
-<div class="container">
+<div class="field">
+<label>اللون الأساسي</label>
+<input id="setPrimary" type="color" value="${s.primary||"#69b342"}">
+</div>
 
-<div class="section-head">
-
-<h2>
-📨 طلباتي
-</h2>
-
-<button
-class="btn primary"
-onclick="openRequestForm()">
-إضافة إعلان
-</button>
+<div class="field">
+<label>العملة</label>
+<input id="setCurrency" value="${esc(s.currency||"جنيه")}">
+</div>
 
 </div>
 
-`;
+<div class="two">
 
-if(!requests.length){
-
-html+=`
-
-<div class="empty">
-لم ترسل أي طلبات بعد.
+<div class="field">
+<label>🖼️ لوجو الموقع من الجهاز</label>
+<input id="logoFile" type="file" accept="image/*" onchange="saveSettingImage(event,'logo')">
 </div>
 
-`;
-
-}else{
-
-requests.forEach(
-request=>{
-
-html+=`
-
-<div class="panel">
-
-<span class="badge">
-${
-request.status==="pending"
-?
-"قيد المراجعة"
-:
-request.status==="approved"
-?
-"تمت الموافقة"
-:
-"مرفوض"
-}
-</span>
-
-<h3
-style="margin-top:10px">
-
-${escapeHTML(
-request.title
-)}
-
-</h3>
-
-<p class="meta">
-
-التصنيف:
-${categoryName(
-request.category
-)}
-
-</p>
-
-<p class="meta">
-
-السعر:
-${request.price}
-جنيه
-
-</p>
-
-<p
-style="
-margin-top:10px;
-line-height:1.8;
-">
-
-${escapeHTML(
-request.description
-)}
-
-</p>
+<div class="field">
+<label>🖼️ خلفية الموقع من الجهاز</label>
+<input id="bgFile" type="file" accept="image/*" onchange="saveSettingImage(event,'backgroundImage')">
+</div>
 
 </div>
 
-`;
-
-}
-);
-
-}
-
-html+=`
-
+<div class="row">
+<button class="btn primary" onclick="saveSettings()">💾 حفظ الإعدادات</button>
+<button class="btn secondary" onclick="clearLogo()">إرجاع اللوجو</button>
+<button class="btn secondary" onclick="clearBackground()">حذف الخلفية</button>
 </div>
 
-`;
-
-document.getElementById(
-"app"
-).innerHTML=html;
-
-}
-
-
-/* ============================================================
-   الإشعارات
-   ============================================================ */
-
-function showNotifications(){
-
-const user =
-getCurrentUser();
-
-if(!user){
-
-openLogin();
-
-return;
-
-}
-
-const notifications =
-database.notifications.filter(
-notification =>
-notification.userId===user.id
-);
-
-let html="";
-
-html+=`
-
-<div class="container">
-
-<div class="section-head">
-
-<h2>
-🔔 الإشعارات
-</h2>
-
-<button
-class="btn secondary"
-onclick="markNotificationsRead()">
-تحديد الكل كمقروء
-</button>
-
 </div>
-
 `;
-
-if(!notifications.length){
-
-html+=`
-
-<div class="empty">
-لا توجد إشعارات.
-</div>
-
-`;
-
-}else{
-
-notifications.forEach(
-notification=>{
-
-html+=`
-
-<div class="panel">
-
-<span class="badge">
-
-${
-notification.read
-?
-"مقروء"
-:
-"جديد"
 }
 
-</span>
+function saveSettings(){
+if(!isAdmin())return;
 
-<h3
-style="margin-top:9px">
-
-${escapeHTML(
-notification.title
-)}
-
-</h3>
-
-<p
-style="margin-top:8px;line-height:1.7">
-
-${escapeHTML(
-notification.message
-)}
-
-</p>
-
-</div>
-
-`;
-
-}
-);
-
-}
-
-html+=`
-
-</div>
-
-`;
-
-database.notifications
-.filter(
-notification =>
-notification.userId===user.id
-)
-.forEach(
-notification =>
-notification.read=true
-);
+db.settings.siteName=document.getElementById("setName").value.trim()||"Hay Day Market";
+db.settings.heroTitle=document.getElementById("setHeroTitle").value.trim();
+db.settings.heroText=document.getElementById("setHeroText").value.trim();
+db.settings.announcement=document.getElementById("setAnnouncement").value.trim();
+db.settings.footerText=document.getElementById("setFooter").value.trim();
+db.settings.background=document.getElementById("setBg").value;
+db.settings.primary=document.getElementById("setPrimary").value;
+db.settings.currency=document.getElementById("setCurrency").value.trim()||"جنيه";
 
 saveDatabase();
-
-document.getElementById(
-"app"
-).innerHTML=html;
-
-}
-
-
-/* ============================================================
-   تحديد الإشعارات كمقروءة
-   ============================================================ */
-
-function markNotificationsRead(){
-
-const user =
-getCurrentUser();
-
-if(!user){
-
-return;
-
-}
-
-database.notifications
-.filter(
-notification =>
-notification.userId===user.id
-)
-.forEach(
-notification =>
-notification.read=true
-);
-
-saveDatabase();
-
-showNotifications();
-
-}
-
-
-/* ============================================================
-   صفحة الطلبات العامة
-   ============================================================ */
-
-function showMyArea(){
-
-const user =
-getCurrentUser();
-
-if(!user){
-
-openLogin();
-
-return;
-
-}
-
-let html="";
-
-html+=`
-
-<div class="container">
-
-<div class="hero"
-style="
-min-height:220px;
-">
-
-<h1>
-مرحبًا ${escapeHTML(user.name)}
-</h1>
-
-<p>
-يمكنك إدارة حسابك ومتابعة إعلاناتك.
-</p>
-
-<div class="actions">
-
-<button
-class="btn primary"
-onclick="showMyRequests()">
-📨 طلباتي
-</button>
-
-<button
-class="btn secondary"
-onclick="showNotifications()">
-🔔 الإشعارات
-</button>
-
-<button
-class="btn danger"
-onclick="logout()">
-تسجيل الخروج
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-document.getElementById(
-"app"
-).innerHTML=html;
-
-}
-
-
-/* ============================================================
-   تحديث القائمة للمستخدم
-   ============================================================ */
-
-function enhanceUserNavigation(){
-
-const user =
-getCurrentUser();
-
-if(!user){
-
-return;
-
-}
-
-}
-
-
-/* ============================================================
-   النقر خارج المودال
-   ============================================================ */
-
-document.getElementById(
-"modal"
-).addEventListener(
-"click",
-function(event){
-
-if(event.target===this){
-
-closeModal();
-
-}
-
-}
-);
-
-
-/* ============================================================
-   زر Escape
-   ============================================================ */
-
-document.addEventListener(
-"keydown",
-function(event){
-
-if(event.key==="Escape"){
-
-closeModal();
-
-}
-
-}
-);
-
-
-/* ============================================================
-   منع الدخول المزيف للوحة الأدمن
-   ============================================================ */
-
-function verifyOwnerEveryTime(){
-
-if(
-loggedUserId &&
-loggedUserId===OWNER_ID
-){
-
-const user =
-database.users.find(
-item =>
-item.id===OWNER_ID
-);
-
-if(
-!user ||
-user.email!==OWNER_EMAIL ||
-user.role!=="admin" ||
-user.password!==OWNER_PASSWORD
-){
-
-loggedUserId=null;
-
-saveSession();
-
-}
-
-}
-
-}
-
-
-/* ============================================================
-   إعادة التحقق
-   ============================================================ */
-
-verifyOwnerEveryTime();
-
-
-/* ============================================================
-   تطبيق الإعدادات أول مرة
-   ============================================================ */
-
 applySettings();
+toast("تم حفظ إعدادات الموقع");
+showAdmin();
+}
 
+function saveSettingImage(event,type){
+if(!isAdmin())return;
 
-/* ============================================================
-   تشغيل الصفحة الرئيسية
-   ============================================================ */
+const file=event.target.files?.[0];
+if(!file)return;
 
-showHome();
+if(!file.type.startsWith("image/")){
+alert("اختر صورة فقط.");
+return;
+}
 
+const reader=new FileReader();
 
-/* ============================================================
-   وظائف إضافية للواجهة
-   ============================================================ */
-
-function refreshPage(){
-
+reader.onload=e=>{
+db.settings[type]=e.target.result;
+saveDatabase();
 applySettings();
+showAdmin();
+toast("تم تحديث الصورة");
+};
 
-showHome();
-
+reader.readAsDataURL(file);
 }
 
-function goTop(){
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
+function clearLogo(){
+if(!isAdmin())return;
+db.settings.logo="";
+saveDatabase();
+applySettings();
+showAdmin();
 }
 
-function formatNumber(number){
+function clearBackground(){
+if(!isAdmin())return;
+db.settings.backgroundImage="";
+saveDatabase();
+applySettings();
+showAdmin();
+}
 
-return Number(
-number||0
-).toLocaleString(
-"ar-EG"
+/* =========================================================
+   وضع الصيانة
+========================================================= */
+
+function adminMaintenance(){
+return`
+<div class="panel section">
+
+<h3>🛠️ أدوات الموقع</h3>
+
+<div class="notice">
+هذه الأدوات تعمل داخل النسخة المحلية الحالية.
+</div>
+
+<div class="row">
+
+<button class="btn warning" onclick="toggleMaintenance()">
+${db.settings.maintenance?"إيقاف وضع الصيانة":"تفعيل وضع الصيانة"}
+</button>
+
+<button class="btn secondary" onclick="exportData()">
+📤 تصدير البيانات
+</button>
+
+<button class="btn secondary" onclick="importDataPrompt()">
+📥 استيراد البيانات
+</button>
+
+<button class="btn danger" onclick="resetPublicPosts()">
+🗑️ حذف كل المنشورات
+</button>
+
+</div>
+
+</div>
+`;
+}
+
+function toggleMaintenance(){
+db.settings.maintenance=!db.settings.maintenance;
+saveDatabase();
+showAdmin();
+}
+
+function resetPublicPosts(){
+if(!isAdmin())return;
+if(!confirm("سيتم حذف كل المنشورات. هل أنت متأكد؟"))return;
+db.posts=[];
+db.favorites=[];
+saveDatabase();
+showAdmin();
+toast("تم حذف المنشورات");
+}
+
+/* =========================================================
+   تصدير البيانات
+========================================================= */
+
+function exportData(){
+if(!isAdmin())return;
+
+const data=JSON.stringify(db,null,2);
+const blob=new Blob([data],{type:"application/json"});
+const url=URL.createObjectURL(blob);
+
+const a=document.createElement("a");
+a.href=url;
+a.download="hay-day-market-backup.json";
+a.click();
+
+URL.revokeObjectURL(url);
+toast("تم تجهيز النسخة الاحتياطية");
+}
+
+function importDataPrompt(){
+if(!isAdmin())return;
+
+const input=document.createElement("input");
+input.type="file";
+input.accept=".json,application/json";
+
+input.onchange=()=>{
+const file=input.files?.[0];
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=e=>{
+try{
+const imported=JSON.parse(e.target.result);
+db=mergeDatabase(imported);
+saveDatabase();
+applySettings();
+showAdmin();
+toast("تم استيراد البيانات");
+}catch(error){
+alert("ملف غير صالح.");
+}
+};
+
+reader.readAsText(file);
+};
+
+input.click();
+}
+
+/* =========================================================
+   أدوات إضافية
+========================================================= */
+
+function searchEverything(q){
+const query=String(q||"").toLowerCase();
+return db.posts.filter(p=>
+[p.title,p.description,categoryName(p.category)]
+.join(" ")
+.toLowerCase()
+.includes(query)
 );
-
 }
 
-
-/* ============================================================
-   تنظيف البيانات التالفة
-   ============================================================ */
-
-function normalizeDatabase(){
-
-if(!Array.isArray(database.users)){
-
-database.users=[];
-
+function getPostCount(category){
+return db.posts.filter(p=>p.category===category).length;
 }
 
-if(!Array.isArray(database.posts)){
-
-database.posts=[];
-
+function totalViews(){
+return db.posts.reduce((sum,p)=>sum+Number(p.views||0),0);
 }
 
-if(!Array.isArray(database.requests)){
-
-database.requests=[];
-
+function totalLikes(){
+return db.posts.reduce((sum,p)=>sum+Number(p.likes||0),0);
 }
 
-if(!Array.isArray(database.notifications)){
-
-database.notifications=[];
-
+function totalDislikes(){
+return db.posts.reduce((sum,p)=>sum+Number(p.dislikes||0),0);
 }
 
-if(!database.settings){
-
-database.settings={};
-
+function totalRequests(){
+return db.requests.length;
 }
 
-if(!database.settings.siteName){
-
-database.settings.siteName=
-"Hay Day Store";
-
+function pendingRequests(){
+return db.requests.filter(r=>r.status==="pending").length;
 }
 
-if(!database.settings.title){
-
-database.settings.title=
-"مرحبًا بك في Hay Day Store";
-
+function totalUsers(){
+return db.users.length;
 }
 
-if(!database.settings.subtitle){
+/* =========================================================
+   تحقق من حساب المالك
+========================================================= */
 
-database.settings.subtitle=
-"حسابات ومنشورات ومنتجات لعبة هاي داي";
-
-}
-
-if(!database.settings.backgroundColor){
-
-database.settings.backgroundColor=
-"#f3f7ef";
-
-}
-
-if(!database.settings.primaryColor){
-
-database.settings.primaryColor=
-"#65b33f";
-
-}
-
-const owner =
-database.users.find(
-user =>
-user.id===OWNER_ID
-);
+function ensureOwner(){
+let owner=db.users.find(u=>u.id===OWNER_ID);
 
 if(!owner){
-
-database.users.unshift({
-
+db.users.unshift({
 id:OWNER_ID,
-
 name:"Gojo Esultan",
-
 email:OWNER_EMAIL,
-
 phone:"",
-
 password:OWNER_PASSWORD,
-
 role:"admin",
-
-createdAt:
-new Date().toISOString()
-
+avatar:"",
+createdAt:Date.now()
 });
-
+}else{
+owner.email=OWNER_EMAIL;
+owner.password=OWNER_PASSWORD;
+owner.role="admin";
 }
 
 saveDatabase();
-
 }
 
+function validateSession(){
+const user=getUser();
 
-/* ============================================================
-   تشغيل التنظيف
-   ============================================================ */
+if(session&&!user){
+setSession("");
+}
 
-normalizeDatabase();
+if(user&&user.id===OWNER_ID){
+if(
+user.email!==OWNER_EMAIL||
+user.password!==OWNER_PASSWORD||
+user.role!=="admin"
+){
+user.email=OWNER_EMAIL;
+user.password=OWNER_PASSWORD;
+user.role="admin";
+saveDatabase();
+}
+}
+}
 
+/* =========================================================
+   المودال
+========================================================= */
 
-/* ============================================================
-   إعادة التطبيق بعد التنظيف
-   ============================================================ */
+document.getElementById("modal").addEventListener("click",function(e){
+if(e.target===this)closeModal();
+});
 
+document.addEventListener("keydown",function(e){
+if(e.key==="Escape")closeModal();
+});
+
+/* =========================================================
+   تشغيل التطبيق
+========================================================= */
+
+ensureOwner();
+validateSession();
 applySettings();
 
+if(db.settings.maintenance&&!isAdmin()){
+document.getElementById("app").innerHTML=`
+<div class="container">
+<div class="hero">
+<div style="font-size:60px">🛠️</div>
+<h1>الموقع تحت الصيانة</h1>
+<p>يرجى العودة لاحقًا.</p>
+</div>
+</div>
+`;
+}else{
 showHome();
+}
 
+/* =========================================================
+   وظائف وهمية للتوسعة المستقبلية
+   لا تؤثر على تشغيل الموقع
+========================================================= */
 
-/* ============================================================
-   نهاية النظام الأساسي
-   ============================================================ */
+function futureFeature01(){return null}
+function futureFeature02(){return null}
+function futureFeature03(){return null}
+function futureFeature04(){return null}
+function futureFeature05(){return null}
+function futureFeature06(){return null}
+function futureFeature07(){return null}
+function futureFeature08(){return null}
+function futureFeature09(){return null}
+function futureFeature10(){return null}
+function futureFeature11(){return null}
+function futureFeature12(){return null}
+function futureFeature13(){return null}
+function futureFeature14(){return null}
+function futureFeature15(){return null}
+function futureFeature16(){return null}
+function futureFeature17(){return null}
+function futureFeature18(){return null}
+function futureFeature19(){return null}
+function futureFeature20(){return null}
+function futureFeature21(){return null}
+function futureFeature22(){return null}
+function futureFeature23(){return null}
+function futureFeature24(){return null}
+function futureFeature25(){return null}
+function futureFeature26(){return null}
+function futureFeature27(){return null}
+function futureFeature28(){return null}
+function futureFeature29(){return null}
+function futureFeature30(){return null}
+function futureFeature31(){return null}
+function futureFeature32(){return null}
+function futureFeature33(){return null}
+function futureFeature34(){return null}
+function futureFeature35(){return null}
+function futureFeature36(){return null}
+function futureFeature37(){return null}
+function futureFeature38(){return null}
+function futureFeature39(){return null}
+function futureFeature40(){return null}
+function futureFeature41(){return null}
+function futureFeature42(){return null}
+function futureFeature43(){return null}
+function futureFeature44(){return null}
+function futureFeature45(){return null}
+function futureFeature46(){return null}
+function futureFeature47(){return null}
+function futureFeature48(){return null}
+function futureFeature49(){return null}
+function futureFeature50(){return null}
+function futureFeature51(){return null}
+function futureFeature52(){return null}
+function futureFeature53(){return null}
+function futureFeature54(){return null}
+function futureFeature55(){return null}
+function futureFeature56(){return null}
+function futureFeature57(){return null}
+function futureFeature58(){return null}
+function futureFeature59(){return null}
+function futureFeature60(){return null}
+function futureFeature61(){return null}
+function futureFeature62(){return null}
+function futureFeature63(){return null}
+function futureFeature64(){return null}
+function futureFeature65(){return null}
+function futureFeature66(){return null}
+function futureFeature67(){return null}
+function futureFeature68(){return null}
+function futureFeature69(){return null}
+function futureFeature70(){return null}
+function futureFeature71(){return null}
+function futureFeature72(){return null}
+function futureFeature73(){return null}
+function futureFeature74(){return null}
+function futureFeature75(){return null}
+function futureFeature76(){return null}
+function futureFeature77(){return null}
+function futureFeature78(){return null}
+function futureFeature79(){return null}
+function futureFeature80(){return null}
+function futureFeature81(){return null}
+function futureFeature82(){return null}
+function futureFeature83(){return null}
+function futureFeature84(){return null}
+function futureFeature85(){return null}
+function futureFeature86(){return null}
+function futureFeature87(){return null}
+function futureFeature88(){return null}
+function futureFeature89(){return null}
+function futureFeature90(){return null}
+function futureFeature91(){return null}
+function futureFeature92(){return null}
+function futureFeature93(){return null}
+function futureFeature94(){return null}
+function futureFeature95(){return null}
+function futureFeature96(){return null}
+function futureFeature97(){return null}
+function futureFeature98(){return null}
+function futureFeature99(){return null}
+function futureFeature100(){return null}
 
+/* =========================================================
+   نهاية الكود
+========================================================= */
 </script>
-
 </body>
 </html>
