@@ -1,0 +1,2948 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hay Day Store</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f3f7ef;
+    color:#202820;
+    min-height:100vh;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+}
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#ffffff;
+    box-shadow:0 3px 18px rgba(0,0,0,.12);
+}
+
+.header-inner{
+    max-width:1250px;
+    margin:auto;
+    padding:12px 15px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #63ad3d;
+    background:#fff;
+}
+
+.site-name{
+    font-size:23px;
+    font-weight:900;
+    color:#3b762c;
+    white-space:nowrap;
+}
+
+.nav{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    flex:1;
+    padding:3px;
+}
+
+.nav button{
+    padding:10px 14px;
+    border-radius:11px;
+    background:#edf6e9;
+    color:#356d29;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.nav button:hover{
+    background:#63ad3d;
+    color:#fff;
+}
+
+.container{
+    width:min(1250px,100%);
+    margin:auto;
+    padding:22px 15px;
+}
+
+.hero{
+    min-height:300px;
+    border-radius:28px;
+    padding:50px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:linear-gradient(135deg,#78ca4d,#e1f5c9);
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+.hero h1{
+    font-size:clamp(32px,7vw,55px);
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:18px;
+    max-width:700px;
+}
+
+.section-title{
+    margin:25px 0 15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:15px;
+    box-shadow:0 8px 28px rgba(0,0,0,.08);
+    overflow:hidden;
+}
+
+.card-image{
+    width:100%;
+    height:210px;
+    border-radius:14px;
+    object-fit:cover;
+    background:#e9eee7;
+}
+
+.card h3{
+    margin:12px 0 8px;
+}
+
+.description{
+    color:#707870;
+    line-height:1.7;
+    min-height:50px;
+}
+
+.price{
+    margin-top:10px;
+    color:#39752d;
+    font-size:23px;
+    font-weight:900;
+}
+
+.meta{
+    color:#6e756c;
+    margin-top:8px;
+    font-size:14px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:12px;
+}
+
+.btn{
+    padding:10px 14px;
+    border-radius:11px;
+    font-weight:800;
+}
+
+.btn-primary{
+    background:#63ad3d;
+    color:#fff;
+}
+
+.btn-secondary{
+    background:#edf5e9;
+    color:#356d29;
+}
+
+.btn-danger{
+    background:#d9534f;
+    color:#fff;
+}
+
+.panel{
+    background:#fff;
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 8px 28px rgba(0,0,0,.07);
+    margin-bottom:18px;
+}
+
+.field{
+    margin-bottom:13px;
+}
+
+.field label{
+    display:block;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d5ddd1;
+    border-radius:11px;
+    outline:none;
+    background:#fff;
+}
+
+.field textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.two{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.image-picker{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+    gap:8px;
+}
+
+.image-slot{
+    height:100px;
+    border:2px dashed #8fbd7e;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    color:#63ad3d;
+    font-size:35px;
+    background:#f8fbf6;
+}
+
+.image-slot img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.remove-image{
+    position:absolute;
+    top:4px;
+    left:4px;
+    width:27px;
+    height:27px;
+    border-radius:50%;
+    background:#d9534f;
+    color:#fff;
+    font-weight:900;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:500;
+    background:rgba(0,0,0,.72);
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    width:min(650px,100%);
+    max-height:92vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:22px;
+    padding:22px;
+    position:relative;
+}
+
+.close-modal{
+    position:absolute;
+    top:10px;
+    left:10px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#eee;
+    font-size:22px;
+}
+
+.notice{
+    background:#eef7e9;
+    color:#315d29;
+    padding:13px;
+    border-radius:11px;
+    margin:12px 0;
+    line-height:1.7;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.stat{
+    background:#fff;
+    border-radius:17px;
+    padding:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+.stat span{
+    color:#747b73;
+}
+
+.stat strong{
+    display:block;
+    margin-top:6px;
+    font-size:28px;
+}
+
+.footer{
+    margin-top:40px;
+    padding:30px 15px;
+    background:#20261f;
+    color:#fff;
+    text-align:center;
+}
+
+.empty{
+    padding:30px;
+    background:#fff;
+    border-radius:18px;
+    text-align:center;
+    color:#777;
+}
+
+.request{
+    border:1px solid #e0e7dc;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:10px;
+}
+
+.request-images{
+    display:flex;
+    gap:7px;
+    overflow:auto;
+    margin-top:10px;
+}
+
+.request-images img{
+    width:80px;
+    height:80px;
+    border-radius:9px;
+    object-fit:cover;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#edf5e9;
+    color:#356d29;
+    font-size:12px;
+    font-weight:800;
+}
+
+@media(max-width:800px){
+    .header-inner{
+        flex-wrap:wrap;
+    }
+
+    .nav{
+        width:100%;
+        order:3;
+        flex-basis:100%;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:550px){
+    .two{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .hero{
+        min-height:240px;
+        padding:35px 15px;
+    }
+
+    .site-name{
+        font-size:19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-inner">
+
+        <img id="siteLogo" class="logo" alt="Hay Day">
+
+        <div id="siteName" class="site-name">
+            Hay Day Store
+        </div>
+
+        <nav id="navigation" class="nav"></nav>
+
+    </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="footer">
+    <span id="footerName">Hay Day Store</span>
+    © 2026
+</footer>
+
+<div id="modal" class="modal">
+    <div class="modal-box">
+        <button class="close-modal" onclick="closeModal()">×</button>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<script>
+"use strict";
+
+/* ================================
+   إعدادات المالك
+================================ */
+
+const OWNER_ID = "111111111";
+const OWNER_EMAIL = "gojoesultan1@gmail.com";
+
+const STORAGE_KEY = "HAY_DAY_STORE_DATABASE_V1";
+
+/* ================================
+   قاعدة البيانات المحلية
+================================ */
+
+let database = JSON.parse(
+    localStorage.getItem(STORAGE_KEY) || "null"
+);
+
+if (!database) {
+
+    database = {
+
+        users: [
+
+            {
+                id: OWNER_ID,
+                name: "Gojo Esultan",
+                email: OWNER_EMAIL,
+                phone: "",
+                password: "",
+                role: "admin"
+            }
+
+        ],
+
+        posts: [],
+
+        requests: [],
+
+        settings: {
+
+            siteName: "Hay Day Store",
+
+            title: "مرحبًا بك في Hay Day Store",
+
+            subtitle:
+                "حسابات ومنشورات ومنتجات لعبة هاي داي",
+
+            backgroundColor:
+                "#f3f7ef",
+
+            backgroundImage: "",
+
+            logo: ""
+
+        }
+
+    };
+
+    saveDatabase();
+
+}
+
+/* ================================
+   حالة التطبيق
+================================ */
+
+let loggedUserId = null;
+
+let requestImages = [];
+
+let adminImages = [];
+
+/* ================================
+   أدوات عامة
+================================ */
+
+function saveDatabase(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(database)
+    );
+
+}
+
+function generateId(){
+
+    return (
+        Date.now().toString(36) +
+        Math.random()
+            .toString(36)
+            .substring(2,9)
+    );
+
+}
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+function getCurrentUser(){
+
+    if(!loggedUserId){
+        return null;
+    }
+
+    return database.users.find(
+        user => user.id === loggedUserId
+    ) || null;
+
+}
+
+function isOwner(){
+
+    const user = getCurrentUser();
+
+    if(!user){
+        return false;
+    }
+
+    return (
+        user.id === OWNER_ID &&
+        user.email === OWNER_EMAIL &&
+        user.role === "admin"
+    );
+
+}
+
+function categoryTitle(category){
+
+    if(category === "accounts"){
+        return "حسابات هاي داي";
+    }
+
+    if(category === "products"){
+        return "منتجات هاي داي";
+    }
+
+    return "منشورات هاي داي";
+
+}
+
+function defaultLogo(){
+
+    return (
+        "data:image/svg+xml," +
+        encodeURIComponent(
+            `<svg xmlns="http://www.w3.org/2000/svg"
+                  width="200"
+                  height="200">
+                <circle cx="100"
+                        cy="100"
+                        r="95"
+                        fill="#63ad3d"/>
+                <text x="100"
+                      y="115"
+                      text-anchor="middle"
+                      font-family="Arial"
+                      font-size="48"
+                      font-weight="bold"
+                      fill="white">
+                    HD
+                </text>
+            </svg>`
+        )
+    );
+
+}
+
+/* ================================
+   إعدادات الموقع
+================================ */
+
+function applySiteSettings(){
+
+    document.title =
+        database.settings.siteName;
+
+    document.getElementById(
+        "siteName"
+    ).textContent =
+        database.settings.siteName;
+
+    document.getElementById(
+        "footerName"
+    ).textContent =
+        database.settings.siteName;
+
+    document.getElementById(
+        "siteLogo"
+    ).src =
+        database.settings.logo ||
+        defaultLogo();
+
+    document.body.style.backgroundColor =
+        database.settings.backgroundColor ||
+        "#f3f7ef";
+
+    if(database.settings.backgroundImage){
+
+        document.body.style.backgroundImage =
+            "url(" +
+            database.settings.backgroundImage +
+            ")";
+
+        document.body.style.backgroundSize =
+            "cover";
+
+        document.body.style.backgroundAttachment =
+            "fixed";
+
+    }else{
+
+        document.body.style.backgroundImage =
+            "none";
+
+    }
+
+    renderNavigation();
+
+}
+
+/* ================================
+   القائمة الرئيسية
+================================ */
+
+function renderNavigation(){
+
+    let html = "";
+
+    html += `
+        <button onclick="showHome()">
+            الرئيسية
+        </button>
+    `;
+
+    html += `
+        <button onclick="showCategory('accounts')">
+            حسابات هاي داي
+        </button>
+    `;
+
+    html += `
+        <button onclick="showCategory('posts')">
+            منشورات هاي داي
+        </button>
+    `;
+
+    html += `
+        <button onclick="showCategory('products')">
+            منتجات هاي داي
+        </button>
+    `;
+
+    html += `
+        <button onclick="openRequestForm()">
+            ➕ إضافة إعلان
+        </button>
+    `;
+
+    if(isOwner()){
+
+        html += `
+            <button onclick="showAdminPanel()">
+                ⚙️ لوحة الأدمن
+            </button>
+        `;
+
+    }
+
+    if(getCurrentUser()){
+
+        html += `
+            <button onclick="showAccount()">
+                👤 ${escapeHTML(
+                    getCurrentUser().name
+                )}
+            </button>
+        `;
+
+    }else{
+
+        html += `
+            <button onclick="openLogin()">
+                👤 تسجيل الدخول
+            </button>
+        `;
+
+    }
+
+    document.getElementById(
+        "navigation"
+    ).innerHTML = html;
+
+}
+
+/* ================================
+   الصفحة الرئيسية
+================================ */
+
+function showHome(){
+
+    const posts =
+        database.posts
+            .slice()
+            .reverse();
+
+    let html = "";
+
+    html += `
+        <div class="container">
+
+            <section class="hero">
+
+                <h1>
+                    ${escapeHTML(
+                        database.settings.title
+                    )}
+                </h1>
+
+                <p>
+                    ${escapeHTML(
+                        database.settings.subtitle
+                    )}
+                </p>
+
+            </section>
+
+            <div class="section-title">
+
+                <h2>
+                    أحدث الإعلانات
+                </h2>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="openRequestForm()">
+                    ➕ إضافة إعلان
+                </button>
+
+            </div>
+
+            <div class="grid">
+
+                ${
+                    posts.length
+                    ?
+                    posts
+                        .map(renderPostCard)
+                        .join("")
+                    :
+                    `
+                    <div class="empty">
+                        لا توجد إعلانات حاليًا.
+                    </div>
+                    `
+                }
+
+            </div>
+
+        </div>
+    `;
+
+    document.getElementById(
+        "app"
+    ).innerHTML = html;
+
+    window.scrollTo(0,0);
+
+}
+
+/* ================================
+   الأقسام
+================================ */
+
+function showCategory(category){
+
+    const posts =
+        database.posts.filter(
+            post =>
+                post.category === category
+        );
+
+    let html = "";
+
+    html += `
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>
+                    ${categoryTitle(category)}
+                </h2>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="openRequestForm()">
+                    ➕ إضافة إعلان
+                </button>
+
+            </div>
+
+            <div class="grid">
+
+                ${
+                    posts.length
+                    ?
+                    posts
+                        .map(renderPostCard)
+                        .join("")
+                    :
+                    `
+                    <div class="empty">
+                        لا توجد إعلانات في هذا القسم.
+                    </div>
+                    `
+                }
+
+            </div>
+
+        </div>
+    `;
+
+    document.getElementById(
+        "app"
+    ).innerHTML = html;
+
+    window.scrollTo(0,0);
+
+}
+
+/* ================================
+   كارت المنشور
+================================ */
+
+function renderPostCard(post){
+
+    const firstImage =
+        post.images &&
+        post.images.length
+        ?
+        post.images[0]
+        :
+        "";
+
+    let html = "";
+
+    html += `
+        <article class="card">
+    `;
+
+    if(firstImage){
+
+        html += `
+            <img
+                class="card-image"
+                src="${firstImage}"
+                alt="">
+        `;
+
+    }else{
+
+        html += `
+            <div
+                class="card-image">
+            </div>
+        `;
+
+    }
+
+    html += `
+        <div style="margin-top:12px">
+
+            <span class="badge">
+                ${categoryTitle(post.category)}
+            </span>
+
+            <h3>
+                ${escapeHTML(post.title)}
+            </h3>
+
+            <div class="description">
+                ${escapeHTML(post.description)}
+            </div>
+
+            <div class="price">
+                ${Number(post.price || 0).toLocaleString("ar-EG")}
+                جنيه
+            </div>
+
+            <div class="meta">
+                الكمية:
+                ${Number(post.quantity || 0)}
+                |
+                👁️
+                ${Number(post.views || 0)}
+            </div>
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="likePost('${post.id}')">
+                    ❤️ ${Number(post.likes || 0)}
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="dislikePost('${post.id}')">
+                    👎 ${Number(post.dislikes || 0)}
+                </button>
+
+            </div>
+    `;
+
+    if(post.images && post.images.length > 1){
+
+        html += `
+            <div
+                style="
+                    display:flex;
+                    gap:7px;
+                    overflow:auto;
+                    margin-top:10px;
+                ">
+        `;
+
+        post.images.forEach(
+            image => {
+
+                html += `
+                    <img
+                        src="${image}"
+                        style="
+                            width:60px;
+                            height:60px;
+                            object-fit:cover;
+                            border-radius:9px;
+                        ">
+                `;
+
+            }
+        );
+
+        html += `
+            </div>
+        `;
+
+    }
+
+    html += `
+        </div>
+        </article>
+    `;
+
+    return html;
+
+}
+
+/* ================================
+   الإعجاب وعدم الإعجاب
+================================ */
+
+function likePost(postId){
+
+    const post =
+        database.posts.find(
+            item => item.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    post.likes =
+        Number(post.likes || 0) + 1;
+
+    post.views =
+        Number(post.views || 0) + 1;
+
+    saveDatabase();
+
+    showHome();
+
+}
+
+function dislikePost(postId){
+
+    const post =
+        database.posts.find(
+            item => item.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    post.dislikes =
+        Number(post.dislikes || 0) + 1;
+
+    post.views =
+        Number(post.views || 0) + 1;
+
+    saveDatabase();
+
+    showHome();
+
+}
+
+/* ================================
+   النوافذ
+================================ */
+
+function openModal(content){
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = content;
+
+    document.getElementById(
+        "modal"
+    ).classList.add("active");
+
+}
+
+function closeModal(){
+
+    document.getElementById(
+        "modal"
+    ).classList.remove("active");
+
+}
+
+/* ================================
+   تسجيل الدخول
+================================ */
+
+function openLogin(){
+
+    openModal(`
+
+        <h2>
+            تسجيل الدخول
+        </h2>
+
+        <div class="field">
+
+            <label>
+                الإيميل أو رقم الهاتف
+            </label>
+
+            <input
+                id="loginIdentifier"
+                placeholder="example@email.com">
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                كلمة المرور
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password">
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="login()">
+            دخول
+        </button>
+
+        <hr style="margin:18px 0">
+
+        <button
+            class="btn btn-secondary"
+            onclick="openRegister()">
+            إنشاء حساب جديد
+        </button>
+
+    `);
+
+}
+
+function login(){
+
+    const identifier =
+        document
+            .getElementById(
+                "loginIdentifier"
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+    const password =
+        document
+            .getElementById(
+                "loginPassword"
+            )
+            .value;
+
+    const user =
+        database.users.find(
+            item =>
+                (
+                    item.email.toLowerCase() ===
+                    identifier ||
+                    item.phone === identifier
+                ) &&
+                item.password === password
+        );
+
+    if(!user){
+
+        alert(
+            "الإيميل أو رقم الهاتف أو كلمة المرور غير صحيحة."
+        );
+
+        return;
+
+    }
+
+    loggedUserId =
+        user.id;
+
+    closeModal();
+
+    applySiteSettings();
+
+    showHome();
+
+}
+
+/* ================================
+   إنشاء حساب
+================================ */
+
+function openRegister(){
+
+    openModal(`
+
+        <h2>
+            إنشاء حساب جديد
+        </h2>
+
+        <div class="field">
+
+            <label>
+                الاسم
+            </label>
+
+            <input id="registerName">
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                الإيميل
+            </label>
+
+            <input
+                id="registerEmail"
+                type="email">
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                رقم الهاتف
+            </label>
+
+            <input
+                id="registerPhone">
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                كلمة المرور
+            </label>
+
+            <input
+                id="registerPassword"
+                type="password">
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="registerUser()">
+            إنشاء الحساب
+        </button>
+
+    `);
+
+}
+
+function registerUser(){
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value.trim();
+
+    const email =
+        document.getElementById(
+            "registerEmail"
+        ).value.trim().toLowerCase();
+
+    const phone =
+        document.getElementById(
+            "registerPhone"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+    if(!name || !email || !password){
+
+        alert(
+            "من فضلك أكمل البيانات المطلوبة."
+        );
+
+        return;
+
+    }
+
+    const exists =
+        database.users.some(
+            user =>
+                user.email === email ||
+                (
+                    phone &&
+                    user.phone === phone
+                )
+        );
+
+    if(exists){
+
+        alert(
+            "هذا الحساب موجود بالفعل."
+        );
+
+        return;
+
+    }
+
+    const user = {
+
+        id:generateId(),
+
+        name:name,
+
+        email:email,
+
+        phone:phone,
+
+        password:password,
+
+        role:"user"
+
+    };
+
+    database.users.push(user);
+
+    saveDatabase();
+
+    loggedUserId =
+        user.id;
+
+    closeModal();
+
+    applySiteSettings();
+
+    showHome();
+
+}
+
+/* ================================
+   حساب المستخدم
+================================ */
+
+function showAccount(){
+
+    const user =
+        getCurrentUser();
+
+    if(!user){
+
+        openLogin();
+
+        return;
+
+    }
+
+    openModal(`
+
+        <h2>
+            حسابي
+        </h2>
+
+        <div class="notice">
+
+            <strong>
+                ${escapeHTML(user.name)}
+            </strong>
+
+            <br>
+
+            الإيميل:
+            ${escapeHTML(user.email)}
+
+            <br>
+
+            الهاتف:
+            ${escapeHTML(user.phone || "غير مضاف")}
+
+        </div>
+
+        <button
+            class="btn btn-danger"
+            onclick="logout()">
+            تسجيل الخروج
+        </button>
+
+    `);
+
+}
+
+function logout(){
+
+    loggedUserId = null;
+
+    closeModal();
+
+    applySiteSettings();
+
+    showHome();
+
+}
+
+/* ================================
+   إضافة إعلان للعميل
+================================ */
+
+function openRequestForm(){
+
+    if(!getCurrentUser()){
+
+        openModal(`
+
+            <h2>
+                إضافة إعلان
+            </h2>
+
+            <div class="notice">
+                تسجيل الدخول غير إجباري لتصفح الموقع،
+                لكنه مطلوب لإرسال إعلان باسمك.
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="closeModal();openLogin()">
+                تسجيل الدخول
+            </button>
+
+        `);
+
+        return;
+
+    }
+
+    requestImages = [];
+
+    openModal(`
+
+        <h2>
+            إضافة إعلان جديد
+        </h2>
+
+        <div class="field">
+
+            <label>
+                اسم الإعلان
+            </label>
+
+            <input id="requestTitle">
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                التصنيف
+            </label>
+
+            <select id="requestCategory">
+
+                <option value="accounts">
+                    حسابات هاي داي
+                </option>
+
+                <option value="posts">
+                    منشورات هاي داي
+                </option>
+
+                <option value="products">
+                    منتجات هاي داي
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="two">
+
+            <div class="field">
+
+                <label>
+                    السعر
+                </label>
+
+                <input
+                    id="requestPrice"
+                    type="number"
+                    min="0">
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    الكمية المتوفرة
+                </label>
+
+                <input
+                    id="requestQuantity"
+                    type="number"
+                    min="0"
+                    value="1">
+
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                وصف السلعة
+            </label>
+
+            <textarea
+                id="requestDescription"></textarea>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                الصور
+            </label>
+
+            <div
+                id="requestImagePicker"
+                class="image-picker">
+            </div>
+
+            <input
+                id="requestFile"
+                type="file"
+                accept="image/*"
+                multiple
+                hidden
+                onchange="handleImages(event,'request')">
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="submitRequest()">
+            إرسال الطلب
+        </button>
+
+    `);
+
+    renderImagePicker("request");
+
+}
+
+/* ================================
+   رفع الصور
+================================ */
+
+function handleImages(event,type){
+
+    const files =
+        Array.from(
+            event.target.files || []
+        );
+
+    files.forEach(
+        file => {
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function(e){
+
+                    if(type === "request"){
+
+                        requestImages.push(
+                            e.target.result
+                        );
+
+                    }else{
+
+                        adminImages.push(
+                            e.target.result
+                        );
+
+                    }
+
+                    renderImagePicker(type);
+
+                };
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+    event.target.value = "";
+
+}
+
+/* ================================
+   واجهة الصور
+================================ */
+
+function renderImagePicker(type){
+
+    const array =
+        type === "request"
+        ?
+        requestImages
+        :
+        adminImages;
+
+    const element =
+        document.getElementById(
+            type === "request"
+            ?
+            "requestImagePicker"
+            :
+            "adminImagePicker"
+        );
+
+    if(!element){
+        return;
+    }
+
+    let html = "";
+
+    array.forEach(
+        (image,index) => {
+
+            html += `
+
+                <div class="image-slot">
+
+                    <img
+                        src="${image}"
+                        alt="">
+
+                    <button
+                        class="remove-image"
+                        onclick="removeImage('${type}',${index})">
+                        ×
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+    html += `
+
+        <div
+            class="image-slot"
+            onclick="
+                document.getElementById(
+                    '${type === "request"
+                        ? "requestFile"
+                        : "adminFile"}'
+                ).click()
+            ">
+            +
+        </div>
+
+    `;
+
+    element.innerHTML = html;
+
+}
+
+function removeImage(type,index){
+
+    if(type === "request"){
+
+        requestImages.splice(
+            index,
+            1
+        );
+
+    }else{
+
+        adminImages.splice(
+            index,
+            1
+        );
+
+    }
+
+    renderImagePicker(type);
+
+}
+
+/* ================================
+   إرسال طلب الإعلان
+================================ */
+
+function submitRequest(){
+
+    const user =
+        getCurrentUser();
+
+    if(!user){
+
+        alert(
+            "يجب تسجيل الدخول."
+        );
+
+        return;
+
+    }
+
+    const title =
+        document.getElementById(
+            "requestTitle"
+        ).value.trim();
+
+    const description =
+        document.getElementById(
+            "requestDescription"
+        ).value.trim();
+
+    const price =
+        Number(
+            document.getElementById(
+                "requestPrice"
+            ).value || 0
+        );
+
+    const quantity =
+        Number(
+            document.getElementById(
+                "requestQuantity"
+            ).value || 0
+        );
+
+    const category =
+        document.getElementById(
+            "requestCategory"
+        ).value;
+
+    if(!title || !description){
+
+        alert(
+            "أكمل اسم الإعلان والوصف."
+        );
+
+        return;
+
+    }
+
+    const request = {
+
+        id:generateId(),
+
+        userId:user.id,
+
+        customerName:user.name,
+
+        customerEmail:user.email,
+
+        customerPhone:user.phone,
+
+        title:title,
+
+        category:category,
+
+        price:price,
+
+        quantity:quantity,
+
+        description:description,
+
+        images:[
+            ...requestImages
+        ],
+
+        status:"pending",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+    database.requests.unshift(
+        request
+    );
+
+    saveDatabase();
+
+    closeModal();
+
+    alert(
+        "تم استلام طلبك الرفيع سيتم نشر إعلانك بعد موافقة المالك"
+    );
+
+}
+
+/* ================================
+   لوحة الأدمن
+================================ */
+
+function showAdminPanel(){
+
+    if(!isOwner()){
+
+        alert(
+            "غير مصرح لك بالدخول."
+        );
+
+        return;
+
+    }
+
+    adminImages = [];
+
+    const pending =
+        database.requests.filter(
+            request =>
+                request.status === "pending"
+        );
+
+    const totalPosts =
+        database.posts.length;
+
+    const totalUsers =
+        database.users.length;
+
+    const totalRequests =
+        database.requests.length;
+
+    let html = "";
+
+    html += `
+        <div class="container">
+
+            <h2 style="margin-bottom:18px">
+                ⚙️ لوحة تحكم المالك
+            </h2>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <span>المنشورات</span>
+                    <strong>${totalPosts}</strong>
+                </div>
+
+                <div class="stat">
+                    <span>المستخدمون</span>
+                    <strong>${totalUsers}</strong>
+                </div>
+
+                <div class="stat">
+                    <span>الطلبات</span>
+                    <strong>${totalRequests}</strong>
+                </div>
+
+                <div class="stat">
+                    <span>المعلقة</span>
+                    <strong>${pending.length}</strong>
+                </div>
+
+            </div>
+
+            <div class="panel">
+
+                <h3>
+                    نشر إعلان من لوحة الأدمن
+                </h3>
+
+                <div class="field">
+
+                    <label>
+                        اسم الإعلان
+                    </label>
+
+                    <input id="adminTitle">
+
+                </div>
+
+                <div class="field">
+
+                    <label>
+                        التصنيف
+                    </label>
+
+                    <select id="adminCategory">
+
+                        <option value="accounts">
+                            حسابات هاي داي
+                        </option>
+
+                        <option value="posts">
+                            منشورات هاي داي
+                        </option>
+
+                        <option value="products">
+                            منتجات هاي داي
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="two">
+
+                    <div class="field">
+
+                        <label>
+                            السعر
+                        </label>
+
+                        <input
+                            id="adminPrice"
+                            type="number"
+                            min="0">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label>
+                            الكمية المتوفرة
+                        </label>
+
+                        <input
+                            id="adminQuantity"
+                            type="number"
+                            min="0"
+                            value="1">
+
+                    </div>
+
+                </div>
+
+                <div class="field">
+
+                    <label>
+                        وصف السلعة
+                    </label>
+
+                    <textarea
+                        id="adminDescription"></textarea>
+
+                </div>
+
+                <div class="field">
+
+                    <label>
+                        الصور
+                    </label>
+
+                    <div
+                        id="adminImagePicker"
+                        class="image-picker">
+                    </div>
+
+                    <input
+                        id="adminFile"
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        hidden
+                        onchange="handleImages(event,'admin')">
+
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="publishAdminPost()">
+                    نشر الإعلان
+                </button>
+
+            </div>
+
+            <div class="panel">
+
+                <h3 style="margin-bottom:12px">
+                    💬 طلبات العملاء
+                </h3>
+
+                ${
+                    pending.length
+                    ?
+                    pending
+                        .map(renderRequest)
+                        .join("")
+                    :
+                    `
+                    <div class="empty">
+                        لا توجد طلبات معلقة.
+                    </div>
+                    `
+                }
+
+            </div>
+
+            <div class="panel">
+
+                <h3 style="margin-bottom:12px">
+                    📦 إدارة المنشورات
+                </h3>
+
+                <div class="grid">
+
+                    ${
+                        database.posts.length
+                        ?
+                        database.posts
+                            .map(renderAdminPost)
+                            .join("")
+                        :
+                        `
+                        <div class="empty">
+                            لا توجد منشورات.
+                        </div>
+                        `
+                    }
+
+                </div>
+
+            </div>
+
+            ${renderSettingsPanel()}
+
+        </div>
+    `;
+
+    document.getElementById(
+        "app"
+    ).innerHTML = html;
+
+    renderImagePicker("admin");
+
+    window.scrollTo(0,0);
+
+}
+
+/* ================================
+   طلب العميل
+================================ */
+
+function renderRequest(request){
+
+    let html = "";
+
+    html += `
+        <div class="request">
+
+            <strong>
+                ${escapeHTML(request.title)}
+            </strong>
+
+            <br>
+
+            العميل:
+            ${escapeHTML(request.customerName)}
+
+            <br>
+
+            الإيميل:
+            ${escapeHTML(request.customerEmail)}
+
+            <br>
+
+            الهاتف:
+            ${escapeHTML(
+                request.customerPhone || "غير مضاف"
+            )}
+
+            <br>
+
+            التصنيف:
+            ${categoryTitle(request.category)}
+
+            <br>
+
+            السعر:
+            ${request.price}
+
+            جنيه
+
+            <br>
+
+            الكمية:
+            ${request.quantity}
+
+            <br>
+
+            الوصف:
+            ${escapeHTML(request.description)}
+
+    `;
+
+    if(request.images &&
+       request.images.length){
+
+        html += `
+            <div class="request-images">
+        `;
+
+        request.images.forEach(
+            image => {
+
+                html += `
+                    <img
+                        src="${image}"
+                        alt="">
+                `;
+
+            }
+        );
+
+        html += `
+            </div>
+        `;
+
+    }
+
+    html += `
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="approveRequest('${request.id}')">
+                    ✅ موافقة ونشر
+                </button>
+
+                <button
+                    class="btn btn-danger"
+                    onclick="rejectRequest('${request.id}')">
+                    ❌ رفض
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    return html;
+
+}
+
+/* ================================
+   الموافقة على الإعلان
+================================ */
+
+function approveRequest(requestId){
+
+    if(!isOwner()){
+        return;
+    }
+
+    const request =
+        database.requests.find(
+            item =>
+                item.id === requestId
+        );
+
+    if(!request){
+        return;
+    }
+
+    database.posts.unshift({
+
+        id:generateId(),
+
+        title:request.title,
+
+        category:request.category,
+
+        price:request.price,
+
+        quantity:request.quantity,
+
+        description:request.description,
+
+        images:[
+            ...(request.images || [])
+        ],
+
+        likes:0,
+
+        dislikes:0,
+
+        views:0,
+
+        ownerId:request.userId,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+    request.status =
+        "approved";
+
+    saveDatabase();
+
+    showAdminPanel();
+
+}
+
+/* ================================
+   رفض الطلب
+================================ */
+
+function rejectRequest(requestId){
+
+    if(!isOwner()){
+        return;
+    }
+
+    const request =
+        database.requests.find(
+            item =>
+                item.id === requestId
+        );
+
+    if(!request){
+        return;
+    }
+
+    request.status =
+        "rejected";
+
+    saveDatabase();
+
+    showAdminPanel();
+
+}
+
+/* ================================
+   كارت الأدمن
+================================ */
+
+function renderAdminPost(post){
+
+    let html = "";
+
+    html += `
+        <article class="card">
+
+            <span class="badge">
+                ${categoryTitle(post.category)}
+            </span>
+
+            <h3>
+                ${escapeHTML(post.title)}
+            </h3>
+
+            <p class="description">
+                ${escapeHTML(post.description)}
+            </p>
+
+            <p class="meta">
+                السعر:
+                ${post.price}
+                جنيه
+            </p>
+
+            <p class="meta">
+                الكمية:
+                ${post.quantity}
+            </p>
+
+            <p class="meta">
+                👁️ المشاهدات:
+                ${post.views}
+            </p>
+
+            <p class="meta">
+                ❤️ الإعجابات:
+                ${post.likes}
+            </p>
+
+            <p class="meta">
+                👎 عدم الإعجاب:
+                ${post.dislikes}
+            </p>
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="changeStat('${post.id}','likes',1)">
+                    + لايك
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="changeStat('${post.id}','likes',-1)">
+                    - لايك
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="changeStat('${post.id}','views',1)">
+                    + مشاهدة
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="changeStat('${post.id}','views',-1)">
+                    - مشاهدة
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="editPost('${post.id}')">
+                    ✏️ تعديل
+                </button>
+
+                <button
+                    class="btn btn-danger"
+                    onclick="deletePost('${post.id}')">
+                    🗑️ حذف
+                </button>
+
+            </div>
+
+        </article>
+    `;
+
+    return html;
+
+}
+
+/* ================================
+   نشر من الأدمن
+================================ */
+
+function publishAdminPost(){
+
+    if(!isOwner()){
+        return;
+    }
+
+    const title =
+        document.getElementById(
+            "adminTitle"
+        ).value.trim();
+
+    const category =
+        document.getElementById(
+            "adminCategory"
+        ).value;
+
+    const price =
+        Number(
+            document.getElementById(
+                "adminPrice"
+            ).value || 0
+        );
+
+    const quantity =
+        Number(
+            document.getElementById(
+                "adminQuantity"
+            ).value || 0
+        );
+
+    const description =
+        document.getElementById(
+            "adminDescription"
+        ).value.trim();
+
+    if(!title || !description){
+
+        alert(
+            "أكمل اسم الإعلان والوصف."
+        );
+
+        return;
+
+    }
+
+    database.posts.unshift({
+
+        id:generateId(),
+
+        title:title,
+
+        category:category,
+
+        price:price,
+
+        quantity:quantity,
+
+        description:description,
+
+        images:[
+            ...adminImages
+        ],
+
+        likes:0,
+
+        dislikes:0,
+
+        views:0,
+
+        ownerId:OWNER_ID,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+    saveDatabase();
+
+    alert(
+        "تم نشر الإعلان."
+    );
+
+    showAdminPanel();
+
+}
+
+/* ================================
+   تعديل الإحصائيات
+================================ */
+
+function changeStat(
+    postId,
+    property,
+    amount
+){
+
+    if(!isOwner()){
+        return;
+    }
+
+    const post =
+        database.posts.find(
+            item =>
+                item.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    post[property] =
+        Math.max(
+            0,
+            Number(post[property] || 0) +
+            amount
+        );
+
+    saveDatabase();
+
+    showAdminPanel();
+
+}
+
+/* ================================
+   تعديل المنشور
+================================ */
+
+function editPost(postId){
+
+    if(!isOwner()){
+        return;
+    }
+
+    const post =
+        database.posts.find(
+            item =>
+                item.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    openEditPost(post);
+
+}
+
+/* ================================
+   نموذج تعديل المنشور
+================================ */
+
+function openEditPost(post){
+
+    adminImages = [
+        ...(post.images || [])
+    ];
+
+    openModal(`
+
+        <h2>
+            تعديل المنشور
+        </h2>
+
+        <div class="field">
+
+            <label>
+                اسم الإعلان
+            </label>
+
+            <input
+                id="editTitle"
+                value="${escapeHTML(post.title)}">
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                التصنيف
+            </label>
+
+            <select id="editCategory">
+
+                <option
+                    value="accounts"
+                    ${post.category === "accounts" ? "selected":""}>
+                    حسابات هاي داي
+                </option>
+
+                <option
+                    value="posts"
+                    ${post.category === "posts" ? "selected":""}>
+                    منشورات هاي داي
+                </option>
+
+                <option
+                    value="products"
+                    ${post.category === "products" ? "selected":""}>
+                    منتجات هاي داي
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="two">
+
+            <div class="field">
+
+                <label>
+                    السعر
+                </label>
+
+                <input
+                    id="editPrice"
+                    type="number"
+                    value="${post.price}">
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    الكمية
+                </label>
+
+                <input
+                    id="editQuantity"
+                    type="number"
+                    value="${post.quantity}">
+
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                الوصف
+            </label>
+
+            <textarea
+                id="editDescription">${escapeHTML(post.description)}</textarea>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                الصور
+            </label>
+
+            <div
+                id="adminImagePicker"
+                class="image-picker">
+            </div>
+
+            <input
+                id="adminFile"
+                type="file"
+                accept="image/*"
+                multiple
+                hidden
+                onchange="handleImages(event,'admin')">
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="saveEditedPost('${post.id}')">
+            حفظ التعديلات
+        </button>
+
+    `);
+
+    renderImagePicker("admin");
+
+}
+
+/* ================================
+   حفظ تعديل المنشور
+================================ */
+
+function saveEditedPost(postId){
+
+    if(!isOwner()){
+        return;
+    }
+
+    const post =
+        database.posts.find(
+            item =>
+                item.id === postId
+        );
+
+    if(!post){
+        return;
+    }
+
+    post.title =
+        document.getElementById(
+            "editTitle"
+        ).value.trim();
+
+    post.category =
+        document.getElementById(
+            "editCategory"
+        ).value;
+
+    post.price =
+        Number(
+            document.getElementById(
+                "editPrice"
+            ).value || 0
+        );
+
+    post.quantity =
+        Number(
+            document.getElementById(
+                "editQuantity"
+            ).value || 0
+        );
+
+    post.description =
+        document.getElementById(
+            "editDescription"
+        ).value.trim();
+
+    post.images = [
+        ...adminImages
+    ];
+
+    saveDatabase();
+
+    closeModal();
+
+    showAdminPanel();
+
+}
+
+/* ================================
+   حذف المنشور
+================================ */
+
+function deletePost(postId){
+
+    if(!isOwner()){
+        return;
+    }
+
+    const confirmed =
+        confirm(
+            "هل تريد حذف هذا المنشور نهائيًا؟"
+        );
+
+    if(!confirmed){
+        return;
+    }
+
+    database.posts =
+        database.posts.filter(
+            post =>
+                post.id !== postId
+        );
+
+    saveDatabase();
+
+    showAdminPanel();
+
+}
+
+/* ================================
+   إعدادات الموقع
+================================ */
+
+function renderSettingsPanel(){
+
+    return `
+
+        <div class="panel">
+
+            <h3>
+                🎨 إعدادات الموقع
+            </h3>
+
+            <div class="field">
+
+                <label>
+                    اسم الموقع
+                </label>
+
+                <input
+                    id="settingSiteName"
+                    value="${escapeHTML(
+                        database.settings.siteName
+                    )}">
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    عنوان الصفحة الرئيسية
+                </label>
+
+                <input
+                    id="settingTitle"
+                    value="${escapeHTML(
+                        database.settings.title
+                    )}">
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    وصف الموقع
+                </label>
+
+                <input
+                    id="settingSubtitle"
+                    value="${escapeHTML(
+                        database.settings.subtitle
+                    )}">
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    لون الخلفية
+                </label>
+
+                <input
+                    id="settingColor"
+                    type="color"
+                    value="${
+                        database.settings.backgroundColor
+                        ||
+                        "#f3f7ef"
+                    }">
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    صورة خلفية من الهاتف
+                </label>
+
+                <input
+                    id="settingBackgroundFile"
+                    type="file"
+                    accept="image/*"
+                    onchange="readSettingImage(event,'background')">
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    لوجو الموقع من الهاتف
+                </label>
+
+                <input
+                    id="settingLogoFile"
+                    type="file"
+                    accept="image/*"
+                    onchange="readSettingImage(event,'logo')">
+
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="saveSettings()">
+                💾 حفظ إعدادات الموقع
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+/* ================================
+   قراءة صور الإعدادات
+================================ */
+
+function readSettingImage(
+    event,
+    type
+){
+
+    const file =
+        event.target.files &&
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        function(e){
+
+            if(type === "background"){
+
+                database.settings.backgroundImage =
+                    e.target.result;
+
+            }
+
+            if(type === "logo"){
+
+                database.settings.logo =
+                    e.target.result;
+
+            }
+
+            saveDatabase();
+
+            applySiteSettings();
+
+            showAdminPanel();
+
+        };
+
+    reader.readAsDataURL(file);
+
+}
+
+/* ================================
+   حفظ إعدادات الموقع
+================================ */
+
+function saveSettings(){
+
+    if(!isOwner()){
+        return;
+    }
+
+    database.settings.siteName =
+        document.getElementById(
+            "settingSiteName"
+        ).value.trim() ||
+        "Hay Day Store";
+
+    database.settings.title =
+        document.getElementById(
+            "settingTitle"
+        ).value.trim() ||
+        database.settings.siteName;
+
+    database.settings.subtitle =
+        document.getElementById(
+            "settingSubtitle"
+        ).value.trim();
+
+    database.settings.backgroundColor =
+        document.getElementById(
+            "settingColor"
+        ).value;
+
+    saveDatabase();
+
+    applySiteSettings();
+
+    showAdminPanel();
+
+}
+
+/* ================================
+   حماية واجهة الأدمن
+================================ */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+            closeModal();
+        }
+
+    }
+);
+
+/* ================================
+   بدء الموقع
+================================ */
+
+applySiteSettings();
+
+showHome();
+
+</script>
+
+</body>
+</html>
