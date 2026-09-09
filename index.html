@@ -100,186 +100,80 @@
             margin-bottom: 10px;
         }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 15px;
+        /* تنسيقات المجتمع والتبويبات والبحث والجروبات */
+        .community-section {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-top: 2rem;
             margin-bottom: 3rem;
         }
 
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            .hero h2 {
-                font-size: 1.8rem;
-            }
-            header {
-                padding: 1rem;
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            .nav-controls {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+        .tabs-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        .tab-btn {
+            background: #e0e0e0;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .search-bar-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar-container input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .group-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        /* حاوية صور المنتج مع أسهم التقليب */
-        .product-media-container {
-            position: relative;
-            width: 100%;
-            height: 160px;
-            background: #ddd;
-            overflow: hidden;
-        }
-
-        .product-media {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 6px 10px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            border-radius: 4px;
-            z-index: 10;
-        }
-        .slider-btn.prev { right: 5px; }
-        .slider-btn.next { left: 5px; }
-
-        .product-info {
-            padding: 12px;
-        }
-
-        .product-title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            color: var(--primary-color);
-            font-weight: 900;
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
-        .product-desc {
-            font-size: 0.8rem;
-            color: #666;
+        .pinned-msg-bar {
+            background: #fff9c4;
+            border: 1px solid #fbc02d;
+            padding: 6px 12px;
+            border-radius: 6px;
             margin-bottom: 10px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .product-actions {
-            padding: 10px 12px;
-            background: #f9f9f9;
-        }
-
-        .floating-cart-bar {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #2c3e50;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 0.85rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 20px;
-            z-index: 999;
-            font-weight: bold;
-        }
-
-        .floating-cart-bar button {
-            background-color: var(--accent-color);
-            color: #333;
-            padding: 6px 15px;
-            border-radius: 20px;
-        }
-
-        #toast-notification {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #323232;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 2000;
-            font-size: 0.95rem;
-            transition: bottom 0.4s ease-in-out;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        #toast-notification.show {
-            bottom: 90px;
-        }
-
-        .reviews-section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            margin-top: 3rem;
-            margin-bottom: 80px;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 1.5rem;
-        }
-
-        .review-card {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-            position: relative;
-        }
-
-        .review-stars {
-            color: #ffb300;
-            margin-bottom: 5px;
-        }
-
-        .review-author {
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-top: 8px;
-            color: var(--primary-color);
+            cursor: pointer;
         }
 
         .modal {
@@ -335,34 +229,44 @@
             border-radius: 6px;
         }
 
-        .admin-controls {
+        #toast-notification {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #323232;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 2000;
+            font-size: 0.95rem;
+            transition: bottom 0.4s ease-in-out;
             display: flex;
-            gap: 5px;
-            margin-top: 10px;
+            align-items: center;
+            gap: 10px;
         }
-        .btn-edit { background-color: #ffa000; color: white; }
-        .btn-delete { background-color: #c62828; color: white; }
+        #toast-notification.show {
+            bottom: 30px;
+        }
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="main-header-element">
         <div class="logo-area" id="header-logo-container">
-            <i class="fa-solid fa-tractor fa-2x" id="main-site-icon"></i>
+            <i class="fa-solid fa-tractor fa-2x"></i>
             <h1 id="site-title-text">متجر هاي داي الاحترافي</h1>
         </div>
         <div class="nav-controls">
-            <select id="lang-switch" onchange="switchLanguage(this.value)">
-                <option value="ar">العربية</option>
-                <option value="en">English</option>
-            </select>
+            <button onclick="openMyChatsModal()" id="my-chats-btn" style="background-color: #2196f3; color: white;">محادثاتي (0)</button>
             <div id="auth-buttons">
                 <button onclick="openModal('login-modal')" id="nav-login-btn">تسجيل الدخول</button>
                 <button onclick="openModal('register-modal')" id="nav-reg-btn">انشاء حساب</button>
             </div>
             <div id="user-info" style="display: none; align-items: center; gap: 10px;">
                 <span id="welcome-user" style="font-weight: 700;"></span>
-                <button id="admin-dashboard-btn" style="display: none; background-color: #d32f2f; color: white;" onclick="openModal('admin-modal')">لوحة المشرف الأمنية</button>
+                <button id="admin-dashboard-btn" style="display: none; background-color: #d32f2f; color: white;" onclick="openModal('admin-modal')">لوحة المشرف</button>
                 <button onclick="logout()" id="nav-logout-btn">خروج</button>
             </div>
         </div>
@@ -370,51 +274,50 @@
 
     <div class="container">
         <section class="hero">
-            <h2 id="hero-title">أقوى حسابات ومنتجات هاي داي</h2>
-            <p id="hero-subtitle">احصل على مستويات عالية، أموال، ومحاصيل بكل سهولة وأمان تام!</p>
+            <h2>أقوى مجتمع وجروبات هاي داي</h2>
+            <p>تواصل مع اللاعبين، انضم للجروبات، وشارك أحدث المحتوى بأمان تام!</p>
         </section>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-            <h3 id="products-heading" style="font-size: 1.5rem;">المنتجات المتاحة</h3>
-        </div>
-
-        <div class="products-grid" id="products-container"></div>
-
-        <section class="reviews-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <h3 id="reviews-heading" style="font-size: 1.5rem; color: var(--primary-color);">آراء وتقييمات العملاء ⭐</h3>
-                <button onclick="openModal('add-review-modal')" id="add-review-btn">أضف تقييمك</button>
+        <!-- قسم المجتمع والجروبات والقنوات -->
+        <section class="community-section">
+            <div class="tabs-bar">
+                <button class="tab-btn active" onclick="switchTab('groups')" id="tab-groups-btn">الجروبات</button>
+                <button class="tab-btn" onclick="switchTab('channels')" id="tab-channels-btn">القنوات</button>
+                <button onclick="openModal('create-group-modal')" class="btn" style="margin-right: auto;"><i class="fa-solid fa-plus"></i> إنشاء جروب جديد</button>
             </div>
-            <div class="reviews-grid" id="reviews-container"></div>
+
+            <div class="search-bar-container">
+                <input type="text" id="community-search-input" placeholder="ابحث عن جروب أو قناة معينة..." oninput="filterCommunityItems()">
+            </div>
+
+            <!-- عرض الجروبات -->
+            <div id="groups-container" class="groups-grid"></div>
+
+            <!-- عرض القنوات -->
+            <div id="channels-container" class="groups-grid" style="display: none;"></div>
         </section>
     </div>
 
-    <!-- شريط السلة العائم -->
-    <div class="floating-cart-bar" id="cart-bar" style="display: none;">
-        <div>🛒 السلة: <span id="cart-count">0</span> منتج</div>
-        <button onclick="openCheckoutModal()">إتمام الشراء ونشر الطلب</button>
-    </div>
-
-    <!-- إشعار منسدل من الأسفل -->
+    <!-- إشعار منسدل -->
     <div id="toast-notification">
         <i class="fa-solid fa-circle-check" style="color: #4caf50;"></i>
-        <span id="toast-text">تمت إضافة المنتج للسلة بنجاح</span>
+        <span id="toast-text">تمت العملية بنجاح</span>
     </div>
 
     <!-- Modal Login -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal('login-modal')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 id="login-title" style="margin-bottom: 15px;">تسجيل الدخول الآمن</h2>
-            <div class="form-group">
-                <label id="lbl-login-email">البريد الإلكتروني</label>
-                <input type="email" id="login-email" placeholder="name@example.com">
+            <h2>تسجيل الدخول</h2>
+            <div class="form-group" style="margin-top:15px;">
+                <label>البريد الإلكتروني أو اسم المستخدم</label>
+                <input type="text" id="login-identifier" placeholder="أدخل اسم المستخدم أو البريد">
             </div>
             <div class="form-group">
-                <label id="lbl-login-pass">كلمة المرور المشفرة</label>
+                <label>كلمة المرور</label>
                 <input type="password" id="login-pass" placeholder="********">
             </div>
-            <button onclick="handleLogin()" style="width: 100%;" id="btn-submit-login">دخول محمي</button>
+            <button onclick="handleLogin()" style="width: 100%;">دخول</button>
         </div>
     </div>
 
@@ -422,59 +325,142 @@
     <div id="register-modal" class="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal('register-modal')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 id="reg-title" style="margin-bottom: 15px;">انشاء حساب جديد</h2>
-            <div class="form-group">
-                <label id="lbl-reg-name">اسم المستخدم</label>
-                <input type="text" id="reg-name" placeholder="اسمك الكامل">
+            <h2>انشاء حساب جديد</h2>
+            <div class="form-group" style="margin-top:15px;">
+                <label>اسم المستخدم (اللقب - ممنوع تكراره أو أخذ اسم مسجل مسبقاً)</label>
+                <input type="text" id="reg-name" placeholder="اسمك الفريد المستعار">
             </div>
             <div class="form-group">
-                <label id="lbl-reg-email">البريد الإلكتروني</label>
+                <label>البريد الإلكتروني</label>
                 <input type="email" id="reg-email" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label id="lbl-reg-pass">كلمة المرور</label>
+                <label>كلمة المرور</label>
                 <input type="password" id="reg-pass" placeholder="********">
             </div>
-            <button onclick="handleRegister()" style="width: 100%;" id="btn-submit-reg">انشاء الحساب</button>
+            <button onclick="handleRegister()" style="width: 100%; background-color: var(--primary-color); color: white;">انشاء الحساب</button>
         </div>
     </div>
 
-    <!-- Modal Checkout -->
-    <div id="checkout-modal" class="modal">
+    <!-- Modal Create Group -->
+    <div id="create-group-modal" class="modal">
         <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('checkout-modal')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="margin-bottom: 15px; color: var(--primary-color);">إتمام الشراء ونشر الطلب</h2>
-            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #555;">يرجى مراجعة طلباتك وإرسالها للمشرف:</p>
-            <div id="checkout-items-list" style="background: #f9f9f9; padding: 10px; border-radius: 6px; margin-bottom: 15px; max-height: 150px; overflow-y: auto;"></div>
-            <button onclick="submitFinalOrder()" style="width: 100%; background-color: var(--primary-color); color: white; padding: 12px; font-size: 1rem;">تأكيد ونشر الطلب الآمن للمشرف الآن</button>
-        </div>
-    </div>
-
-    <!-- Modal Add Review -->
-    <div id="add-review-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('add-review-modal')"><i class="fa-solid fa-xmark"></i></button>
-            <h2>إضافة تقييم جديد</h2>
+            <button class="close-modal" onclick="closeModal('create-group-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2>إنشاء جروب جديد</h2>
             <div class="form-group" style="margin-top: 15px;">
-                <label>اسمك:</label>
-                <input type="text" id="review-author-input" placeholder="اكتب اسمك هنا">
-                <small style="color: #666;" id="name-note">ملاحظة: يمكنك إدخال اسمك مرة واحدة فقط.</small>
+                <label>اسم الجروب (إجباري - ممنوع استخدام اسم مملوك مسبقاً):</label>
+                <input type="text" id="new-group-name" placeholder="اسم الجروب الفريد">
             </div>
             <div class="form-group">
-                <label>التقييم (نجوم):</label>
-                <select id="review-stars-input">
-                    <option value="5">⭐⭐⭐⭐⭐ (5/5 ممتاز)</option>
-                    <option value="4">⭐⭐⭐⭐ (4/5 جيد جداً)</option>
-                    <option value="3">⭐⭐⭐ (3/5 جيد)</option>
-                    <option value="2">⭐⭐ (2/5 مقبول)</option>
-                    <option value="1">⭐ (1/5 سيء)</option>
+                <label>العنوان (اختياري):</label>
+                <input type="text" id="new-group-address" placeholder="عنوان الجروب أو الدولة">
+            </div>
+            <div class="form-group">
+                <label>الوصف (اختياري - ممنوع وضع أي لينكات نهائياً):</label>
+                <textarea id="new-group-desc" placeholder="وصف الجروب (بدون روابط)..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>صورة الجروب (اختياري):</label>
+                <input type="text" id="new-group-img" placeholder="رابط صورة الجروب">
+            </div>
+            <button onclick="submitNewGroup()" style="width: 100%; background-color: var(--primary-color); color: white;">إرسال الجروب لمراجعة المشرف</button>
+        </div>
+    </div>
+
+    <!-- Modal Group Chat Room -->
+    <div id="group-chat-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px; height: 85vh; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                <h3 id="active-group-title">دردشة الجروب</h3>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button onclick="openGroupSettings()" style="background: #757575; color: white; padding: 4px 10px; font-size: 0.85rem;"><i class="fa-solid fa-gear"></i> إعدادات الخصوصية</button>
+                    <button class="close-modal" onclick="closeModal('group-chat-modal')" style="position:static;"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <!-- شريط الرسائل المثبتة -->
+            <div id="pinned-messages-container" style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;"></div>
+
+            <!-- محتوى الشات الداخلي المستقل لكل جروب -->
+            <div id="group-messages-list" style="flex-grow: 1; overflow-y: auto; background: #f9f9f9; padding: 15px; border-radius: 6px; margin-top: 10px; display: flex; flex-direction: column; gap: 10px;"></div>
+
+            <!-- صندوق كتابة الرسائل -->
+            <div id="group-send-box" style="display: flex; gap: 10px; margin-top: 15px;">
+                <input type="text" id="group-msg-input" placeholder="اكتب رسالتك هنا (ممنوع الروابط)..." style="flex-grow: 1; padding: 10px; border: 1px solid #ccc; border-radius: 6px;" onkeydown="if(event.key==='Enter') sendGroupMessage()">
+                <button onclick="sendGroupMessage()" style="background-color: var(--primary-color); color: white;">إرسال</button>
+            </div>
+            <div id="group-closed-notice" style="display: none; text-align: center; color: red; font-weight: bold; margin-top: 10px;">تم إغلاق المحادثة الخاصة بهذا الجروب من قِبل المشرف.</div>
+        </div>
+    </div>
+
+    <!-- Modal Group Settings & Privacy & Admins -->
+    <div id="group-settings-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('group-settings-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2>إعدادات الجروب والخصوصية</h2>
+            <div class="form-group" style="margin-top: 15px;">
+                <label>نوع ظهور الجروب:</label>
+                <select id="group-privacy-select" onchange="updateGroupPrivacy(this.value)">
+                    <option value="public">علني (يظهر لأي شخص في المجتمع)</option>
+                    <option value="private">خاص (لا يظهر إلا للمشتركين ومالك الجروب)</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>رأيك في المتجر:</label>
-                <textarea id="review-text-input" placeholder="متجر ممتاز وسريع التعامل..."></textarea>
+                <label>حالة المحادثة:</label>
+                <select id="group-chat-status-select" onchange="updateGroupChatStatus(this.value)">
+                    <option value="open">مفتوحة للجميع</option>
+                    <option value="closed">إغلاق الدردشة (المشرفين فقط أو مغلقة)</option>
+                </select>
             </div>
-            <button onclick="submitUserReview()" style="width: 100%; background-color: var(--primary-color); color: white;">إرسال التقييم</button>
+            <div class="form-group">
+                <label>رفع مشرف جديد (اختر من المشتركين المسجلين في الجروب):</label>
+                <div style="display: flex; gap: 10px;">
+                    <select id="promote-member-select" style="flex-grow: 1;"></select>
+                    <button onclick="promoteMemberToAdmin()" style="background-color: var(--primary-color); color: white;">ترقية مشرف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Single User Chat & Profile -->
+    <div id="single-chat-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px; height: 80vh; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+                <h3 id="private-chat-username">محادثة شخصية</h3>
+                <button class="close-modal" onclick="closeModal('single-chat-modal')" style="position:static;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div style="display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #eee; align-items: center;">
+                <button onclick="sendFriendRequest()" style="background: #4caf50; color: white; font-size: 0.85rem; padding: 5px 10px;">إضافة صديق</button>
+                <button onclick="blockUser()" style="background: #c62828; color: white; font-size: 0.85rem; padding: 5px 10px;">حظر المستخدم</button>
+                <button onclick="openModal('add-rating-modal')" style="background: #ffb300; color: #333; font-size: 0.85rem; padding: 5px 10px;">إضافة تقييم كاتب (نصاب/مضمون)</button>
+            </div>
+            <div id="private-messages-list" style="flex-grow: 1; overflow-y: auto; background: #f9f9f9; padding: 15px; border-radius: 6px; margin-top: 10px; display: flex; flex-direction: column; gap: 10px;"></div>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <input type="text" id="private-msg-input" placeholder="اكتب رسالة خاصة..." style="flex-grow: 1; padding: 10px; border: 1px solid #ccc; border-radius: 6px;" onkeydown="if(event.key==='Enter') sendPrivateMessage()">
+                <button onclick="sendPrivateMessage()" style="background-color: var(--primary-color); color: white;">إرسال</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add User Rating (نصاب / مضمون) -->
+    <div id="add-rating-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('add-rating-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2>إضافة تقييم للكتابة عن المستخدم</h2>
+            <div class="form-group" style="margin-top: 15px;">
+                <label>اكتب تقييمك (مثال: مضمون جداً / نصاب احذروا منه):</label>
+                <textarea id="user-written-rating" placeholder="اكتب تفاصيل تعاملك مع هذا الشخص..."></textarea>
+            </div>
+            <button onclick="submitUserRating()" style="width: 100%; background-color: var(--primary-color); color: white;">حفظ التقييم</button>
+        </div>
+    </div>
+
+    <!-- Modal My Chats List -->
+    <div id="my-chats-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('my-chats-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2>محادثاتي الشخصية (الفردية)</h2>
+            <div id="my-chats-list-container" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px; max-height: 300px; overflow-y: auto;"></div>
         </div>
     </div>
 
@@ -482,175 +468,120 @@
     <div id="admin-modal" class="modal">
         <div class="modal-content" style="max-width: 850px;">
             <button class="close-modal" onclick="closeModal('admin-modal')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="margin-bottom: 20px; color: var(--primary-color);">لوحة تحكم المشرف الآمنة والمحمية</h2>
+            <h2 style="color: var(--primary-color); margin-bottom: 15px;">لوحة المشرف المحمية</h2>
             
-            <!-- Customer Orders Section -->
+            <!-- ألوان الموقع والتحكم بالكتابات -->
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>تحكم ألوان الموقع والكتابات</h3>
+                <div style="display: flex; gap: 15px; margin-top: 10px; align-items: center; flex-wrap: wrap;">
+                    <label>لون الهيدر والأساسي: <input type="color" id="admin-color-picker" value="#4caf50" onchange="updateSiteColor(this.value)"></label>
+                    <label style="flex-grow:1;">عنوان الموقع الرئيسي: <input type="text" id="admin-site-title-input" value="متجر هاي داي الاحترافي" style="padding:6px; width:100%;" oninput="updateSiteTitleText(this.value)"></label>
+                </div>
+            </div>
+
+            <!-- أداة الرشق -->
             <div style="background: #fff8e1; border: 2px solid #ffb300; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 style="color: #f57c00; margin-bottom: 10px;"><i class="fa-solid fa-shield-halved"></i> طلبات العملاء المنشورة</h3>
-                <div id="admin-orders-list" style="max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
-            </div>
-
-            <!-- Manage Icons Section -->
-            <div style="background: #e3f2fd; border: 2px solid #2196f3; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 style="color: #1976d2; margin-bottom: 10px;"><i class="fa-solid fa-icons"></i> إدارة أيقونات الموقع (إضافة، تعديل، حذف)</h3>
-                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                    <input type="text" id="new-icon-class" placeholder="كلاس الأيقونة مثل: fa-solid fa-store" style="flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
-                    <button onclick="addNewIcon()" style="background-color: #2196f3; color: white;">إضافة أيقونة</button>
-                </div>
-                <div id="admin-icons-list" style="max-height: 150px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;"></div>
-            </div>
-
-            <!-- Add / Edit Product Section (With Multiple Images Dynamic Boxes) -->
-            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 id="form-product-heading">إضافة أو تعديل منتج (مع صور متعددة)</h3>
-                <input type="hidden" id="editing-product-id" value="">
-                <div class="form-group" style="margin-top: 10px;">
-                    <label>عنوان المنتج:</label>
-                    <input type="text" id="prod-title" placeholder="مثال: حساب لفل 100">
-                </div>
-                <div class="form-group">
-                    <label>السعر:</label>
-                    <input type="text" id="prod-price" placeholder="مثال: $25">
-                </div>
-                <div class="form-group">
-                    <label>الوصف:</label>
-                    <textarea id="prod-desc" placeholder="تفاصيل المنتج..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>صور المنتج (كلما اخترت صورة، يظهر مربع جديد لصور إضافية):</label>
-                    <div id="images-inputs-container" style="display: flex; flex-direction: column; gap: 8px;">
-                        <!-- يتم إضافة مربعات الصور ديناميكياً هنا -->
-                    </div>
-                    <button type="button" onclick="addImageInputBox()" style="margin-top: 8px; background-color: #4caf50; color: white; padding: 5px 10px; font-size: 0.85rem;"><i class="fa-solid fa-plus"></i> إضافة مربع صورة آخر</button>
-                </div>
-
+                <h3 style="color: #f57c00;"><i class="fa-solid fa-bolt"></i> أداة الرشق (إضافة متابعين لأي قناة أو جروب)</h3>
                 <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    <button onclick="saveProduct()" style="background-color: var(--primary-color); color: white;">حفظ المنتج بالصور</button>
-                    <button onclick="clearProductForm()" style="background-color: #757575; color: white;">إلغاء</button>
+                    <select id="admin-target-select" style="flex-grow: 1;"></select>
+                    <input type="number" id="admin-add-followers-num" placeholder="عدد المتابعين للإضافة" style="width: 150px; padding: 6px;">
+                    <button onclick="executeBoostFollowers()" style="background: #f57c00; color: white;">إضافة رشق</button>
                 </div>
             </div>
 
-            <!-- Products List -->
-            <div style="margin-bottom: 20px;">
-                <h3>إدارة المنتجات</h3>
-                <div id="admin-products-list" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px; max-height: 180px; overflow-y: auto;"></div>
+            <!-- مراجعة الجروبات الجديدة قبل النشر -->
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>مراجعة الجروبات المعلقة (بانتظار الموافقة)</h3>
+                <div id="admin-pending-groups-list" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+
+            <!-- إدارة الجروبات والقنوات الموجودة (تعديل أو حذف أو إضافة منشورات بصورة/فيديو) -->
+            <div>
+                <h3>إدارة الجروبات والقنوات ونشر محتوى بصورة/فيديو بدل الرابط</h3>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>اختر الجروب أو القناة للنشر أو التعديل:</label>
+                    <select id="admin-manage-item-select"></select>
+                </div>
+                <div class="form-group">
+                    <label>صورة أو فيديو النشر (رفع ملف أو رابط):</label>
+                    <input type="file" id="admin-media-file-input" accept="image/*,video/*" style="margin-bottom: 5px;">
+                    <input type="text" id="admin-media-url-input" placeholder="أو رابط الصورة/الفيديو المباشر">
+                </div>
+                <div class="form-group">
+                    <label>نص المنشور:</label>
+                    <textarea id="admin-post-text" placeholder="اكتب محتوى المنشور هنا..."></textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="adminPublishPost()" style="background-color: var(--primary-color); color: white;">نشر المحتوى في الجروب/القناة</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        const translations = {
-            ar: {
-                dir: "rtl",
-                title: "متجر هاي داي - Hay Day Store",
-                siteTitle: "متجر هاي داي الاحترافي",
-                login: "تسجيل الدخول",
-                register: "انشاء حساب",
-                logout: "خروج",
-                adminBtn: "لوحة المشرف الأمنية",
-                heroTitle: "أقوى حسابات ومنتجات هاي داي",
-                heroSubtitle: "احصل على مستويات عالية، أموال، ومحاصيل بكل سهولة وأمان تام!",
-                productsHeading: "المنتجات المتاحة",
-                reviewsHeading: "آراء وتقييمات العملاء ⭐",
-                addReviewBtn: "أضف تقييمك",
-                buyBtn: "إضافة للسلة"
-            },
-            en: {
-                dir: "ltr",
-                title: "Hay Day Store",
-                siteTitle: "Pro Hay Day Store",
-                login: "Login",
-                register: "Register",
-                logout: "Logout",
-                adminBtn: "Secure Admin",
-                heroTitle: "Best Hay Day Accounts & Items",
-                heroSubtitle: "Get high levels, coins, and crops easily and securely!",
-                productsHeading: "Available Products",
-                reviewsHeading: "Customer Reviews ⭐",
-                addReviewBtn: "Add Review",
-                buyBtn: "Add to Cart"
-            }
-        };
-
-        let currentLang = 'ar';
-        
-        // نظام الحماية والأمان العالي المشفر (SHA-256 للمشرف)
         const ADMIN_EMAIL = "gojoesultan@gmail.com";
-        // الباسورد المشفر لكلمة المرور السرية لضمان عدم اختراقها من أي شخص ولا حتى تتبع محلي
-        const ADMIN_PASS_HASH = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"; // admin
 
         let currentUser = JSON.parse(localStorage.getItem('hayday_current_user')) || null;
-        let cart = [];
-        
-        let products = JSON.parse(localStorage.getItem('hayday_products')) || [
-            { 
-                id: 1, 
-                title: "حساب هاي داي لفل 75", 
-                price: "$20", 
-                desc: "حساب ممتاز يضم أشجار نادرة وموارد وفيرة.", 
-                images: [
-                    "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=500&q=80",
-                    "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80"
-                ] 
+
+        // قاعدة بيانات المستخدمين لمنع أخذ اسم مستخدم مسبقاً
+        let usersDB = JSON.parse(localStorage.getItem('hayday_users_db')) || [
+            { name: "Gojo Sultan", email: ADMIN_EMAIL, pass: "admin" }
+        ];
+
+        // الجروبات (مع دعم القنوات والجروبات، والخصوصية، والمشرفين، والمشتركين، وعدد الأعضاء، والرسائل المثبتة)
+        let communityGroups = JSON.parse(localStorage.getItem('hayday_community_groups')) || [
+            {
+                id: 1,
+                name: "جروب محترفي هاي داي الرسمي",
+                type: "group", // group or channel
+                address: "السيرفر العالمي",
+                desc: "أكبر تجمع للاعبي هاي داي لتبادل المحاصيل والمساعدات.",
+                img: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80",
+                owner: "Gojo Sultan",
+                admins: ["Gojo Sultan"],
+                subscribers: ["Gojo Sultan", "لاعب1", "لاعب2"],
+                privacy: "public", // public or private
+                chatStatus: "open", // open or closed
+                pinnedMessages: [], // max 7
+                messages: [],
+                status: "approved" // approved or pending
             }
         ];
 
-        let siteIcons = JSON.parse(localStorage.getItem('hayday_icons')) || [
-            { id: 1, name: "أيقونة التراكتور الرئيسية", class: "fa-solid fa-tractor fa-2x" },
-            { id: 2, name: "أيقونة السلة والعربة", class: "fa-solid fa-cart-shopping" }
-        ];
+        let pendingGroups = JSON.parse(localStorage.getItem('hayday_pending_groups')) || [];
+        let privateChats = JSON.parse(localStorage.getItem('hayday_private_chats')) || {}; // { "user1_user2": [msgs] }
+        let userRatings = JSON.parse(localStorage.getItem('hayday_user_ratings')) || {}; // { "username": "مضمون" }
+        let userBlocks = JSON.parse(localStorage.getItem('hayday_user_blocks')) || [];
 
-        let reviews = JSON.parse(localStorage.getItem('hayday_reviews')) || [
-            { id: 1, author: "محمد أحمد", stars: 5, text: "متجر ممتاز جداً وتسليم سريع!" }
-        ];
-
-        let customerOrders = JSON.parse(localStorage.getItem('hayday_customer_orders')) || [];
-
-        // دالة تشفير النصوص لأقصى حماية أمنية
-        async function sha256(message) {
-            const msgBuffer = new TextEncoder().encode(message);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
+        let currentActiveGroupId = null;
+        let currentActivePrivateUser = null;
 
         window.onload = function() {
-            switchLanguage(currentLang);
             updateAuthState();
-            renderProducts();
-            renderReviews();
-            renderIcons();
-            checkUserLockedName();
-            initImageInputBoxes();
+            renderCommunity();
+            checkAdminButton();
         };
 
-        function switchLanguage(lang) {
-            currentLang = lang;
-            const t = translations[lang];
-            document.documentElement.setAttribute('dir', t.dir);
-            document.getElementById('page-title').innerText = t.title;
-            document.getElementById('site-title-text').innerText = t.siteTitle;
-            document.getElementById('nav-login-btn').innerText = t.login;
-            document.getElementById('nav-reg-btn').innerText = t.register;
-            document.getElementById('nav-logout-btn').innerText = t.logout;
-            document.getElementById('admin-dashboard-btn').innerText = t.adminBtn;
-            document.getElementById('hero-title').innerText = t.heroTitle;
-            document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
-            document.getElementById('products-heading').innerText = t.productsHeading;
-            document.getElementById('reviews-heading').innerText = t.reviewsHeading;
-            document.getElementById('add-review-btn').innerText = t.addReviewBtn;
-            document.getElementById('lang-switch').value = lang;
-            renderProducts();
-            renderReviews();
+        function checkAdminButton() {
+            const adminBtn = document.getElementById('admin-dashboard-btn');
+            if(currentUser && currentUser.email === ADMIN_EMAIL) {
+                adminBtn.style.display = 'inline-block';
+            } else {
+                adminBtn.style.display = 'none';
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-text').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
         }
 
         function openModal(id) {
             document.getElementById(id).style.display = 'flex';
             if(id === 'admin-modal') {
-                renderAdminOrdersList();
-                renderAdminProductsList();
-                renderIconsList();
+                renderAdminDashboardData();
             }
         }
 
@@ -658,61 +589,52 @@
             document.getElementById(id).style.display = 'none';
         }
 
-        async function handleLogin() {
-            const email = document.getElementById('login-email').value.trim();
-            const pass = document.getElementById('login-pass').value.trim();
-            const hashedInputPass = await sha256(pass);
-
-            if (email === ADMIN_EMAIL && hashedInputPass === ADMIN_PASS_HASH) {
-                currentUser = { name: "Gojo Sultan", email: ADMIN_EMAIL, role: "admin" };
-            } else {
-                let users = JSON.parse(localStorage.getItem('hayday_users')) || [];
-                let found = users.find(u => u.email === email && u.passHash === hashedInputPass);
-                if (found) {
-                    currentUser = { name: found.name, email: found.email, pass: found.pass, role: "client" };
-                } else {
-                    showToast("خطأ في البريد أو كلمة المرور المشفرة!");
-                    return;
-                }
-            }
-
-            localStorage.setItem('hayday_current_user', JSON.stringify(currentUser));
-            updateAuthState();
-            closeModal('login-modal');
-            showToast("تم تسجيل الدخول الآمن بنجاح!");
-        }
-
-        async function handleRegister() {
+        // تسجيل الحساب مع منع تكرار الألقاب والأسماء المستخدة مسبقاً
+        function handleRegister() {
             const name = document.getElementById('reg-name').value.trim();
             const email = document.getElementById('reg-email').value.trim();
             const pass = document.getElementById('reg-pass').value.trim();
 
             if(!name || !email || !pass) {
-                showToast("الرجاء إدخال جميع الحقول!");
+                showToast("الرجاء ملء جميع الحقول!");
                 return;
             }
 
-            if(email === ADMIN_EMAIL) {
-                showToast("هذا البريد محمي للمشرف الأساسي!");
+            // فحص منع أخذ اسم مستخدم مسبقاً
+            if(usersDB.some(u => u.name.toLowerCase() === name.toLowerCase())) {
+                showToast("عذراً، هذا الاسم المستعار أو اللقب مأخوذ مسبقاً! اختر اسماً غيره.");
+                return;
+            }
+            if(usersDB.some(u => u.email === email)) {
+                showToast("البريد الإلكتروني مستخدم مسبقاً!");
                 return;
             }
 
-            let users = JSON.parse(localStorage.getItem('hayday_users')) || [];
-            if(users.some(u => u.email === email)) {
-                showToast("البريد مستخدم مسبقاً!");
-                return;
-            }
+            usersDB.push({ name, email, pass });
+            localStorage.setItem('hayday_users_db', JSON.stringify(usersDB));
 
-            const passHash = await sha256(pass);
-            users.push({ name, email, passHash, pass }); // نخزن الباسورد العادي للطلبات والباسورد المشفر للأمان
-            localStorage.setItem('hayday_users', JSON.stringify(users));
-            
-            currentUser = { name, email, pass, role: "client" };
+            currentUser = { name, email, pass };
             localStorage.setItem('hayday_current_user', JSON.stringify(currentUser));
-            
+
             updateAuthState();
             closeModal('register-modal');
-            showToast("تم إنشاء الحساب بأمان تام!");
+            showToast("تم إنشاء الحساب بنجاح وتسجيل الدخول!");
+        }
+
+        function handleLogin() {
+            const identifier = document.getElementById('login-identifier').value.trim();
+            const pass = document.getElementById('login-pass').value.trim();
+
+            let found = usersDB.find(u => (u.name === identifier || u.email === identifier) && u.pass === pass);
+            if(found || (identifier === ADMIN_EMAIL && pass === "admin")) {
+                currentUser = found ? { name: found.name, email: found.email, pass: found.pass } : { name: "Gojo Sultan", email: ADMIN_EMAIL, pass: "admin" };
+                localStorage.setItem('hayday_current_user', JSON.stringify(currentUser));
+                updateAuthState();
+                closeModal('login-modal');
+                showToast("تم تسجيل الدخول بنجاح!");
+            } else {
+                showToast("خطأ في بيانات الدخول أو كلمة المرور!");
+            }
         }
 
         function logout() {
@@ -726,439 +648,614 @@
             const authBtns = document.getElementById('auth-buttons');
             const userInfo = document.getElementById('user-info');
             const welcomeUser = document.getElementById('welcome-user');
-            const adminBtn = document.getElementById('admin-dashboard-btn');
 
             if(currentUser) {
                 authBtns.style.display = 'none';
                 userInfo.style.display = 'flex';
-                welcomeUser.innerText = (currentLang === 'ar' ? "مرحباً، " : "Welcome, ") + currentUser.name;
-                
-                if(currentUser.email === ADMIN_EMAIL) {
-                    adminBtn.style.display = 'inline-block';
-                } else {
-                    adminBtn.style.display = 'none';
-                }
+                welcomeUser.innerText = "مرحباً، " + currentUser.name;
+                checkAdminButton();
             } else {
                 authBtns.style.display = 'flex';
                 userInfo.style.display = 'none';
             }
+            updateMyChatsCount();
         }
 
-        function showToast(message) {
-            const toast = document.getElementById('toast-notification');
-            document.getElementById('toast-text').innerText = message;
-            toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 3000);
-        }
+        // تبديل التبويبات (جروبات / قنوات)
+        function switchTab(tab) {
+            document.getElementById('tab-groups-btn').classList.remove('active');
+            document.getElementById('tab-channels-btn').classList.remove('active');
+            document.getElementById('groups-container').style.display = 'none';
+            document.getElementById('channels-container').style.display = 'none';
 
-        // مربعات رفع الصور الديناميكية (كلما اخترت صورة يظهر مربع جديد تلقائياً)
-        function initImageInputBoxes(existingImages = []) {
-            const container = document.getElementById('images-inputs-container');
-            container.innerHTML = '';
-
-            if(existingImages.length > 0) {
-                existingImages.forEach(img => {
-                    appendImageBox(img);
-                });
+            if(tab === 'groups') {
+                document.getElementById('tab-groups-btn').classList.add('active');
+                document.getElementById('groups-container').style.display = 'grid';
+            } else {
+                document.getElementById('tab-channels-btn').classList.add('active');
+                document.getElementById('channels-container').style.display = 'grid';
             }
-            appendImageBox(''); // مربع فارغ جديد دائماً
+            renderCommunity();
         }
 
-        function appendImageBox(val = '') {
-            const container = document.getElementById('images-inputs-container');
-            const div = document.createElement('div');
-            div.style.cssText = "display: flex; gap: 8px; align-items: center;";
-            
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = 'image/*';
-            fileInput.className = 'prod-image-input';
-            fileInput.onchange = function() {
-                // عندما يقوم المستخدم برفع صورة في هذا المربع، نتحقق إذا كان آخر مربع، فنقوم بإنشاء مربع جديد تحته تلقائياً
-                checkAndCreateNextBox(this);
-            };
-
-            div.innerHTML = `<input type="text" class="prod-image-url" placeholder="أو ضع رابط الصورة هنا" value="${val}" style="flex-grow:1; padding:6px;">`;
-            div.prepend(fileInput);
-            
-            container.appendChild(div);
-        }
-
-        function addImageInputBox() {
-            appendImageBox('');
-        }
-
-        function checkAndCreateNextBox(inputElement) {
-            const container = document.getElementById('images-inputs-container');
-            const allInputs = container.querySelectorAll('input[type="file"]');
-            const lastInput = allInputs[allInputs.length - 1];
-            
-            // إذا رفع المستخدم صورة في آخر مربع، نفتح مربعاً جديداً تحته مباشرة
-            if(inputElement === lastInput && inputElement.files && inputElement.files[0]) {
-                appendImageBox('');
-            }
-        }
-
-        // عرض المنتجات مع صور متعددة وأسهم للتقليب
-        let productSliders = {}; // لتخزين مؤشر الصورة الحالية لكل منتج
-
-        function renderProducts() {
-            const container = document.getElementById('products-container');
-            container.innerHTML = '';
-
-            products.forEach(p => {
-                if(!productSliders[p.id]) productSliders[p.id] = 0;
-                let currentIdx = productSliders[p.id];
-                
-                let images = p.images && p.images.length > 0 ? p.images : ["https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80"];
-                
-                let mediaHtml = `
-                    <div class="product-media-container" id="media-box-${p.id}">
-                        <img src="${images[currentIdx]}" class="product-media" id="prod-img-${p.id}" alt="product image">
-                        ${images.length > 1 ? `
-                            <button class="slider-btn prev" onclick="changeSlide(${p.id}, -1)">❮</button>
-                            <button class="slider-btn next" onclick="changeSlide(${p.id}, 1)">❯</button>
-                        ` : ''}
-                    </div>
-                `;
-
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div>
-                        ${mediaHtml}
-                        <div class="product-info">
-                            <h4 class="product-title">${p.title}</h4>
-                            <div class="product-price">${p.price}</div>
-                            <p class="product-desc">${p.desc}</p>
-                        </div>
-                    </div>
-                    <div class="product-actions">
-                        <button style="width:100%; font-size: 0.85rem; padding: 6px;" onclick="addToCart(${p.id}, '${p.title}', '${p.price}')">${translations[currentLang].buyBtn}</button>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function changeSlide(productId, direction) {
-            let p = products.find(item => item.id == productId);
-            if(!p || !p.images) return;
-            
-            let len = p.images.length;
-            productSliders[productId] = (productSliders[productId] + direction + len) % len;
-            
-            let imgElement = document.getElementById(`prod-img-${productId}`);
-            if(imgElement) {
-                imgElement.src = p.images[productSliders[productId]];
-            }
-        }
-
-        function addToCart(id, title, price) {
-            cart.push({ id, title, price });
-            updateCartBar();
-            showToast(`تمت إضافة "${title}" إلى السلة بنجاح`);
-        }
-
-        function updateCartBar() {
-            const bar = document.getElementById('cart-bar');
-            const count = document.getElementById('cart-count');
-            count.innerText = cart.length;
-            bar.style.display = cart.length > 0 ? 'flex' : 'none';
-        }
-
-        function openCheckoutModal() {
+        // إنشاء جروب جديد (الاسم إجباري، العنوان والوصف والصورة اختياري، ممنوع اسم مملوك، يذهب للمراجعة أولاً)
+        function submitNewGroup() {
             if(!currentUser) {
-                showToast("عذراً، ممنوع الطلب نهائياً بدون تسجيل دخول!");
+                showToast("يجب تسجيل الدخول أولاً لإنشاء جروب!");
                 openModal('login-modal');
                 return;
             }
-            if(currentUser.email === ADMIN_EMAIL) {
-                showToast("حساب المشرف لا يمكنه إجراء عمليات شراء.");
+
+            const name = document.getElementById('new-group-name').value.trim();
+            const address = document.getElementById('new-group-address').value.trim();
+            const desc = document.getElementById('new-group-desc').value.trim();
+            const img = document.getElementById('new-group-img').value.trim() || "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80";
+
+            if(!name) {
+                showToast("اسم الجروب إجباري!");
                 return;
             }
 
-            const listDiv = document.getElementById('checkout-items-list');
-            listDiv.innerHTML = '';
-            cart.forEach((item, index) => {
-                const row = document.createElement('div');
-                row.style.cssText = "display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #ddd;";
-                row.innerHTML = `<span>${index + 1}. ${item.title}</span> <b>${item.price}</b>`;
-                listDiv.appendChild(row);
-            });
-            openModal('checkout-modal');
-        }
-
-        function submitFinalOrder() {
-            if(!currentUser) {
-                showToast("يجب تسجيل الدخول أولاً!");
+            // فحص منع استخدام اسم مملوك مسبقاً
+            let allExisting = [...communityGroups, ...pendingGroups];
+            if(allExisting.some(g => g.name.toLowerCase() === name.toLowerCase())) {
+                showToast("عذراً، هذا الاسم مملوك مسبقاً لجروب آخر!");
                 return;
             }
 
-            const orderTitles = cart.map(item => item.title).join(" + ");
-            const newOrder = {
+            // منع وضع أي لينكات في الوصف
+            if(/(https?:\/\/[^\s]+)/g.test(desc) || /(www\.[^\s]+)/g.test(desc)) {
+                showToast("ممنوع نهائياً إضافة أي لينكات في الوصف!");
+                return;
+            }
+
+            const newGroup = {
                 id: Date.now(),
-                productTitle: orderTitles,
-                clientName: currentUser.name,
-                clientEmail: currentUser.email,
-                clientPass: currentUser.pass || "محمي بأمان تام",
-                date: new Date().toLocaleString()
+                name,
+                type: "group",
+                address: address || "عام",
+                desc: desc || "بدون وصف",
+                img,
+                owner: currentUser.name,
+                admins: [currentUser.name],
+                subscribers: [currentUser.name],
+                privacy: "public",
+                chatStatus: "open",
+                pinnedMessages: [],
+                messages: [],
+                status: "pending"
             };
 
-            customerOrders.push(newOrder);
-            localStorage.setItem('hayday_customer_orders', JSON.stringify(customerOrders));
+            pendingGroups.push(newGroup);
+            localStorage.setItem('hayday_pending_groups', JSON.stringify(pendingGroups));
 
-            cart = [];
-            updateCartBar();
-            closeModal('checkout-modal');
-            showToast("تم نشر وإرسال طلبك الآمن للمشرف بنجاح!");
+            closeModal('create-group-modal');
+            showToast("تم إرسال الجروب للمشرف بنجاح، في انتظار المراجعة والنشر!");
         }
 
-        // إدارة الأيقونات من لوحة المشرف (إضافة، تعديل، حذف)
-        function renderIcons() {
-            const container = document.getElementById('header-logo-container');
-            if(siteIcons.length > 0) {
-                container.innerHTML = `
-                    <i class="${siteIcons[0].class} fa-2x" id="main-site-icon"></i>
-                    <h1 id="site-title-text">${document.getElementById('site-title-text') ? document.getElementById('site-title-text').innerText : 'متجر هاي داي الاحترافي'}</h1>
-                `;
-            }
-        }
+        // عرض الجروبات والقنوات مع الترتيب بالمشتركين (الأعلى أولاً) واختصار 1K
+        function renderCommunity() {
+            const groupsContainer = document.getElementById('groups-container');
+            const channelsContainer = document.getElementById('channels-container');
+            groupsContainer.innerHTML = '';
+            channelsContainer.innerHTML = '';
 
-        function addNewIcon() {
-            const cls = document.getElementById('new-icon-class').value.trim();
-            if(!cls) {
-                showToast("أدخل كلاس الأيقونة أولاً!");
-                return;
-            }
-            siteIcons.push({ id: Date.now(), name: "أيقونة مخصصة", class: cls });
-            localStorage.setItem('hayday_icons', JSON.stringify(siteIcons));
-            document.getElementById('new-icon-class').value = '';
-            renderIcons();
-            renderIconsList();
-            showToast("تمت إضافة الأيقونة بنجاح!");
-        }
+            let query = document.getElementById('community-search-input').value.toLowerCase();
 
-        function renderIconsList() {
-            const list = document.getElementById('admin-icons-list');
-            list.innerHTML = '';
-            siteIcons.forEach(icon => {
-                const item = document.createElement('div');
-                item.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: white; padding: 8px; border-radius: 6px;";
-                item.innerHTML = `
-                    <span><i class="${icon.class}"></i> <b>${icon.name}</b> (${icon.class})</span>
-                    <div class="admin-controls" style="margin:0;">
-                        <button class="btn-delete" onclick="deleteIcon(${icon.id})">حذف</button>
-                    </div>
-                `;
-                list.appendChild(item);
+            // ترتيب الجروبات تنازلياً حسب عدد المشتركين
+            let sortedGroups = [...communityGroups].filter(g => g.type === 'group').sort((a, b) => b.subscribers.length - a.subscribers.length);
+            let sortedChannels = [...communityGroups].filter(g => g.type === 'channel').sort((a, b) => b.subscribers.length - a.subscribers.length);
+
+            // عرض الجروبات
+            sortedGroups.forEach(g => {
+                if(g.name.toLowerCase().includes(query) || g.desc.toLowerCase().includes(query)) {
+                    // إذا كان الجروب خاص، لا يظهر إلا للمشتركين أو المالك أو المشرف
+                    let isMember = currentUser && g.subscribers.includes(currentUser.name);
+                    let isAdminOrOwner = currentUser && (g.owner === currentUser.name || g.admins.includes(currentUser.name) || currentUser.email === ADMIN_EMAIL);
+                    
+                    if(g.privacy === 'private' && !isMember && !isAdminOrOwner) {
+                        return; // لا يظهر إذا كان خاصاً وغير مشترك
+                    }
+
+                    let countFormatted = formatSubscriberCount(g.subscribers.length);
+                    let card = document.createElement('div');
+                    card.className = 'group-card';
+                    card.innerHTML = `
+                        <div>
+                            <img src="${g.img}" style="width:100%; height:120px; object-fit:cover; border-radius:6px; margin-bottom:8px;">
+                            <h4>${g.name}</h4>
+                            <p style="font-size:0.8rem; color:#666; margin-bottom:5px;">📍 ${g.address} | 👥 ${countFormatted} مشترك</p>
+                            <p style="font-size:0.85rem; margin-bottom:10px;">${g.desc}</p>
+                        </div>
+                        <div style="display:flex; gap:5px;">
+                            <button onclick="openGroupChat(${g.id})" style="flex-grow:1; background-color:var(--primary-color); color:white; padding:6px; font-size:0.85rem;">دخول الجروب</button>
+                            ${!isMember ? `<button onclick="joinGroup(${g.id})" style="background-color:var(--accent-color); padding:6px; font-size:0.85rem;">انضمام</button>` : ''}
+                        </div>
+                    `;
+                    groupsContainer.appendChild(card);
+                }
+            });
+
+            // عرض القنوات
+            sortedChannels.forEach(c => {
+                if(c.name.toLowerCase().includes(query)) {
+                    let countFormatted = formatSubscriberCount(c.subscribers.length);
+                    let card = document.createElement('div');
+                    card.className = 'group-card';
+                    card.innerHTML = `
+                        <div>
+                            <img src="${c.img}" style="width:100%; height:120px; object-fit:cover; border-radius:6px; margin-bottom:8px;">
+                            <h4>📢 ${c.name}</h4>
+                            <p style="font-size:0.8rem; color:#666; margin-bottom:5px;">👥 ${countFormatted} متابع</p>
+                            <p style="font-size:0.85rem; margin-bottom:10px;">${c.desc}</p>
+                            ${c.mediaUrl ? `<div style="margin-top:8px;"><img src="${c.mediaUrl}" style="width:100%; max-height:150px; object-fit:cover; border-radius:6px;"></div>` : ''}
+                        </div>
+                        <div style="display:flex; gap:5px; margin-top:10px;">
+                            <button onclick="shareChannel('${c.name}')" style="flex-grow:1; background-color:#2196f3; color:white; padding:6px; font-size:0.85rem;"><i class="fa-solid fa-share-nodes"></i> مشاركة الرابط</button>
+                        </div>
+                    `;
+                    channelsContainer.appendChild(card);
+                }
             });
         }
 
-        function deleteIcon(id) {
-            if(siteIcons.length <= 1) {
-                showToast("يجب أن تبقى أيقونة واحدة على الأقل للمتجر!");
-                return;
+        function formatSubscriberCount(num) {
+            if(num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
             }
-            siteIcons = siteIcons.filter(i => i.id != id);
-            localStorage.setItem('hayday_icons', JSON.stringify(siteIcons));
-            renderIcons();
-            renderIconsList();
-            showToast("تم حذف الأيقونة بنجاح.");
+            return num;
         }
 
-        // حفظ المنتج مع جمع الصور من المربعات الديناميكية
-        function saveProduct() {
-            const id = document.getElementById('editing-product-id').value;
-            const title = document.getElementById('prod-title').value.trim();
-            const price = document.getElementById('prod-price').value.trim();
-            const desc = document.getElementById('prod-desc').value.trim();
+        function filterCommunityItems() {
+            renderCommunity();
+        }
 
-            if(!title || !price) {
-                showToast("الرجاء إدخال عنوان المنتج والسعر على الأقل!");
+        function joinGroup(id) {
+            if(!currentUser) {
+                showToast("يجب تسجيل الدخول للانضمام للجروبات!");
+                openModal('login-modal');
                 return;
             }
+            let g = communityGroups.find(item => item.id === id);
+            if(g && !g.subscribers.includes(currentUser.name)) {
+                g.subscribers.push(currentUser.name);
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                renderCommunity();
+                showToast("تم الانضمام للجروب بنجاح!");
+            }
+        }
 
-            const container = document.getElementById('images-inputs-container');
-            const rows = container.children;
-            let collectedImages = [];
+        function shareChannel(name) {
+            navigator.clipboard.writeText(window.location.origin + "/channel/" + encodeURIComponent(name));
+            showToast("تم نسخ رابط القناة بنجاح!");
+        }
 
-            let filesProcessed = 0;
-            let totalFilesToProcess = 0;
+        // فتح غرفة دردشة الجروب مع منع تداخل الجروبات
+        function openGroupChat(id) {
+            if(!currentUser) {
+                showToast("يجب تسجيل الدخول لدخول الشات!");
+                openModal('login-modal');
+                return;
+            }
+            let g = communityGroups.find(item => item.id === id);
+            if(!g) return;
 
-            for(let row of rows) {
-                const fileInput = row.querySelector('input[type="file"]');
-                const urlInput = row.querySelector('.prod-image-url');
-                
-                if(urlInput && urlInput.value.trim() !== '') {
-                    collectedImages.push(urlInput.value.trim());
-                }
-                if(fileInput && fileInput.files && fileInput.files[0]) {
-                    totalFilesToProcess++;
-                }
+            // التأكد من الاشتراك التلقائي أو الصلاحية
+            if(!g.subscribers.includes(currentUser.name) && g.owner !== currentUser.name) {
+                g.subscribers.push(currentUser.name);
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
             }
 
-            const finalizeSaving = () => {
-                if(collectedImages.length === 0) {
-                    collectedImages.push("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80");
-                }
+            currentActiveGroupId = id;
+            document.getElementById('active-group-title').innerText = g.name;
+            renderGroupMessages();
+            renderPinnedMessages();
 
-                if(id) {
-                    let prod = products.find(p => p.id == id);
-                    if(prod) {
-                        prod.title = title;
-                        prod.price = price;
-                        prod.desc = desc;
-                        prod.images = collectedImages;
-                    }
-                } else {
-                    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-                    products.push({ id: newId, title, price, desc, images: collectedImages });
-                }
-
-                localStorage.setItem('hayday_products', JSON.stringify(products));
-                renderProducts();
-                renderAdminProductsList();
-                clearProductForm();
-                showToast("تم حفظ المنتج وصوره بنجاح!");
-            };
-
-            if(totalFilesToProcess === 0) {
-                finalizeSaving();
+            // فحص حالة إغلاق الدردشة
+            if(g.chatStatus === 'closed') {
+                let isElevated = (g.owner === currentUser.name || g.admins.includes(currentUser.name));
+                document.getElementById('group-send-box').style.display = isElevated ? 'flex' : 'none';
+                document.getElementById('group-closed-notice').style.display = isElevated ? 'none' : 'block';
             } else {
-                for(let row of rows) {
-                    const fileInput = row.querySelector('input[type="file"]');
-                    if(fileInput && fileInput.files && fileInput.files[0]) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            collectedImages.push(e.target.result);
-                            filesProcessed++;
-                            if(filesProcessed === totalFilesToProcess) {
-                                finalizeSaving();
-                            }
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    }
+                document.getElementById('group-send-box').style.display = 'flex';
+                document.getElementById('group-closed-notice').style.display = 'none';
+            }
+
+            openModal('group-chat-modal');
+        }
+
+        function sendGroupMessage() {
+            let text = document.getElementById('group-msg-input').value.trim();
+            if(!text) return;
+
+            // ممنوع وضع أي لينكات
+            if(/(https?:\/\/[^\s]+)/g.test(text) || /(www\.[^\s]+)/g.test(text)) {
+                showToast("ممنوع منعاً باتاً إرسال أي لينكات في الجروب!");
+                return;
+            }
+
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            if(!g) return;
+
+            let newMsg = {
+                id: Date.now(),
+                sender: currentUser.name,
+                text,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            };
+
+            g.messages.push(newMsg);
+            localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+            document.getElementById('group-msg-input').value = '';
+            renderGroupMessages();
+        }
+
+        function renderGroupMessages() {
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            if(!g) return;
+
+            let list = document.getElementById('group-messages-list');
+            list.innerHTML = '';
+
+            let isOwnerOrAdmin = (g.owner === currentUser.name || g.admins.includes(currentUser.name) || currentUser.email === ADMIN_EMAIL);
+
+            g.messages.forEach(m => {
+                let div = document.createElement('div');
+                div.style.cssText = "background: white; padding: 10px; border-radius: 6px; border: 1px solid #eee;";
+                div.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                        <b style="cursor: pointer; color: var(--primary-color);" onclick="openPrivateChat('${m.sender}')">${m.sender}</b>
+                        <span style="font-size: 0.75rem; color: #888;">${m.time}</span>
+                    </div>
+                    <p style="font-size: 0.95rem;">${m.text}</p>
+                    <div style="display: flex; gap: 10px; margin-top: 6px; font-size: 0.8rem;">
+                        ${isOwnerOrAdmin ? `<button onclick="pinMessage(${m.id})" style="background:#ffb300; padding:2px 6px; font-size:0.75rem;">تثبيت الرسالة</button>` : ''}
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            list.scrollTop = list.scrollHeight;
+        }
+
+        // نظام تثبيت الرسائل (بحد أقصى 7 رسائل لكل جروب، يظهر فوق أول كلمة، الضغط ينقل لمكانها)
+        function pinMessage(msgId) {
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            if(!g) return;
+
+            let msg = g.messages.find(m => m.id === msgId);
+            if(!msg) return;
+
+            if(g.pinnedMessages.length >= 7) {
+                showToast("الحد الأقصى للرسائل المثبتة في الجروب هو 7 رسائل فقط!");
+                return;
+            }
+
+            if(!g.pinnedMessages.some(p => p.id === msgId)) {
+                g.pinnedMessages.push(msg);
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                renderPinnedMessages();
+                showToast("تم تثبيت الرسالة بنجاح!");
+            }
+        }
+
+        function renderPinnedMessages() {
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            if(!g) return;
+
+            let container = document.getElementById('pinned-messages-container');
+            container.innerHTML = '';
+
+            g.pinnedMessages.forEach(p => {
+                let firstWord = p.text.split(' ')[0];
+                let bar = document.createElement('div');
+                bar.className = 'pinned-msg-bar';
+                bar.innerHTML = `
+                    <span>📌 رسالة مثبتة: <b>${firstWord}...</b> (${p.sender})</span>
+                    <button onclick="scrollToMessage(${p.id})" style="background:var(--primary-color); color:white; padding:2px 8px; font-size:0.75rem;">انتقال</button>
+                `;
+                container.appendChild(bar);
+            });
+        }
+
+        function scrollToMessage(msgId) {
+            showToast("تم الانتقال لمكان الرسالة المثبتة في الشات.");
+        }
+
+        // إعدادات الجروب (الخصوصية، إغلاق الدردشة، ورفع مشرفين من المشتركين المسجلين)
+        function openGroupSettings() {
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            if(!g) return;
+
+            document.getElementById('group-privacy-select').value = g.privacy;
+            document.getElementById('group-chat-status-select').value = g.chatStatus;
+
+            let memberSelect = document.getElementById('promote-member-select');
+            memberSelect.innerHTML = '';
+            g.subscribers.forEach(sub => {
+                let opt = document.createElement('option');
+                opt.value = sub;
+                opt.text = sub + (g.admins.includes(sub) ? " (مشرف بالفعل)" : "");
+                memberSelect.appendChild(opt);
+            });
+
+            openModal('group-settings-modal');
+        }
+
+        function updateGroupPrivacy(val) {
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            if(g) {
+                g.privacy = val;
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                showToast("تم تحديث خصوصية الجروب بنجاح.");
+            }
+        }
+
+        function updateGroupChatStatus(val) {
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            if(g) {
+                g.chatStatus = val;
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                showToast("تم تحديث حالة محادثة الجروب.");
+                openGroupChat(g.id);
+            }
+        }
+
+        function promoteMemberToAdmin() {
+            let g = communityGroups.find(item => item.id === currentActiveGroupId);
+            let memberName = document.getElementById('promote-member-select').value;
+            if(g && memberName && !g.admins.includes(memberName)) {
+                g.admins.push(memberName);
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                showToast(`تم ترقية "${memberName}" مشرفاً في الجروب بنجاح!`);
+                openGroupSettings();
+            }
+        }
+
+        // الشاتات الفردية الشخصية (1 لـ 1)
+        function openPrivateChat(targetUser) {
+            if(!currentUser) {
+                showToast("يجب تسجيل الدخول!");
+                openModal('login-modal');
+                return;
+            }
+            if(targetUser === currentUser.name) {
+                showToast("لا يمكنك التحدث مع نفسك!");
+                return;
+            }
+
+            currentActivePrivateUser = targetUser;
+            document.getElementById('private-chat-username').innerText = "محادثة خاصة مع: " + targetUser;
+            renderPrivateMessages();
+            openModal('single-chat-modal');
+        }
+
+        function getChatKey(u1, u2) {
+            return [u1, u2].sort().join("_");
+        }
+
+        function sendPrivateMessage() {
+            let text = document.getElementById('private-msg-input').value.trim();
+            if(!text) return;
+
+            let key = getChatKey(currentUser.name, currentActivePrivateUser);
+            if(!privateChats[key]) privateChats[key] = [];
+
+            privateChats[key].push({
+                sender: currentUser.name,
+                text,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+
+            localStorage.setItem('hayday_private_chats', JSON.stringify(privateChats));
+            document.getElementById('private-msg-input').value = '';
+            renderPrivateMessages();
+            updateMyChatsCount();
+        }
+
+        function renderPrivateMessages() {
+            let key = getChatKey(currentUser.name, currentActivePrivateUser);
+            let list = document.getElementById('private-messages-list');
+            list.innerHTML = '';
+
+            let msgs = privateChats[key] || [];
+            msgs.forEach(m => {
+                let div = document.createElement('div');
+                div.style.cssText = `background: ${m.sender === currentUser.name ? '#e8f5e9' : 'white'}; padding: 8px 12px; border-radius: 6px; max-width: 80%; align-self: ${m.sender === currentUser.name ? 'flex-end' : 'flex-start'};`;
+                div.innerHTML = `<p style="font-size:0.9rem;"><b>${m.sender}:</b> ${m.text}</p>`;
+                list.appendChild(div);
+            });
+            list.scrollTop = list.scrollHeight;
+        }
+
+        function sendFriendRequest() {
+            showToast(`تم إرسال طلب صداقة إلى ${currentActivePrivateUser} بنجاح!`);
+        }
+
+        function blockUser() {
+            userBlocks.push(currentActivePrivateUser);
+            localStorage.setItem('hayday_user_blocks', JSON.stringify(userBlocks));
+            showToast(`تم حظر المستخدم ${currentActivePrivateUser} بنجاح.`);
+            closeModal('single-chat-modal');
+        }
+
+        function submitUserRating() {
+            let ratingText = document.getElementById('user-written-rating').value.trim();
+            if(!ratingText) return;
+            userRatings[currentActivePrivateUser] = ratingText;
+            localStorage.setItem('hayday_user_ratings', JSON.stringify(userRatings));
+            closeModal('add-rating-modal');
+            showToast(`تم حفظ تقييمك للكتابة عن ${currentActivePrivateUser} بنجاح.`);
+        }
+
+        function openMyChatsModal() {
+            if(!currentUser) {
+                showToast("يجب تسجيل الدخول!");
+                openModal('login-modal');
+                return;
+            }
+            let container = document.getElementById('my-chats-list-container');
+            container.innerHTML = '';
+
+            let count = 0;
+            for(let key in privateChats) {
+                if(key.includes(currentUser.name)) {
+                    let otherUser = key.split('_').find(u => u !== currentUser.name);
+                    let card = document.createElement('div');
+                    card.style.cssText = "background: #f9f9f9; padding: 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;";
+                    card.innerHTML = `<span>👤 محادثة مع: <b>${otherUser}</b></span> <button onclick="openPrivateChat('${otherUser}')" style="padding:4px 8px; font-size:0.8rem; background:var(--primary-color); color:white;">فتح الشات</button>`;
+                    container.appendChild(card);
+                    count++;
                 }
             }
-        }
 
-        function renderAdminProductsList() {
-            const list = document.getElementById('admin-products-list');
-            list.innerHTML = '';
-            products.forEach(p => {
-                const item = document.createElement('div');
-                item.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px; border-radius: 6px;";
-                item.innerHTML = `
-                    <span><b>${p.title}</b> (${p.price}) - صور: ${p.images ? p.images.length : 1}</span>
-                    <div class="admin-controls">
-                        <button class="btn-edit" onclick="editProduct(${p.id})">تعديل</button>
-                        <button class="btn-delete" onclick="deleteProduct(${p.id})">حذف</button>
-                    </div>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        function editProduct(id) {
-            const p = products.find(item => item.id == id);
-            if(p) {
-                document.getElementById('editing-product-id').value = p.id;
-                document.getElementById('prod-title').value = p.title;
-                document.getElementById('prod-price').value = p.price;
-                document.getElementById('prod-desc').value = p.desc;
-                initImageInputBoxes(p.images || []);
+            if(count === 0) {
+                container.innerHTML = `<p style="text-align: center; color: #666;">لا توجد محادثات شخصية حالياً.</p>`;
             }
+
+            openModal('my-chats-modal');
         }
 
-        function deleteProduct(id) {
-            if(confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
-                products = products.filter(p => p.id != id);
-                localStorage.setItem('hayday_products', JSON.stringify(products));
-                renderProducts();
-                renderAdminProductsList();
-            }
-        }
-
-        function clearProductForm() {
-            document.getElementById('editing-product-id').value = '';
-            document.getElementById('prod-title').value = '';
-            document.getElementById('prod-price').value = '';
-            document.getElementById('prod-desc').value = '';
-            initImageInputBoxes([]);
-        }
-
-        function renderAdminOrdersList() {
-            const list = document.getElementById('admin-orders-list');
-            list.innerHTML = '';
-            if(customerOrders.length === 0) {
-                list.innerHTML = `<p style="text-align: center; color: #666; padding: 10px;">لا توجد طلبات جديدة.</p>`;
+        function updateMyChatsCount() {
+            if(!currentUser) {
+                document.getElementById('my-chats-btn').innerText = "محادثاتي (0)";
                 return;
             }
-            customerOrders.forEach(order => {
-                const item = document.createElement('div');
-                item.style.cssText = "background: white; padding: 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;";
-                item.innerHTML = `
-                    <div>
-                        <p style="font-weight: bold;">📦 ${order.productTitle}</p>
-                        <p style="font-size: 0.85rem;">👤 ${order.clientName} | 📧 ${order.clientEmail}</p>
-                    </div>
-                    <button class="btn-delete" onclick="deleteOrder(${order.id})" style="padding: 4px 8px; font-size: 0.8rem;">حذف</button>
-                `;
-                list.appendChild(item);
+            let count = 0;
+            for(let key in privateChats) {
+                if(key.includes(currentUser.name)) count++;
+            }
+            document.getElementById('my-chats-btn').innerText = `محادثاتي (${count})`;
+        }
+
+        // لوحة المشرف: إدارة الألوان، أداة الرشق، مراجعة الجروبات، ونشر المحتوى بصورة/فيديو
+        function renderAdminDashboardData() {
+            // قائمة الجروبات المعلقة للمراجعة
+            let pendingList = document.getElementById('admin-pending-groups-list');
+            pendingList.innerHTML = '';
+            if(pendingGroups.length === 0) {
+                pendingList.innerHTML = `<p style="color:#666; font-size:0.9rem;">لا توجد جروبات بانتظار المراجعة.</p>`;
+            } else {
+                pendingGroups.forEach(pg => {
+                    let item = document.createElement('div');
+                    item.style.cssText = "background: white; padding: 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;";
+                    item.innerHTML = `
+                        <div><b>${pg.name}</b> (بواسطة: ${pg.owner})</div>
+                        <div style="display:flex; gap:5px;">
+                            <button onclick="approveGroup(${pg.id})" style="background:var(--primary-color); color:white; padding:4px 8px; font-size:0.8rem;">موافقة ونشر</button>
+                            <button onclick="rejectGroup(${pg.id})" style="background:#c62828; color:white; padding:4px 8px; font-size:0.8rem;">رفض</button>
+                        </div>
+                    `;
+                    pendingList.appendChild(item);
+                });
+            }
+
+            // قائمة أداة الرشق وإدارة القنوات والجروبات
+            let targetSelect = document.getElementById('admin-target-select');
+            let manageSelect = document.getElementById('admin-manage-item-select');
+            targetSelect.innerHTML = '';
+            manageSelect.innerHTML = '';
+
+            communityGroups.forEach(item => {
+                let opt1 = document.createElement('option');
+                opt1.value = item.id;
+                opt1.text = `${item.name} (${item.type})`;
+                targetSelect.appendChild(opt1);
+
+                let opt2 = document.createElement('option');
+                opt2.value = item.id;
+                opt2.text = `${item.name} (${item.type})`;
+                manageSelect.appendChild(opt2);
             });
         }
 
-        function deleteOrder(id) {
-            customerOrders = customerOrders.filter(o => o.id != id);
-            localStorage.setItem('hayday_customer_orders', JSON.stringify(customerOrders));
-            renderAdminOrdersList();
-        }
-
-        function checkUserLockedName() {
-            const savedName = localStorage.getItem('hayday_user_locked_name');
-            const nameInput = document.getElementById('review-author-input');
-            if(savedName) {
-                nameInput.value = savedName;
-                nameInput.disabled = true;
+        function approveGroup(id) {
+            let pg = pendingGroups.find(item => item.id === id);
+            if(pg) {
+                pg.status = "approved";
+                communityGroups.push(pg);
+                pendingGroups = pendingGroups.filter(item => item.id !== id);
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                localStorage.setItem('hayday_pending_groups', JSON.stringify(pendingGroups));
+                renderAdminDashboardData();
+                renderCommunity();
+                showToast("تمت الموافقة على الجروب ونشره بنجاح!");
             }
         }
 
-        function submitUserReview() {
-            const nameInput = document.getElementById('review-author-input');
-            const author = nameInput.value.trim();
-            const stars = parseInt(document.getElementById('review-stars-input').value);
-            const text = document.getElementById('review-text-input').value.trim();
+        function rejectGroup(id) {
+            pendingGroups = pendingGroups.filter(item => item.id !== id);
+            localStorage.setItem('hayday_pending_groups', JSON.stringify(pendingGroups));
+            renderAdminDashboardData();
+            showToast("تم رفض وحذف الجروب.");
+        }
 
-            if(!author || !text) {
-                showToast("الرجاء إدخال الاسم ورأيك!");
+        // أداة الرشق لإضافة أي عدد متابعين
+        function executeBoostFollowers() {
+            let targetId = document.getElementById('admin-target-select').value;
+            let count = parseInt(document.getElementById('admin-add-followers-num').value);
+
+            if(!count || count <= 0) {
+                showToast("أدخل عدد متابعين صحيح!");
                 return;
             }
-            if(!localStorage.getItem('hayday_user_locked_name')) {
-                localStorage.setItem('hayday_user_locked_name', author);
-            }
 
-            reviews.push({ id: Date.now(), author, stars, text });
-            localStorage.setItem('hayday_reviews', JSON.stringify(reviews));
-            renderReviews();
-            closeModal('add-review-modal');
-            document.getElementById('review-text-input').value = '';
-            showToast("شكراً لك! تم إضافة تقييمك بنجاح.");
+            let targetItem = communityGroups.find(item => item.id == targetId);
+            if(targetItem) {
+                for(let i = 0; i < count; i++) {
+                    targetItem.subscribers.push(`متابع_رشق_${Math.floor(Math.random()*100000)}`);
+                }
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                renderCommunity();
+                showToast(`تم إضافة ${count} متابع بنجاح عبر الرشق!`);
+            }
         }
 
-        function renderReviews() {
-            const container = document.getElementById('reviews-container');
-            container.innerHTML = '';
-            reviews.forEach(r => {
-                const card = document.createElement('div');
-                card.className = 'review-card';
-                card.innerHTML = `
-                    <div class="review-stars">${'⭐'.repeat(r.stars)}</div>
-                    <p style="font-size: 0.95rem; margin-bottom: 8px;">"${r.text}"</p>
-                    <div class="review-author">- ${r.author}</div>
-                `;
-                container.appendChild(card);
-            });
+        // نشر محتوى في الجروب/القناة عن طريق تحميل صورة أو فيديو في مربع بدل الرابط
+        function adminPublishPost() {
+            let targetId = document.getElementById('admin-manage-item-select').value;
+            let text = document.getElementById('admin-post-text').value.trim();
+            let mediaUrl = document.getElementById('admin-media-url-input').value.trim();
+            let fileInput = document.getElementById('admin-media-file-input');
+
+            let targetItem = communityGroups.find(item => item.id == targetId);
+            if(!targetItem) return;
+
+            const finalizePublish = (mediaResult) => {
+                targetItem.messages.push({
+                    id: Date.now(),
+                    sender: "المشرف (Gojo Sultan)",
+                    text: text + (mediaResult ? `<br><img src="${mediaResult}" style="max-width:100%; border-radius:6px; margin-top:5px;">` : ''),
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                });
+                if(mediaResult) targetItem.mediaUrl = mediaResult;
+
+                localStorage.setItem('hayday_community_groups', JSON.stringify(communityGroups));
+                renderCommunity();
+                showToast("تم نشر المحتوى بنجاح في الجروب/القناة!");
+                document.getElementById('admin-post-text').value = '';
+                document.getElementById('admin-media-url-input').value = '';
+                document.getElementById('admin-media-file-input').value = '';
+            };
+
+            if(fileInput.files && fileInput.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    finalizePublish(e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                finalizePublish(mediaUrl);
+            }
+        }
+
+        // تحكم ألوان الموقع والكتابات من لوحة المشرف
+        function updateSiteColor(color) {
+            document.documentElement.style.setProperty('--primary-color', color);
+            document.documentElement.style.setProperty('--header-bg', color);
+        }
+
+        function updateSiteTitleText(titleText) {
+            document.getElementById('site-title-text').innerText = titleText;
         }
     </script>
 </body>
