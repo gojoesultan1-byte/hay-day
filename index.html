@@ -100,10 +100,33 @@
             margin-bottom: 10px;
         }
 
+        /* تعديل عرض المنتجات حسب الطلب */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr); /* افتراضياً 4 في الصف للشاشات الكبيرة والأيباد والمحاكي */
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+
+        /* للشاشات الصغيرة (الهاتف): منتجين بجانب بعضهما */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .nav-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
 
         .product-card {
@@ -118,42 +141,84 @@
 
         .product-media {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
             background: #ddd;
         }
 
         .product-info {
-            padding: 15px;
+            padding: 12px;
         }
 
         .product-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .product-price {
             color: var(--primary-color);
             font-weight: 900;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+            font-size: 1rem;
+            margin-bottom: 8px;
         }
 
         .product-desc {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #666;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .product-actions {
-            padding: 15px;
+            padding: 10px 12px;
             background: #f9f9f9;
-            display: flex;
-            gap: 10px;
         }
 
-        /* Modal / Auth / Admin */
+        /* Reviews Section Styles */
+        .reviews-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-top: 3rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .review-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+        }
+        [dir="ltr"] .review-card {
+            border-left: none;
+            border-right: 4px solid var(--primary-color);
+        }
+
+        .review-stars {
+            color: #ffb300;
+            margin-bottom: 5px;
+        }
+
+        .review-author {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-top: 8px;
+            color: var(--primary-color);
+        }
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -169,7 +234,7 @@
             padding: 30px;
             border-radius: 12px;
             width: 100%;
-            max-width: 500px;
+            max-width: 650px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
@@ -200,19 +265,11 @@
             font-weight: 600;
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 6px;
-        }
-
-        .admin-badge {
-            background: #d32f2f;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
         }
 
         .admin-controls {
@@ -241,8 +298,8 @@
                 <button onclick="openModal('register-modal')" id="nav-reg-btn">انشاء حساب</button>
             </div>
             <div id="user-info" style="display: none; align-items: center; gap: 10px;">
-                <span id="welcome-user"></span>
-                <button id="admin-dashboard-btn" style="display: none;" onclick="openModal('admin-modal')">لوحة المشرف</button>
+                <span id="welcome-user" style="font-weight: 700;"></span>
+                <button id="admin-dashboard-btn" style="display: none; background-color: #d32f2f; color: white;" onclick="openModal('admin-modal')">لوحة المشرف</button>
                 <button onclick="logout()" id="nav-logout-btn">خروج</button>
             </div>
         </div>
@@ -261,6 +318,17 @@
         <div class="products-grid" id="products-container">
             <!-- المنتجات تُعرض هنا ديناميكياً -->
         </div>
+
+        <!-- قسم آراء وتقييمات العملاء -->
+        <section class="reviews-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <h3 id="reviews-heading" style="font-size: 1.5rem; color: var(--primary-color);">آراء وتقييمات العملاء ⭐</h3>
+                <button onclick="openModal('add-review-modal')" id="add-review-btn">أضف تقييمك</button>
+            </div>
+            <div class="reviews-grid" id="reviews-container">
+                <!-- التقييمات تُعرض هنا -->
+            </div>
+        </section>
     </div>
 
     <!-- Modal Login -->
@@ -301,12 +369,48 @@
         </div>
     </div>
 
+    <!-- Modal Add Review -->
+    <div id="add-review-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('add-review-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2>إضافة تقييم جديد</h2>
+            <div class="form-group" style="margin-top: 15px;">
+                <label>اسمك:</label>
+                <input type="text" id="review-author-input" placeholder="اكتب اسمك هنا">
+                <small style="color: #666;" id="name-note">ملاحظة: يمكنك إدخال اسمك مرة واحدة فقط ليتم اعتماده في تقييماتك.</small>
+            </div>
+            <div class="form-group">
+                <label>التقييم (نجوم):</label>
+                <select id="review-stars-input">
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5 ممتاز)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5 جيد جداً)</option>
+                    <option value="3">⭐⭐⭐ (3/5 جيد)</option>
+                    <option value="2">⭐⭐ (2/5 مقبول)</option>
+                    <option value="1">⭐ (1/5 سيء)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>رأيك في المتجر أو الخدمات:</label>
+                <textarea id="review-text-input" placeholder="متجر ممتاز وسريع التعامل..."></textarea>
+            </div>
+            <button onclick="submitUserReview()" style="width: 100%; background-color: var(--primary-color); color: white;">إرسال التقييم</button>
+        </div>
+    </div>
+
     <!-- Admin Dashboard Modal -->
     <div id="admin-modal" class="modal">
-        <div class="modal-content" style="max-width: 700px;">
+        <div class="modal-content" style="max-width: 800px;">
             <button class="close-modal" onclick="closeModal('admin-modal')"><i class="fa-solid fa-xmark"></i></button>
             <h2 style="margin-bottom: 20px; color: var(--primary-color);">لوحة تحكم المشرف الأساسية</h2>
             
+            <!-- Customer Orders Section -->
+            <div style="background: #fff8e1; border: 2px solid #ffb300; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="color: #f57c00; margin-bottom: 10px;"><i class="fa-solid fa-bell"></i> طلبات العملاء الواردة (مع بيانات الدخول)</h3>
+                <div id="admin-orders-list" style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+                    <!-- الطلبات تظهر هنا -->
+                </div>
+            </div>
+
             <!-- Colors & Texts customization -->
             <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <h3>تخصيص الألوان والكتابات</h3>
@@ -332,8 +436,8 @@
             </div>
 
             <!-- Add / Edit Product Section -->
-            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
-                <h3 id="form-product-heading">إضافة / تعديل منتج أو منشور جديد</h3>
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 id="form-product-heading">إضافة أو تعديل منتج/منشور</h3>
                 <input type="hidden" id="editing-product-id" value="">
                 <div class="form-group" style="margin-top: 10px;">
                     <label>عنوان المنتج / المنشور:</label>
@@ -348,22 +452,30 @@
                     <textarea id="prod-desc" placeholder="تفاصيل الحساب أو المنتج..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>تحميل صورة أو فيديو (من جهازك):</label>
+                    <label>تحميل صورة أو فيديو (من جهازك مباشرة):</label>
                     <input type="file" id="prod-file" accept="image/*,video/*">
                 </div>
-                <button onclick="saveProduct()" id="save-prod-btn" style="background-color: var(--primary-color); color: white;">حفظ المنتج</button>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="saveProduct()" style="background-color: var(--primary-color); color: white;">حفظ المنتج</button>
+                    <button onclick="clearProductForm()" style="background-color: #757575; color: white;">إلغاء وتفريغ</button>
+                </div>
             </div>
 
             <!-- Products List to Manage -->
-            <div style="margin-top: 20px;">
-                <h3>المنشورات والمنتجات الحالية</h3>
-                <div id="admin-products-list" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px;"></div>
+            <div style="margin-bottom: 20px;">
+                <h3>إدارة المنتجات (تعديل / حذف)</h3>
+                <div id="admin-products-list" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+
+            <!-- Admin Manage Reviews Section -->
+            <div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
+                <h3>إدارة آراء العملاء (تعديل الأسماء أو الحذف)</h3>
+                <div id="admin-reviews-list" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px; max-height: 200px; overflow-y: auto;"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // اللغات الترجمة الكاملة
         const translations = {
             ar: {
                 dir: "rtl",
@@ -376,6 +488,8 @@
                 heroTitle: "أقوى حسابات ومنتجات هاي داي",
                 heroSubtitle: "احصل على مستويات عالية، أموال، ومحاصيل بكل سهولة وأمان تام!",
                 productsHeading: "المنتجات المتاحة",
+                reviewsHeading: "آراء وتقييمات العملاء ⭐",
+                addReviewBtn: "أضف تقييمك",
                 buyBtn: "شراء الآن",
                 loginTitle: "تسجيل الدخول",
                 lblEmail: "البريد الإلكتروني",
@@ -383,8 +497,7 @@
                 btnLoginSubmit: "دخول",
                 regTitle: "انشاء حساب جديد",
                 lblName: "اسم المستخدم",
-                btnRegSubmit: "انشاء الحساب",
-                welcome: "مرحباً، "
+                btnRegSubmit: "انشاء الحساب"
             },
             en: {
                 dir: "ltr",
@@ -397,6 +510,8 @@
                 heroTitle: "Best Hay Day Accounts & Items",
                 heroSubtitle: "Get high levels, coins, and crops easily and securely!",
                 productsHeading: "Available Products",
+                reviewsHeading: "Customer Reviews ⭐",
+                addReviewBtn: "Add Review",
                 buyBtn: "Buy Now",
                 loginTitle: "Login",
                 lblEmail: "Email Address",
@@ -404,20 +519,27 @@
                 btnLoginSubmit: "Login",
                 regTitle: "Create New Account",
                 lblName: "Username",
-                btnRegSubmit: "Create Account",
-                welcome: "Welcome, "
+                btnRegSubmit: "Create Account"
             }
         };
 
         let currentLang = 'ar';
+        const ADMIN_EMAIL = "gojoesultan@gmail.com";
+        const ADMIN_PASS = "ahmedgojo123456789";
 
-        // البيانات التخزينية الافتراضية
         let currentUser = JSON.parse(localStorage.getItem('hayday_current_user')) || null;
         
         let products = JSON.parse(localStorage.getItem('hayday_products')) || [
             { id: 1, title: "حساب هاي داي لفل 75", price: "$20", desc: "حساب ممتاز يضم أشجار نادرة وموارد وفيرة ومباني متكاملة.", media: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=500&q=80", type: "image" },
             { id: 2, title: "حزمة أدوات التوسعة (100 قطعة)", price: "$10", desc: "مسامير، ألواح خشبية، ومقادير لتوسعة الحظيرة والصومعة بسرعة.", media: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80", type: "image" }
         ];
+
+        let reviews = JSON.parse(localStorage.getItem('hayday_reviews')) || [
+            { id: 1, author: "محمد أحمد", stars: 5, text: "متجر ممتاز جداً وتم تسليم الحساب في أقل من 5 دقائق، أنصح الجميع به!" },
+            { id: 2, author: "سارة خالد", stars: 5, text: "خدمة عملاء راقية وأدوات التوسعة وصلتني كاملة شكراً لكم." }
+        ];
+
+        let customerOrders = JSON.parse(localStorage.getItem('hayday_customer_orders')) || [];
 
         let siteConfig = JSON.parse(localStorage.getItem('hayday_config')) || {
             primaryColor: "#2e7d32",
@@ -426,15 +548,13 @@
             heroTitle: "أقوى حسابات ومنتجات هاي داي"
         };
 
-        // حساب المشرف المطلوب تحديداً
-        const ADMIN_EMAIL = "gojoesultan@gmail.com";
-        const ADMIN_PASS = "ahmedgojo123456789";
-
         window.onload = function() {
             applyConfig();
             switchLanguage(currentLang);
             updateAuthState();
             renderProducts();
+            renderReviews();
+            checkUserLockedName();
         };
 
         function switchLanguage(lang) {
@@ -451,6 +571,8 @@
             document.getElementById('hero-title').innerText = siteConfig.heroTitle;
             document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
             document.getElementById('products-heading').innerText = t.productsHeading;
+            document.getElementById('reviews-heading').innerText = t.reviewsHeading;
+            document.getElementById('add-review-btn').innerText = t.addReviewBtn;
             document.getElementById('login-title').innerText = t.loginTitle;
             document.getElementById('lbl-login-email').innerText = t.lblEmail;
             document.getElementById('lbl-login-pass').innerText = t.lblPass;
@@ -463,30 +585,33 @@
             
             document.getElementById('lang-switch').value = lang;
             renderProducts();
+            renderReviews();
         }
 
         function openModal(id) {
             document.getElementById(id).style.display = 'flex';
-            if(id === 'admin-modal') renderAdminProductsList();
+            if(id === 'admin-modal') {
+                renderAdminOrdersList();
+                renderAdminProductsList();
+                renderAdminReviewsList();
+            }
         }
 
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
         }
 
-        // التعامل مع تسجيل الدخول
         function handleLogin() {
             const email = document.getElementById('login-email').value.trim();
             const pass = document.getElementById('login-pass').value.trim();
 
             if (email === ADMIN_EMAIL && pass === ADMIN_PASS) {
-                currentUser = { name: "Gojo Sultan", email: ADMIN_EMAIL, isAdmin: true };
+                currentUser = { name: "Gojo Sultan", email: ADMIN_EMAIL, pass: ADMIN_PASS };
             } else {
-                // التحقق من مستخدمين عاديين مسجلين محلياً
                 let users = JSON.parse(localStorage.getItem('hayday_users')) || [];
                 let found = users.find(u => u.email === email && u.pass === pass);
                 if (found) {
-                    currentUser = { name: found.name, email: found.email, isAdmin: false };
+                    currentUser = { name: found.name, email: found.email, pass: found.pass };
                 } else {
                     alert("البريد الإلكتروني أو كلمة المرور غير صحيحة!");
                     return;
@@ -499,7 +624,6 @@
             alert("تم تسجيل الدخول بنجاح!");
         }
 
-        // تسجيل حساب جديد
         function handleRegister() {
             const name = document.getElementById('reg-name').value.trim();
             const email = document.getElementById('reg-email').value.trim();
@@ -510,8 +634,13 @@
                 return;
             }
 
+            if(email === ADMIN_EMAIL) {
+                alert("هذا البريد مخصص للمشرف الأساسي!");
+                return;
+            }
+
             let users = JSON.parse(localStorage.getItem('hayday_users')) || [];
-            if(users.some(u => u.email === email) || email === ADMIN_EMAIL) {
+            if(users.some(u => u.email === email)) {
                 alert("البريد الإلكتروني مستخدم مسبقاً!");
                 return;
             }
@@ -519,7 +648,7 @@
             users.push({ name, email, pass });
             localStorage.setItem('hayday_users', JSON.stringify(users));
             
-            currentUser = { name, email, isAdmin: false };
+            currentUser = { name, email, pass };
             localStorage.setItem('hayday_current_user', JSON.stringify(currentUser));
             
             updateAuthState();
@@ -556,7 +685,59 @@
             }
         }
 
-        // عرض المنتجات والمنشورات
+        function checkUserLockedName() {
+            const savedName = localStorage.getItem('hayday_user_locked_name');
+            const nameInput = document.getElementById('review-author-input');
+            if(savedName) {
+                nameInput.value = savedName;
+                nameInput.disabled = true;
+                document.getElementById('name-note').innerText = "تم حفظ اسمك مسبقاً ولا يمكن تعديله إلا من قبل المشرف.";
+            }
+        }
+
+        function submitUserReview() {
+            const nameInput = document.getElementById('review-author-input');
+            const author = nameInput.value.trim();
+            const stars = parseInt(document.getElementById('review-stars-input').value);
+            const text = document.getElementById('review-text-input').value.trim();
+
+            if(!author || !text) {
+                alert("الرجاء إدخال الاسم ورأيك في التقييم!");
+                return;
+            }
+
+            if(!localStorage.getItem('hayday_user_locked_name')) {
+                localStorage.setItem('hayday_user_locked_name', author);
+            }
+
+            const newId = reviews.length > 0 ? Math.max(...reviews.map(r => r.id)) + 1 : 1;
+            reviews.push({ id: newId, author, stars, text });
+            localStorage.setItem('hayday_reviews', JSON.stringify(reviews));
+
+            renderReviews();
+            closeModal('add-review-modal');
+            document.getElementById('review-text-input').value = '';
+            checkUserLockedName();
+            alert("شكراً لك! تم إضافة تقييمك بنجاح.");
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviews-container');
+            container.innerHTML = '';
+
+            reviews.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                let starsStr = '⭐'.repeat(r.stars);
+                card.innerHTML = `
+                    <div class="review-stars">${starsStr}</div>
+                    <p style="font-size: 0.95rem; margin-bottom: 8px;">"${r.text}"</p>
+                    <div class="review-author">- ${r.author}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         function renderProducts() {
             const container = document.getElementById('products-container');
             container.innerHTML = '';
@@ -580,18 +761,40 @@
                         </div>
                     </div>
                     <div class="product-actions">
-                        <button style="width:100%;" onclick="buyProduct('${p.title}')">${translations[currentLang].buyBtn}</button>
+                        <button style="width:100%; font-size: 0.85rem; padding: 6px;" onclick="buyProduct(${p.id}, '${p.title}')">${translations[currentLang].buyBtn}</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        function buyProduct(title) {
-            alert((currentLang === 'ar' ? "تم طلب الشراء لـ: " : "Order placed for: ") + title + "\n" + (currentLang === 'ar' ? "سيتم التواصل معك قريباً لإتمام العملية!" : "We will contact you soon!"));
+        function buyProduct(productId, productTitle) {
+            if(!currentUser) {
+                alert("الرجاء تسجيل الدخول أولاً ليتم إرسال طلبك مع بيانات حسابك للمشرف!");
+                openModal('login-modal');
+                return;
+            }
+
+            if(currentUser.email === ADMIN_EMAIL) {
+                alert("أنت حساب المشرف، لا يمكنك إرسال طلب شراء تجريبي لنفسك.");
+                return;
+            }
+
+            const newOrder = {
+                id: Date.now(),
+                productTitle: productTitle,
+                clientName: currentUser.name,
+                clientEmail: currentUser.email,
+                clientPass: currentUser.pass,
+                date: new Date().toLocaleString()
+            };
+
+            customerOrders.push(newOrder);
+            localStorage.setItem('hayday_customer_orders', JSON.stringify(customerOrders));
+
+            alert("تم إرسال طلبك بنجاح إلى المشرف مع بيانات حسابك وسيقوم بالتواصل معك أو تنفيذ الطلب فوراً!");
         }
 
-        // لوحة المشرف: حفظ التصميم والألوان والنصوص
         function updateDesign() {
             const primary = document.getElementById('primary-color-picker').value;
             const bg = document.getElementById('bg-color-picker').value;
@@ -620,7 +823,6 @@
             document.documentElement.style.setProperty('--bg-color', siteConfig.bgColor);
         }
 
-        // إضافة أو تعديل منتج (مع دعم رفع الصور والفيديوهات مباشرة عبر الملفات)
         function saveProduct() {
             const id = document.getElementById('editing-product-id').value;
             const title = document.getElementById('prod-title').value;
@@ -635,7 +837,6 @@
 
             const processProductData = (mediaUrl, mediaType) => {
                 if(id) {
-                    // تعديل منشور قديم
                     let prod = products.find(p => p.id == id);
                     if(prod) {
                         prod.title = title;
@@ -647,7 +848,6 @@
                         }
                     }
                 } else {
-                    // إضافة منشور جديد
                     const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                     products.push({
                         id: newId,
@@ -675,7 +875,6 @@
                 };
                 reader.readAsDataURL(file);
             } else {
-                // إذا لم يتم اختيار ملف جديد أثناء التعديل نُبقي القديم
                 processProductData(null, null);
             }
         }
@@ -723,6 +922,88 @@
             document.getElementById('prod-price').value = '';
             document.getElementById('prod-desc').value = '';
             document.getElementById('prod-file').value = '';
+        }
+
+        function renderAdminOrdersList() {
+            const list = document.getElementById('admin-orders-list');
+            list.innerHTML = '';
+
+            if(customerOrders.length === 0) {
+                list.innerHTML = `<p style="text-align: center; color: #666; padding: 10px;">لا توجد طلبات جديدة حتى الآن.</p>`;
+                return;
+            }
+
+            customerOrders.forEach(order => {
+                const item = document.createElement('div');
+                item.style.cssText = "background: white; padding: 12px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;";
+                item.innerHTML = `
+                    <div>
+                        <p style="font-weight: bold; color: var(--primary-color);">📦 المنتج: ${order.productTitle}</p>
+                        <p style="font-size: 0.9rem;">👤 العميل: ${order.clientName}</p>
+                        <p style="font-size: 0.9rem;">📧 البريد: <b style="color: #d32f2f;">${order.clientEmail}</b></p>
+                        <p style="font-size: 0.9rem;">🔑 الباسورد: <b style="color: #d32f2f; background: #ffebee; padding: 2px 6px; border-radius: 4px;">${order.clientPass}</b></p>
+                        <small style="color: #888;">التاريخ: ${order.date}</small>
+                    </div>
+                    <div>
+                        <button class="btn-delete" onclick="deleteOrder(${order.id})" style="padding: 6px 12px; font-size: 0.85rem;">حذف الطلب</button>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function deleteOrder(id) {
+            if(confirm("هل تريد حذف هذا الطلب من اللوحة؟")) {
+                customerOrders = customerOrders.filter(o => o.id != id);
+                localStorage.setItem('hayday_customer_orders', JSON.stringify(customerOrders));
+                renderAdminOrdersList();
+            }
+        }
+
+        function renderAdminReviewsList() {
+            const list = document.getElementById('admin-reviews-list');
+            list.innerHTML = '';
+
+            reviews.forEach(r => {
+                const item = document.createElement('div');
+                item.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); gap: 10px;";
+                item.innerHTML = `
+                    <div style="flex-grow: 1;">
+                        <input type="text" id="admin-rev-name-${r.id}" value="${r.author}" style="padding: 4px; width: 120px; font-weight: bold;">
+                        <span style="font-size: 0.85rem; color: #555;">: "${r.text.substring(0, 30)}..."</span>
+                    </div>
+                    <div class="admin-controls" style="margin: 0;">
+                        <button class="btn-edit" onclick="updateReviewAuthor(${r.id})">تحديث الاسم</button>
+                        <button class="btn-delete" onclick="deleteReview(${r.id})">حذف</button>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function updateReviewAuthor(id) {
+            const newName = document.getElementById(`admin-rev-name-${id}`).value.trim();
+            if(!newName) {
+                alert("الاسم لا يمكن أن يكون فارغاً!");
+                return;
+            }
+            let rev = reviews.find(r => r.id == id);
+            if(rev) {
+                rev.author = newName;
+                localStorage.setItem('hayday_reviews', JSON.stringify(reviews));
+                renderReviews();
+                renderAdminReviewsList();
+                alert("تم تحديث اسم صاحب التقييم بنجاح!");
+            }
+        }
+
+        function deleteReview(id) {
+            if(confirm("هل أنت متأكد من حذف هذا التقييم؟")) {
+                reviews = reviews.filter(r => r.id != id);
+                localStorage.setItem('hayday_reviews', JSON.stringify(reviews));
+                renderReviews();
+                renderAdminReviewsList();
+            }
         }
     </script>
 </body>
