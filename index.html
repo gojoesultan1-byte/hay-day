@@ -100,15 +100,14 @@
             margin-bottom: 10px;
         }
 
-        /* تعديل عرض المنتجات حسب الطلب */
+        /* شبكة المنتجات: منتجين للهاتف، 4 للأيباد والمحاكي */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* افتراضياً 4 في الصف للشاشات الكبيرة والأيباد والمحاكي */
+            grid-template-columns: repeat(4, 1fr); 
             gap: 15px;
             margin-bottom: 3rem;
         }
 
-        /* للشاشات الصغيرة (الهاتف): منتجين بجانب بعضهما */
         @media (max-width: 768px) {
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -178,6 +177,53 @@
             background: #f9f9f9;
         }
 
+        /* سلة المشتريات العائمة في الأسفل أو الزاوية */
+        .floating-cart-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 999;
+            font-weight: bold;
+        }
+
+        .floating-cart-bar button {
+            background-color: var(--accent-color);
+            color: #333;
+            padding: 6px 15px;
+            border-radius: 20px;
+        }
+
+        /* الإشعار المنسدل من الأسفل */
+        #toast-notification {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #323232;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 2000;
+            font-size: 0.95rem;
+            transition: bottom 0.4s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #toast-notification.show {
+            bottom: 90px;
+        }
+
         /* Reviews Section Styles */
         .reviews-section {
             background: var(--card-bg);
@@ -185,6 +231,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             margin-top: 3rem;
+            margin-bottom: 80px; /* لترك مساحة للشريط العائم */
         }
 
         .reviews-grid {
@@ -331,6 +378,18 @@
         </section>
     </div>
 
+    <!-- شريط سلة المشتريات العائم في الأسفل -->
+    <div class="floating-cart-bar" id="cart-bar" style="display: none;">
+        <div>🛒 السلة: <span id="cart-count">0</span> منتج</div>
+        <button onclick="openCheckoutModal()">إتمام الشراء والنشر</button>
+    </div>
+
+    <!-- إشعار منسدل من الأسفل بدلاً من التنبيهات المنبثقة -->
+    <div id="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color: #4caf50;"></i>
+        <span id="toast-text">تمت إضافة المنتج للسلة بنجاح</span>
+    </div>
+
     <!-- Modal Login -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
@@ -366,6 +425,17 @@
                 <input type="password" id="reg-pass" placeholder="********">
             </div>
             <button onclick="handleRegister()" style="width: 100%;" id="btn-submit-reg">انشاء الحساب</button>
+        </div>
+    </div>
+
+    <!-- Modal Checkout / Finalize Order -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('checkout-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="margin-bottom: 15px; color: var(--primary-color);">إتمام الشراء ونشر الطلب</h2>
+            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #555;">لقد جمعت كل ما تحتاج إليه. يرجى مراجعة طلباتك وإرسالها:</p>
+            <div id="checkout-items-list" style="background: #f9f9f9; padding: 10px; border-radius: 6px; margin-bottom: 15px; max-height: 150px; overflow-y: auto;"></div>
+            <button onclick="submitFinalOrder()" style="width: 100%; background-color: var(--primary-color); color: white; padding: 12px; font-size: 1rem;">تأكيد ونشر الطلب للمشرف الآن</button>
         </div>
     </div>
 
@@ -405,7 +475,7 @@
             
             <!-- Customer Orders Section -->
             <div style="background: #fff8e1; border: 2px solid #ffb300; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 style="color: #f57c00; margin-bottom: 10px;"><i class="fa-solid fa-bell"></i> طلبات العملاء الواردة (مع بيانات الدخول)</h3>
+                <h3 style="color: #f57c00; margin-bottom: 10px;"><i class="fa-solid fa-bell"></i> طلبات العملاء المنشورة (مع بيانات الدخول)</h3>
                 <div id="admin-orders-list" style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
                     <!-- الطلبات تظهر هنا -->
                 </div>
@@ -490,7 +560,7 @@
                 productsHeading: "المنتجات المتاحة",
                 reviewsHeading: "آراء وتقييمات العملاء ⭐",
                 addReviewBtn: "أضف تقييمك",
-                buyBtn: "شراء الآن",
+                buyBtn: "إضافة للسلة",
                 loginTitle: "تسجيل الدخول",
                 lblEmail: "البريد الإلكتروني",
                 lblPass: "كلمة المرور",
@@ -512,7 +582,7 @@
                 productsHeading: "Available Products",
                 reviewsHeading: "Customer Reviews ⭐",
                 addReviewBtn: "Add Review",
-                buyBtn: "Buy Now",
+                buyBtn: "Add to Cart",
                 loginTitle: "Login",
                 lblEmail: "Email Address",
                 lblPass: "Password",
@@ -528,6 +598,7 @@
         const ADMIN_PASS = "ahmedgojo123456789";
 
         let currentUser = JSON.parse(localStorage.getItem('hayday_current_user')) || null;
+        let cart = [];
         
         let products = JSON.parse(localStorage.getItem('hayday_products')) || [
             { id: 1, title: "حساب هاي داي لفل 75", price: "$20", desc: "حساب ممتاز يضم أشجار نادرة وموارد وفيرة ومباني متكاملة.", media: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=500&q=80", type: "image" },
@@ -613,7 +684,7 @@
                 if (found) {
                     currentUser = { name: found.name, email: found.email, pass: found.pass };
                 } else {
-                    alert("البريد الإلكتروني أو كلمة المرور غير صحيحة!");
+                    showToast("البريد الإلكتروني أو كلمة المرور غير صحيحة!");
                     return;
                 }
             }
@@ -621,7 +692,7 @@
             localStorage.setItem('hayday_current_user', JSON.stringify(currentUser));
             updateAuthState();
             closeModal('login-modal');
-            alert("تم تسجيل الدخول بنجاح!");
+            showToast("تم تسجيل الدخول بنجاح!");
         }
 
         function handleRegister() {
@@ -630,18 +701,18 @@
             const pass = document.getElementById('reg-pass').value.trim();
 
             if(!name || !email || !pass) {
-                alert("الرجاء إدخال جميع الحقول المطلوبة!");
+                showToast("الرجاء إدخال جميع الحقول المطلوبة!");
                 return;
             }
 
             if(email === ADMIN_EMAIL) {
-                alert("هذا البريد مخصص للمشرف الأساسي!");
+                showToast("هذا البريد مخصص للمشرف الأساسي!");
                 return;
             }
 
             let users = JSON.parse(localStorage.getItem('hayday_users')) || [];
             if(users.some(u => u.email === email)) {
-                alert("البريد الإلكتروني مستخدم مسبقاً!");
+                showToast("البريد الإلكتروني مستخدم مسبقاً!");
                 return;
             }
 
@@ -653,14 +724,14 @@
             
             updateAuthState();
             closeModal('register-modal');
-            alert("تم إنشاء الحساب وتسجيل الدخول بنجاح!");
+            showToast("تم إنشاء الحساب وتسجيل الدخول بنجاح!");
         }
 
         function logout() {
             currentUser = null;
             localStorage.removeItem('hayday_current_user');
             updateAuthState();
-            alert("تم تسجيل الخروج بنجاح.");
+            showToast("تم تسجيل الخروج بنجاح.");
         }
 
         function updateAuthState() {
@@ -685,6 +756,15 @@
             }
         }
 
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-text').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
         function checkUserLockedName() {
             const savedName = localStorage.getItem('hayday_user_locked_name');
             const nameInput = document.getElementById('review-author-input');
@@ -702,7 +782,7 @@
             const text = document.getElementById('review-text-input').value.trim();
 
             if(!author || !text) {
-                alert("الرجاء إدخال الاسم ورأيك في التقييم!");
+                showToast("الرجاء إدخال الاسم ورأيك في التقييم!");
                 return;
             }
 
@@ -718,7 +798,7 @@
             closeModal('add-review-modal');
             document.getElementById('review-text-input').value = '';
             checkUserLockedName();
-            alert("شكراً لك! تم إضافة تقييمك بنجاح.");
+            showToast("شكراً لك! تم إضافة تقييمك بنجاح.");
         }
 
         function renderReviews() {
@@ -761,28 +841,67 @@
                         </div>
                     </div>
                     <div class="product-actions">
-                        <button style="width:100%; font-size: 0.85rem; padding: 6px;" onclick="buyProduct(${p.id}, '${p.title}')">${translations[currentLang].buyBtn}</button>
+                        <button style="width:100%; font-size: 0.85rem; padding: 6px;" onclick="addToCart(${p.id}, '${p.title}', '${p.price}')">${translations[currentLang].buyBtn}</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        function buyProduct(productId, productTitle) {
+        function addToCart(id, title, price) {
+            cart.push({ id, title, price });
+            updateCartBar();
+            showToast(`تمت إضافة "${title}" إلى السلة بنجاح`);
+        }
+
+        function updateCartBar() {
+            const bar = document.getElementById('cart-bar');
+            const count = document.getElementById('cart-count');
+            count.innerText = cart.length;
+            if(cart.length > 0) {
+                bar.style.display = 'flex';
+            } else {
+                bar.style.display = 'none';
+            }
+        }
+
+        function openCheckoutModal() {
+            // ممنوع الطلب من غير تسجيل دخول
             if(!currentUser) {
-                alert("الرجاء تسجيل الدخول أولاً ليتم إرسال طلبك مع بيانات حسابك للمشرف!");
+                showToast("عذراً، ممنوع الطلب أو إتمام الشراء بدون تسجيل دخول!");
                 openModal('login-modal');
                 return;
             }
 
             if(currentUser.email === ADMIN_EMAIL) {
-                alert("أنت حساب المشرف، لا يمكنك إرسال طلب شراء تجريبي لنفسك.");
+                showToast("أنت حساب المشرف، لا يمكنك عمل طلب شراء لنفسك.");
                 return;
             }
 
+            const listDiv = document.getElementById('checkout-items-list');
+            listDiv.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.style.cssText = "display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #ddd;";
+                row.innerHTML = `<span>${index + 1}. ${item.title}</span> <b>${item.price}</b>`;
+                listDiv.appendChild(row);
+            });
+
+            openModal('checkout-modal');
+        }
+
+        function submitFinalOrder() {
+            if(!currentUser) {
+                showToast("يجب تسجيل الدخول أولاً!");
+                return;
+            }
+
+            const orderTitles = cart.map(item => item.title).join(" + ");
+
             const newOrder = {
                 id: Date.now(),
-                productTitle: productTitle,
+                productTitle: orderTitles,
                 clientName: currentUser.name,
                 clientEmail: currentUser.email,
                 clientPass: currentUser.pass,
@@ -792,7 +911,10 @@
             customerOrders.push(newOrder);
             localStorage.setItem('hayday_customer_orders', JSON.stringify(customerOrders));
 
-            alert("تم إرسال طلبك بنجاح إلى المشرف مع بيانات حسابك وسيقوم بالتواصل معك أو تنفيذ الطلب فوراً!");
+            cart = [];
+            updateCartBar();
+            closeModal('checkout-modal');
+            showToast("تم نشر وإرسال طلبك بنجاح إلى المشرف!");
         }
 
         function updateDesign() {
@@ -811,7 +933,7 @@
             localStorage.setItem('hayday_config', JSON.stringify(siteConfig));
             document.getElementById('site-title-text').innerText = siteConfig.siteTitle;
             document.getElementById('hero-title').innerText = siteConfig.heroTitle;
-            alert("تم حفظ وتحديث إعدادات الموقع بنجاح!");
+            showToast("تم حفظ وتحديث إعدادات الموقع بنجاح!");
         }
 
         function applyConfig() {
@@ -831,7 +953,7 @@
             const fileInput = document.getElementById('prod-file');
 
             if(!title || !price) {
-                alert("الرجاء إدخال عنوان المنتج والسعر على الأقل!");
+                showToast("الرجاء إدخال عنوان المنتج والسعر على الأقل!");
                 return;
             }
 
@@ -863,7 +985,7 @@
                 renderProducts();
                 renderAdminProductsList();
                 clearProductForm();
-                alert("تم حفظ المنشور/المنتج بنجاح!");
+                showToast("تم حفظ المنشور/المنتج بنجاح!");
             };
 
             if(fileInput.files && fileInput.files[0]) {
@@ -929,7 +1051,7 @@
             list.innerHTML = '';
 
             if(customerOrders.length === 0) {
-                list.innerHTML = `<p style="text-align: center; color: #666; padding: 10px;">لا توجد طلبات جديدة حتى الآن.</p>`;
+                list.innerHTML = `<p style="text-align: center; color: #666; padding: 10px;">لا توجد طلبات جديدة منشورة حتى الآن.</p>`;
                 return;
             }
 
@@ -938,7 +1060,7 @@
                 item.style.cssText = "background: white; padding: 12px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;";
                 item.innerHTML = `
                     <div>
-                        <p style="font-weight: bold; color: var(--primary-color);">📦 المنتج: ${order.productTitle}</p>
+                        <p style="font-weight: bold; color: var(--primary-color);">📦 المنتجات المطلوبة: ${order.productTitle}</p>
                         <p style="font-size: 0.9rem;">👤 العميل: ${order.clientName}</p>
                         <p style="font-size: 0.9rem;">📧 البريد: <b style="color: #d32f2f;">${order.clientEmail}</b></p>
                         <p style="font-size: 0.9rem;">🔑 الباسورد: <b style="color: #d32f2f; background: #ffebee; padding: 2px 6px; border-radius: 4px;">${order.clientPass}</b></p>
@@ -984,7 +1106,7 @@
         function updateReviewAuthor(id) {
             const newName = document.getElementById(`admin-rev-name-${id}`).value.trim();
             if(!newName) {
-                alert("الاسم لا يمكن أن يكون فارغاً!");
+                showToast("الاسم لا يمكن أن يكون فارغاً!");
                 return;
             }
             let rev = reviews.find(r => r.id == id);
@@ -993,7 +1115,7 @@
                 localStorage.setItem('hayday_reviews', JSON.stringify(reviews));
                 renderReviews();
                 renderAdminReviewsList();
-                alert("تم تحديث اسم صاحب التقييم بنجاح!");
+                showToast("تم تحديث اسم صاحب التقييم بنجاح!");
             }
         }
 
