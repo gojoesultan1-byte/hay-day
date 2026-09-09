@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESULTAN HAY DAY STORE | متجر السلطان لمزارع هاي داي</title>
-    <!-- مكتبة خطوط وأيقونات FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- خط عربي مميز Cairo -->
+    <title id="page-title">متجر هاي داي - Hay Day Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-gold: #d4af37;
-            --light-gold: #f3e5ab;
-            --dark-gold: #997a15;
-            --bg-deep: #0b0b0b;
-            --bg-card: #141414;
-            --border-color: #332900;
-            --text-color: #ffffff;
-            --text-muted: #aaaaaa;
+            --primary-color: #2e7d32;
+            --secondary-color: #81c784;
+            --accent-color: #ffb300;
+            --bg-color: #f1f8e9;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --header-bg: #4caf50;
         }
 
         * {
@@ -25,265 +22,172 @@
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
-            background-color: var(--bg-deep);
+            background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(135deg, #000000, #1a1500);
-            border-bottom: 2px solid var(--primary-gold);
-            padding: 15px 30px;
+            background-color: var(--header-bg);
+            color: white;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .logo {
+        .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 24px;
+            gap: 10px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5rem;
             font-weight: 900;
-            color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 5px rgba(212, 175, 55, 0.3);
         }
 
-        .logo i {
-            font-size: 28px;
-        }
-
-        nav ul {
+        .nav-controls {
             display: flex;
-            list-style: none;
-            gap: 25px;
+            gap: 15px;
             align-items: center;
         }
 
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary-gold);
-            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-        }
-
-        .cart-btn {
-            background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
-            color: #000;
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
+        button, .btn {
+            background-color: var(--accent-color);
+            color: #333;
             border: none;
-            transition: 0.3s;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .cart-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+        button:hover {
+            opacity: 0.9;
         }
 
-        .hero {
-            text-align: center;
-            padding: 70px 20px;
-            background: radial-gradient(circle at center, #261f00 0%, var(--bg-deep) 70%);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            color: var(--primary-gold);
-            margin-bottom: 15px;
-            font-weight: 900;
-            text-shadow: 0 3px 10px rgba(0,0,0,0.8);
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto;
+        select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-weight: 600;
         }
 
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        .section-title {
-            font-size: 26px;
-            color: var(--primary-gold);
-            margin-bottom: 25px;
-            border-right: 4px solid var(--primary-gold);
-            padding-right: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
         .product-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            transition: 0.3s;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #1f1f1f;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-gold);
-            font-size: 45px;
-            border-bottom: 1px solid var(--border-color);
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .product-body {
-            padding: 20px;
+        .product-media {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .product-info {
+            padding: 15px;
         }
 
         .product-title {
-            font-size: 18px;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .product-specs {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .product-specs li {
-            list-style: none;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .product-specs li i {
-            color: var(--primary-gold);
-            font-size: 11px;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            margin-bottom: 8px;
         }
 
         .product-price {
-            font-size: 20px;
+            color: var(--primary-color);
             font-weight: 900;
-            color: var(--primary-gold);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
         }
 
-        .buy-btn {
-            background-color: transparent;
-            border: 2px solid var(--primary-gold);
-            color: var(--primary-gold);
-            padding: 6px 15px;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
         }
 
-        .buy-btn:hover {
-            background-color: var(--primary-gold);
-            color: #000;
+        .product-actions {
+            padding: 15px;
+            background: #f9f9f9;
+            display: flex;
+            gap: 10px;
         }
 
-        /* نافذة السلة والطلب */
+        /* Modal / Auth / Admin */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
             justify-content: center;
             align-items: center;
+            z-index: 1000;
         }
 
         .modal-content {
-            background-color: var(--bg-card);
-            border: 2px solid var(--primary-gold);
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
+            background: white;
             padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
         }
 
         .close-modal {
             position: absolute;
             top: 15px;
-            left: 20px;
-            color: var(--text-muted);
-            font-size: 22px;
+            left: 15px;
+            font-size: 1.2rem;
             cursor: pointer;
-            transition: 0.3s;
+            background: none;
+            border: none;
+            box-shadow: none;
         }
-
-        .close-modal:hover {
-            color: var(--primary-gold);
-        }
-
-        .modal-title {
-            color: var(--primary-gold);
-            font-size: 22px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: 700;
+        [dir="ltr"] .close-modal {
+            left: auto;
+            right: 15px;
         }
 
         .form-group {
@@ -292,216 +196,534 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
-            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 600;
         }
 
-        .form-control {
+        .form-group input, .form-group textarea {
             width: 100%;
-            padding: 10px 15px;
-            background: #0f0f0f;
-            border: 1px solid var(--border-color);
+            padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            color: #fff;
-            font-size: 14px;
         }
 
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-gold);
+        .admin-badge {
+            background: #d32f2f;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
         }
 
-        .submit-order-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
-            color: #000;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 800;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: 0.3s;
+        .admin-controls {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
         }
-
-        .submit-order-btn:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
-        }
-
-        footer {
-            background: #000;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        footer span {
-            color: var(--primary-gold);
-            font-weight: 700;
-        }
-
-        @media (max-width: 768px) {
-            nav ul { display: none; }
-            .hero h1 { font-size: 30px; }
-        }
+        .btn-edit { background-color: #ffa000; color: white; }
+        .btn-delete { background-color: #c62828; color: white; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <i class="fa-solid fa-crown"></i>
-            ESULTAN STORE
+        <div class="logo-area">
+            <i class="fa-solid fa-tractor fa-2x"></i>
+            <h1 id="site-title-text">متجر هاي داي الاحترافي</h1>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">الرئيسية</a></li>
-                <li><a href="#products">المزارع والحسابات</a></li>
-                <li><a href="#support">الدعم الفني</a></li>
-            </ul>
-        </nav>
-        <button class="cart-btn" onclick="openCartModal()">
-            <i class="fa-solid fa-shopping-cart"></i> السلة (<span id="cart-count">0</span>)
-        </button>
+        <div class="nav-controls">
+            <select id="lang-switch" onchange="switchLanguage(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+            <div id="auth-buttons">
+                <button onclick="openModal('login-modal')" id="nav-login-btn">تسجيل الدخول</button>
+                <button onclick="openModal('register-modal')" id="nav-reg-btn">انشاء حساب</button>
+            </div>
+            <div id="user-info" style="display: none; align-items: center; gap: 10px;">
+                <span id="welcome-user"></span>
+                <button id="admin-dashboard-btn" style="display: none;" onclick="openModal('admin-modal')">لوحة المشرف</button>
+                <button onclick="logout()" id="nav-logout-btn">خروج</button>
+            </div>
+        </div>
     </header>
 
-    <div class="hero">
-        <h1>متجر السلطان لمزارع هاي داي الفاخرة</h1>
-        <p>احصل على أقوى المزارع والحسابات بمستويات عالية وموارد ضخمة مع ضمان وتسليم فوري وسريع.</p>
-    </div>
+    <div class="container">
+        <section class="hero">
+            <h2 id="hero-title">أقوى حسابات ومنتجات هاي داي</h2>
+            <p id="hero-subtitle">احصل على مستويات عالية، أموال، ومحاصيل بكل سهولة وأمان تام!</p>
+        </section>
 
-    <div class="container" id="products">
-        <div class="section-title">
-            <span>الحسابات والمزارع المتاحة حالياً</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 id="products-heading" style="font-size: 1.5rem;">المنتجات المتاحة</h3>
         </div>
 
-        <div class="products-grid" id="products-list">
-            <!-- المنتجات سيتم توليدها تلقائياً عبر سكربت الجافاسكريبت -->
+        <div class="products-grid" id="products-container">
+            <!-- المنتجات تُعرض هنا ديناميكياً -->
         </div>
     </div>
 
-    <!-- نافذة إتمام الطلب والسلة -->
-    <div class="modal" id="cartModal">
+    <!-- Modal Login -->
+    <div id="login-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeCartModal()">&times;</span>
-            <div class="modal-title">إتمام عملية الشراء</div>
-            <div id="cart-items-summary" style="margin-bottom: 20px; color: var(--text-muted); font-size: 14px;"></div>
-            
+            <button class="close-modal" onclick="closeModal('login-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 id="login-title" style="margin-bottom: 15px;">تسجيل الدخول</h2>
             <div class="form-group">
-                <label>الاسم الكامل</label>
-                <input type="text" id="custName" class="form-control" placeholder="أدخل اسمك الكريم">
+                <label id="lbl-login-email">البريد الإلكتروني</label>
+                <input type="email" id="login-email" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label>رقم الواتساب (للتواصل وإرسال الحساب)</label>
-                <input type="text" id="custPhone" class="form-control" placeholder="مثال: 00966xxxxxxxx">
+                <label id="lbl-login-pass">كلمة المرور</label>
+                <input type="password" id="login-pass" placeholder="********">
             </div>
-            <button class="submit-order-btn" onclick="checkoutOrder()">تأكيد وإرسال الطلب عبر واتساب</button>
+            <button onclick="handleLogin()" style="width: 100%;" id="btn-submit-login">دخول</button>
         </div>
     </div>
 
-    <footer>
-        جميع الحقوق محفوظة &copy; 2026 <span>ESULTAN HAY DAY STORE</span>
-    </footer>
+    <!-- Modal Register -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('register-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 id="reg-title" style="margin-bottom: 15px;">انشاء حساب جديد</h2>
+            <div class="form-group">
+                <label id="lbl-reg-name">اسم المستخدم</label>
+                <input type="text" id="reg-name" placeholder="اسمك الكامل">
+            </div>
+            <div class="form-group">
+                <label id="lbl-reg-email">البريد الإلكتروني</label>
+                <input type="email" id="reg-email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label id="lbl-reg-pass">كلمة المرور</label>
+                <input type="password" id="reg-pass" placeholder="********">
+            </div>
+            <button onclick="handleRegister()" style="width: 100%;" id="btn-submit-reg">انشاء الحساب</button>
+        </div>
+    </div>
 
-    <script>
-        // قاعدة بيانات المنتجات (المزارع والحسابات)
-        const products = [
-            {
-                id: 1,
-                title: "مزرعة مستوى ملكي (مستوى 85)",
-                specs: ["مستوى اللعبة: 85", "ملايين القطع الذهبية والمجوهرات", "مبان وأشجار مكتملة النطاق", "توصيل آمن بربط Supercell ID"],
-                price: "45 دولار",
-                icon: "fa-tractor"
-            },
-            {
-                id: 2,
-                title: "مزرعة المحترفين (مستوى 60)",
-                specs: ["مستوى اللعبة: 60", "موارد وتخزين ضخم جداً", "جاهزة للمنافسة والإنتاج السريع", "ضمان كامل وتسليم فوري"],
-                price: "30 دولار",
-                icon: "fa-wheat-awn"
-            },
-            {
-                id: 3,
-                title: "مزرعة البداية القوية (مستوى 40)",
-                specs: ["مستوى اللعبة: 40", "أراضي موسعة ومعدات جاهزة", "كمية ممتازة من الماس والذهب", "إشراف ودعم فني مخصص"],
-                price: "18 دولار",
-                icon: "fa-seedling"
-            },
-            {
-                id: 4,
-                title: "باكدج أدوات وتوسعة ضخم",
-                specs: ["أدوات توسعة الحظيرة والصومعة (1000 قطعة)", "موارد نادرة متنوعة", "تسليم مباشر داخل اللعبة", "بدون حظر وبأمان تام"],
-                price: "12 دولار",
-                icon: "fa-boxes-packing"
-            }
-        ];
-
-        let selectedProduct = null;
-
-        function renderProducts() {
-            const grid = document.getElementById('products-list');
-            grid.innerHTML = products.map(p => `
-                <div class="product-card">
-                    <div class="product-img">
-                        <i class="fa-solid ${p.icon}"></i>
+    <!-- Admin Dashboard Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="close-modal" onclick="closeModal('admin-modal')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="margin-bottom: 20px; color: var(--primary-color);">لوحة تحكم المشرف الأساسية</h2>
+            
+            <!-- Colors & Texts customization -->
+            <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>تخصيص الألوان والكتابات</h3>
+                <div style="display: flex; gap: 15px; margin-top: 10px;">
+                    <div>
+                        <label>اللون الأساسي:</label>
+                        <input type="color" id="primary-color-picker" value="#2e7d32" onchange="updateDesign()">
                     </div>
-                    <div class="product-body">
-                        <div class="product-title">${p.title}</div>
-                        <ul class="product-specs">
-                            ${p.specs.map(spec => `<li><i class="fa-solid fa-check"></i> ${spec}</li>`).join('')}
-                        </ul>
-                        <div class="product-footer">
-                            <span class="product-price">${p.price}</span>
-                            <button class="buy-btn" onclick="selectProduct(${p.id})">اطلب الآن</button>
-                        </div>
+                    <div>
+                        <label>لون الخلفية:</label>
+                        <input type="color" id="bg-color-picker" value="#f1f8e9" onchange="updateDesign()">
                     </div>
                 </div>
-            `).join('');
-        }
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>عنوان الموقع الرئيسي:</label>
+                    <input type="text" id="custom-site-title" value="متجر هاي داي الاحترافي">
+                </div>
+                <div class="form-group">
+                    <label>عنوان الواجهة (Hero Title):</label>
+                    <input type="text" id="custom-hero-title" value="أقوى حسابات ومنتجات هاي داي">
+                </div>
+                <button onclick="saveDesignTexts()">حفظ التعديلات العامة</button>
+            </div>
 
-        function selectProduct(id) {
-            selectedProduct = products.find(p => p.id === id);
-            document.getElementById('cart-count').innerText = "1";
-            document.getElementById('cart-items-summary').innerHTML = `المنتج المختار: <b style="color:var(--primary-gold)">${selectedProduct.title}</b> بقيمة <b style="color:var(--primary-gold)">${selectedProduct.price}</b>`;
-            document.getElementById('cartModal').style.display = 'flex';
-        }
+            <!-- Add / Edit Product Section -->
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                <h3 id="form-product-heading">إضافة / تعديل منتج أو منشور جديد</h3>
+                <input type="hidden" id="editing-product-id" value="">
+                <div class="form-group" style="margin-top: 10px;">
+                    <label>عنوان المنتج / المنشور:</label>
+                    <input type="text" id="prod-title" placeholder="مثال: حساب هاي داي لفل 100">
+                </div>
+                <div class="form-group">
+                    <label>السعر:</label>
+                    <input type="text" id="prod-price" placeholder="مثال: $25 أو 500 جنيه">
+                </div>
+                <div class="form-group">
+                    <label>الوصف:</label>
+                    <textarea id="prod-desc" placeholder="تفاصيل الحساب أو المنتج..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>تحميل صورة أو فيديو (من جهازك):</label>
+                    <input type="file" id="prod-file" accept="image/*,video/*">
+                </div>
+                <button onclick="saveProduct()" id="save-prod-btn" style="background-color: var(--primary-color); color: white;">حفظ المنتج</button>
+            </div>
 
-        function openCartModal() {
-            if (!selectedProduct) {
-                alert("يرجى اختيار مزرعة أو منتج أولاً من المتجر!");
-                return;
+            <!-- Products List to Manage -->
+            <div style="margin-top: 20px;">
+                <h3>المنشورات والمنتجات الحالية</h3>
+                <div id="admin-products-list" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // اللغات الترجمة الكاملة
+        const translations = {
+            ar: {
+                dir: "rtl",
+                title: "متجر هاي داي - Hay Day Store",
+                siteTitle: "متجر هاي داي الاحترافي",
+                login: "تسجيل الدخول",
+                register: "انشاء حساب",
+                logout: "خروج",
+                adminBtn: "لوحة المشرف",
+                heroTitle: "أقوى حسابات ومنتجات هاي داي",
+                heroSubtitle: "احصل على مستويات عالية، أموال، ومحاصيل بكل سهولة وأمان تام!",
+                productsHeading: "المنتجات المتاحة",
+                buyBtn: "شراء الآن",
+                loginTitle: "تسجيل الدخول",
+                lblEmail: "البريد الإلكتروني",
+                lblPass: "كلمة المرور",
+                btnLoginSubmit: "دخول",
+                regTitle: "انشاء حساب جديد",
+                lblName: "اسم المستخدم",
+                btnRegSubmit: "انشاء الحساب",
+                welcome: "مرحباً، "
+            },
+            en: {
+                dir: "ltr",
+                title: "Hay Day Store",
+                siteTitle: "Pro Hay Day Store",
+                login: "Login",
+                register: "Register",
+                logout: "Logout",
+                adminBtn: "Admin Dashboard",
+                heroTitle: "Best Hay Day Accounts & Items",
+                heroSubtitle: "Get high levels, coins, and crops easily and securely!",
+                productsHeading: "Available Products",
+                buyBtn: "Buy Now",
+                loginTitle: "Login",
+                lblEmail: "Email Address",
+                lblPass: "Password",
+                btnLoginSubmit: "Login",
+                regTitle: "Create New Account",
+                lblName: "Username",
+                btnRegSubmit: "Create Account",
+                welcome: "Welcome, "
             }
-            document.getElementById('cartModal').style.display = 'flex';
-        }
+        };
 
-        function closeCartModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
+        let currentLang = 'ar';
 
-        function checkoutOrder() {
-            const name = document.getElementById('custName').value.trim();
-            const phone = document.getElementById('custPhone').value.trim();
+        // البيانات التخزينية الافتراضية
+        let currentUser = JSON.parse(localStorage.getItem('hayday_current_user')) || null;
+        
+        let products = JSON.parse(localStorage.getItem('hayday_products')) || [
+            { id: 1, title: "حساب هاي داي لفل 75", price: "$20", desc: "حساب ممتاز يضم أشجار نادرة وموارد وفيرة ومباني متكاملة.", media: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=500&q=80", type: "image" },
+            { id: 2, title: "حزمة أدوات التوسعة (100 قطعة)", price: "$10", desc: "مسامير، ألواح خشبية، ومقادير لتوسعة الحظيرة والصومعة بسرعة.", media: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80", type: "image" }
+        ];
 
-            if (!name || !phone) {
-                alert("الرجاء إدخال الاسم ورقم الواتساب لإتمام الطلب.");
-                return;
-            }
+        let siteConfig = JSON.parse(localStorage.getItem('hayday_config')) || {
+            primaryColor: "#2e7d32",
+            bgColor: "#f1f8e9",
+            siteTitle: "متجر هاي داي الاحترافي",
+            heroTitle: "أقوى حسابات ومنتجات هاي داي"
+        };
 
-            const message = `مرحباً متجر السلطان (ESULTAN STORE)، أرغب في شراء:\n\n*المنتج:* ${selectedProduct.title}\n*السعر:* ${selectedProduct.price}\n*اسم العميل:* ${name}\n*رقم التواصل:* ${phone}`;
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        // حساب المشرف المطلوب تحديداً
+        const ADMIN_EMAIL = "gojoesultan@gmail.com";
+        const ADMIN_PASS = "ahmedgojo123456789";
+
+        window.onload = function() {
+            applyConfig();
+            switchLanguage(currentLang);
+            updateAuthState();
+            renderProducts();
+        };
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
             
-            window.open(whatsappUrl, '_blank');
-            closeCartModal();
+            document.documentElement.setAttribute('dir', t.dir);
+            document.getElementById('page-title').innerText = t.title;
+            document.getElementById('site-title-text').innerText = siteConfig.siteTitle;
+            document.getElementById('nav-login-btn').innerText = t.login;
+            document.getElementById('nav-reg-btn').innerText = t.register;
+            document.getElementById('nav-logout-btn').innerText = t.logout;
+            document.getElementById('admin-dashboard-btn').innerText = t.adminBtn;
+            document.getElementById('hero-title').innerText = siteConfig.heroTitle;
+            document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
+            document.getElementById('products-heading').innerText = t.productsHeading;
+            document.getElementById('login-title').innerText = t.loginTitle;
+            document.getElementById('lbl-login-email').innerText = t.lblEmail;
+            document.getElementById('lbl-login-pass').innerText = t.lblPass;
+            document.getElementById('btn-submit-login').innerText = t.btnLoginSubmit;
+            document.getElementById('reg-title').innerText = t.regTitle;
+            document.getElementById('lbl-reg-name').innerText = t.lblName;
+            document.getElementById('lbl-reg-email').innerText = t.lblEmail;
+            document.getElementById('lbl-reg-pass').innerText = t.lblPass;
+            document.getElementById('btn-submit-reg').innerText = t.btnRegSubmit;
+            
+            document.getElementById('lang-switch').value = lang;
+            renderProducts();
         }
 
-        // تشغيل عرض المنتجات عند التحميل
-        window.onload = renderProducts;
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+            if(id === 'admin-modal') renderAdminProductsList();
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // التعامل مع تسجيل الدخول
+        function handleLogin() {
+            const email = document.getElementById('login-email').value.trim();
+            const pass = document.getElementById('login-pass').value.trim();
+
+            if (email === ADMIN_EMAIL && pass === ADMIN_PASS) {
+                currentUser = { name: "Gojo Sultan", email: ADMIN_EMAIL, isAdmin: true };
+            } else {
+                // التحقق من مستخدمين عاديين مسجلين محلياً
+                let users = JSON.parse(localStorage.getItem('hayday_users')) || [];
+                let found = users.find(u => u.email === email && u.pass === pass);
+                if (found) {
+                    currentUser = { name: found.name, email: found.email, isAdmin: false };
+                } else {
+                    alert("البريد الإلكتروني أو كلمة المرور غير صحيحة!");
+                    return;
+                }
+            }
+
+            localStorage.setItem('hayday_current_user', JSON.stringify(currentUser));
+            updateAuthState();
+            closeModal('login-modal');
+            alert("تم تسجيل الدخول بنجاح!");
+        }
+
+        // تسجيل حساب جديد
+        function handleRegister() {
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const pass = document.getElementById('reg-pass').value.trim();
+
+            if(!name || !email || !pass) {
+                alert("الرجاء إدخال جميع الحقول المطلوبة!");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('hayday_users')) || [];
+            if(users.some(u => u.email === email) || email === ADMIN_EMAIL) {
+                alert("البريد الإلكتروني مستخدم مسبقاً!");
+                return;
+            }
+
+            users.push({ name, email, pass });
+            localStorage.setItem('hayday_users', JSON.stringify(users));
+            
+            currentUser = { name, email, isAdmin: false };
+            localStorage.setItem('hayday_current_user', JSON.stringify(currentUser));
+            
+            updateAuthState();
+            closeModal('register-modal');
+            alert("تم إنشاء الحساب وتسجيل الدخول بنجاح!");
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('hayday_current_user');
+            updateAuthState();
+            alert("تم تسجيل الخروج بنجاح.");
+        }
+
+        function updateAuthState() {
+            const authBtns = document.getElementById('auth-buttons');
+            const userInfo = document.getElementById('user-info');
+            const welcomeUser = document.getElementById('welcome-user');
+            const adminBtn = document.getElementById('admin-dashboard-btn');
+
+            if(currentUser) {
+                authBtns.style.display = 'none';
+                userInfo.style.display = 'flex';
+                welcomeUser.innerText = (currentLang === 'ar' ? "مرحباً، " : "Welcome, ") + currentUser.name;
+                
+                if(currentUser.email === ADMIN_EMAIL) {
+                    adminBtn.style.display = 'inline-block';
+                } else {
+                    adminBtn.style.display = 'none';
+                }
+            } else {
+                authBtns.style.display = 'flex';
+                userInfo.style.display = 'none';
+            }
+        }
+
+        // عرض المنتجات والمنشورات
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+
+            products.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                let mediaHtml = `<img src="${p.media}" class="product-media" alt="product">`;
+                if(p.type === 'video') {
+                    mediaHtml = `<video src="${p.media}" class="product-media" controls></video>`;
+                }
+
+                card.innerHTML = `
+                    <div>
+                        ${mediaHtml}
+                        <div class="product-info">
+                            <h4 class="product-title">${p.title}</h4>
+                            <div class="product-price">${p.price}</div>
+                            <p class="product-desc">${p.desc}</p>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button style="width:100%;" onclick="buyProduct('${p.title}')">${translations[currentLang].buyBtn}</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function buyProduct(title) {
+            alert((currentLang === 'ar' ? "تم طلب الشراء لـ: " : "Order placed for: ") + title + "\n" + (currentLang === 'ar' ? "سيتم التواصل معك قريباً لإتمام العملية!" : "We will contact you soon!"));
+        }
+
+        // لوحة المشرف: حفظ التصميم والألوان والنصوص
+        function updateDesign() {
+            const primary = document.getElementById('primary-color-picker').value;
+            const bg = document.getElementById('bg-color-picker').value;
+            document.documentElement.style.setProperty('--primary-color', primary);
+            document.documentElement.style.setProperty('--bg-color', bg);
+        }
+
+        function saveDesignTexts() {
+            siteConfig.primaryColor = document.getElementById('primary-color-picker').value;
+            siteConfig.bgColor = document.getElementById('bg-color-picker').value;
+            siteConfig.siteTitle = document.getElementById('custom-site-title').value;
+            siteConfig.heroTitle = document.getElementById('custom-hero-title').value;
+
+            localStorage.setItem('hayday_config', JSON.stringify(siteConfig));
+            document.getElementById('site-title-text').innerText = siteConfig.siteTitle;
+            document.getElementById('hero-title').innerText = siteConfig.heroTitle;
+            alert("تم حفظ وتحديث إعدادات الموقع بنجاح!");
+        }
+
+        function applyConfig() {
+            document.getElementById('primary-color-picker').value = siteConfig.primaryColor;
+            document.getElementById('bg-color-picker').value = siteConfig.bgColor;
+            document.getElementById('custom-site-title').value = siteConfig.siteTitle;
+            document.getElementById('custom-hero-title').value = siteConfig.heroTitle;
+            document.documentElement.style.setProperty('--primary-color', siteConfig.primaryColor);
+            document.documentElement.style.setProperty('--bg-color', siteConfig.bgColor);
+        }
+
+        // إضافة أو تعديل منتج (مع دعم رفع الصور والفيديوهات مباشرة عبر الملفات)
+        function saveProduct() {
+            const id = document.getElementById('editing-product-id').value;
+            const title = document.getElementById('prod-title').value;
+            const price = document.getElementById('prod-price').value;
+            const desc = document.getElementById('prod-desc').value;
+            const fileInput = document.getElementById('prod-file');
+
+            if(!title || !price) {
+                alert("الرجاء إدخال عنوان المنتج والسعر على الأقل!");
+                return;
+            }
+
+            const processProductData = (mediaUrl, mediaType) => {
+                if(id) {
+                    // تعديل منشور قديم
+                    let prod = products.find(p => p.id == id);
+                    if(prod) {
+                        prod.title = title;
+                        prod.price = price;
+                        prod.desc = desc;
+                        if(mediaUrl) {
+                            prod.media = mediaUrl;
+                            prod.type = mediaType;
+                        }
+                    }
+                } else {
+                    // إضافة منشور جديد
+                    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                    products.push({
+                        id: newId,
+                        title,
+                        price,
+                        desc,
+                        media: mediaUrl || "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80",
+                        type: mediaType || "image"
+                    });
+                }
+
+                localStorage.setItem('hayday_products', JSON.stringify(products));
+                renderProducts();
+                renderAdminProductsList();
+                clearProductForm();
+                alert("تم حفظ المنشور/المنتج بنجاح!");
+            };
+
+            if(fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                const fileType = file.type.startsWith('video') ? 'video' : 'image';
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    processProductData(e.target.result, fileType);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // إذا لم يتم اختيار ملف جديد أثناء التعديل نُبقي القديم
+                processProductData(null, null);
+            }
+        }
+
+        function renderAdminProductsList() {
+            const list = document.getElementById('admin-products-list');
+            list.innerHTML = '';
+
+            products.forEach(p => {
+                const item = document.createElement('div');
+                item.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);";
+                item.innerHTML = `
+                    <span><b>${p.title}</b> (${p.price})</span>
+                    <div class="admin-controls">
+                        <button class="btn-edit" onclick="editProduct(${p.id})">تعديل</button>
+                        <button class="btn-delete" onclick="deleteProduct(${p.id})">حذف</button>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function editProduct(id) {
+            const p = products.find(item => item.id == id);
+            if(p) {
+                document.getElementById('editing-product-id').value = p.id;
+                document.getElementById('prod-title').value = p.title;
+                document.getElementById('prod-price').value = p.price;
+                document.getElementById('prod-desc').value = p.desc;
+            }
+        }
+
+        function deleteProduct(id) {
+            if(confirm("هل أنت متأكد من حذف هذا المنتج أو المنشور؟")) {
+                products = products.filter(p => p.id != id);
+                localStorage.setItem('hayday_products', JSON.stringify(products));
+                renderProducts();
+                renderAdminProductsList();
+            }
+        }
+
+        function clearProductForm() {
+            document.getElementById('editing-product-id').value = '';
+            document.getElementById('prod-title').value = '';
+            document.getElementById('prod-price').value = '';
+            document.getElementById('prod-desc').value = '';
+            document.getElementById('prod-file').value = '';
+        }
     </script>
 </body>
 </html>
